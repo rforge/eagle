@@ -12,7 +12,7 @@ License: GPL-3
 Depends:
    R (>= 3.3.2)
 Suggests:
-  knitr, rmarkdown
+  rmarkdown
 Imports: 
    matrixcalc,
    shiny,
@@ -24,7 +24,8 @@ Imports:
    parallel,
    data.table,
    tcltk,
-   markdown
+   markdown,
+   knitr
 LinkingTo: 
    RcppEigen, Rcpp
 Roxygen: 
