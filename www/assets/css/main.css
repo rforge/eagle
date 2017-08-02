@@ -3997,12 +3997,24 @@
 
 /* Banner */
 
-	.banner {
+/*	.banner {
 		background-color: #8a4680;
 		color: #e2d1df;
 		padding: 8em 0;
 		position: relative;
 	}
+*/	
+	
+	
+.banner {
+		background-color: #ffffff;
+		color: #ffffff;
+		padding: 8em 0;
+		position: relative;
+	}
+		
+	
+	
 
 		.banner input, .banner select, .banner textarea {
 			color: #ffffff;
@@ -4034,7 +4046,7 @@
 		}
 
 		.banner.full {
-			padding: 0;
+			padding: 100;
 			min-height: 100vh;
 			height: 100vh !important;
 		}
@@ -4066,6 +4078,7 @@
 			width: 100%;
 			z-index: 2;
 		}
+
 
 		.banner .indicators {
 			bottom: 1.5em;
@@ -4134,7 +4147,8 @@
 				height: 100%;
 				vertical-align: middle;
 			}
-
+			
+/* opacity -- This controls how bright the pictures appear on the banner .... */
 			.banner > article:after {
 				content: '';
 				display: block;
@@ -4144,7 +4158,7 @@
 				top: 0;
 				left: 0;
 				background: #000;
-				opacity: 0.35;
+				opacity: 0.15;
 			}
 
 			.banner > article .inner {
