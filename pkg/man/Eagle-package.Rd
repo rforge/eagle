@@ -48,7 +48,7 @@ convert different format marker files into ped files.  See \code{\link{ReadMarke
 
 \section{Quick Start Guide}{
 
-At the R prompt, run \preformatted{OpenUI()} This opens a web browser to the
+At the R prompt, run \preformatted{OpenGUI()} This opens a web browser to the
 user interface for Eagle.
 }
 
