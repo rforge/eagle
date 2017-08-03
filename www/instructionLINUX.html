@@ -3,6 +3,9 @@
 	Hielo by TEMPLATED
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+	<meta name="viewport" content="width=device-width, initial-scale=1"> 
+
+	
 -->
 <html>
 	<head>
@@ -11,6 +14,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<link rel="stylesheet" href="assets/css/zerogrid.css">
+		
+
+		
 	</head>
 	<body class="subpage">
 
@@ -73,26 +79,166 @@
 
 				<hr />						    
 					      
-                <h2> Step 1: Check for the libpng12 library </h2>
-
-               Libpng is a reference library containing functions to read, create, and 
-                manipulate PNG image files.  This library is needed for the following steps to work. </p>
-                
-               <p> To check if you have libpng12,  open a terminal and type the following
-	         <pre class="r"><code>sudo find /  -name &quot;libpng*&quot; -print </code></pre>
-               </p>
-
-            <p> This will find all the files on your system for the libpng library.   </p>
-            <p> If you don’t see the file libpng12.so.0, you will need to install the libpng12 library. </p>
+            <h2> Step 1: Getting your System Ready</h2>
 
 
-
-
-
-
-
-
+			<!-- Getting Fedora ready  -->
+           <details>
     
+    		<summary>  <img src="images/fedora.png" 
+										    class="img-responsive" width="90px" height="90px"/>  </summary>
+           <p> </p>
+           <p> For the following steps to work, your system needs the reference library libpng12,  
+           a c++ compiler, and a fortran compiler.  
+           If you don't have these on your system already, fortunately they are  freely available and 
+           easy to install. </p>
+
+
+           <h4> <b> Installation of libpng12 </b> </h4>
+           
+           <p>Libpng is a reference library containing functions to read, create, and 
+         manipulate PNG image files.  You need the libpng12 version on your system. A different 
+         version will not suffice.   </p>
+                
+                
+           <p> To install libpng12, from a terminal, type the following </p>
+            
+               
+	         <pre class="r"><code>sudo yum install libpng12 </code></pre>
+               
+
+         <h4> <b> Installation of a C++ compiler </b> </h4>           
+         To install a C++ compiler, open a terminal and type the following
+             <pre class="r"><code>sudo yum install gcc-c++  </code></pre>
+           
+                 <h4> <b> Installation of a Fortran compiler </b> </h4>           
+         To install a Fortran  compiler, open a terminal and type the following
+             <pre class="r"><code>sudo yum install gcc-gfortran </code></pre>           
+           
+
+         </details>
+
+         <p></p>
+
+		  <!-- Getting RHLE ready  -->
+          <details>
+    
+    		<summary>  <img src="images/rhle.jpg" 
+										    class="img-responsive" width="120px" height="90px"/>  </summary>
+
+                  <p> For the following steps to work, your system needs the reference library libpng12,  
+           a c++ compiler, and a fortran compiler.  
+           If you don't have these on your system already, fortunately they are  freely available and 
+           easy to install. </p>
+
+
+           <h4> <b> Installation of libpng12 </b> </h4>
+           
+           <p>Libpng is a reference library containing functions to read, create, and 
+         manipulate PNG image files.  You need the libpng12 version on your system. A different 
+         version will not suffice.   </p>
+                
+                
+           <p> To install libpng12, from a terminal, type the following </p>
+            
+               
+	         <pre class="r"><code>sudo yum install libpng12 </code></pre>
+               
+
+         <h4> <b> Installation of a C++ compiler </b> </h4>           
+         To install a C++ compiler, open a terminal and type the following
+             <pre class="r"><code>sudo yum install gcc-c++  </code></pre>
+           
+                 <h4> <b> Installation of a Fortran compiler </b> </h4>           
+         To install a Fortran  compiler, open a terminal and type the following
+             <pre class="r"><code>sudo yum install gcc-gfortran </code></pre>           
+           
+   
+
+    </details>
+
+<p></p>
+		  <!-- Getting Debian ready  -->
+  <details>
+    
+    		<summary>  <img src="images/debian.png" 
+										    class="img-responsive" width="120px" height="90px"/>  </summary>
+
+           <p> </p>
+           <p> For the following steps to work, your system needs the reference library libpng12,  
+           a c++ compiler, and a fortran compiler.  
+           If you don't have these on your system already, fortunately they are  freely available and 
+           easy to install. </p>
+
+
+           <h4> <b> Installation of libpng12 </b> </h4>
+           
+           <p>Libpng is a reference library containing functions to read, create, and 
+         manipulate PNG image files.  You need the libpng12 version on your system. A different 
+         version will not suffice.   </p>
+                
+            <p> To install libpng12, from a terminal, type the following
+            <div id="div_aptget">
+            <pre class="r"><code>sudo apt-get install libpng12-0  </code></pre>
+             </div>
+            If the package is unable to be located, via an 
+            editor, to the end of the file /etc/apt/sources.list add the following two lines </p>
+            
+            <pre>
+            deb       http://ftp.debian.org/debian/ jessie  main  non-free
+            deb-src   http://ftp.debian.org/debian/ jessie  main  non-free
+            </pre>
+            
+            <p>and save the file.  
+            You will need administrator privileges to save this file to this directory.
+            This adds the repository that contains the libpng12 library. </p>
+
+             <p> Update the package listings in the repositories by running </p>
+           
+	         <pre class="r"><code>sudo apt-get update </code></pre>
+               
+             <p> Once the above command has finished updating, 
+             install libpng12 again with </p>
+             
+             <pre class="r"><code>sudo apt-get install libpng12-0  </code></pre>           
+
+
+
+         <h4> <b> Installation of a compiler for C++</b> </h4>           
+         <p> To install a compiler for C++, open a terminal and type the following </p>
+      
+             <pre class="r"><code>sudo apt-get install build-essential  </code></pre>
+           
+                
+            <h4> <b> Installation of a compiler for Fortran</b> </h4>           
+         <p> To install a compiler for Fortran, open a terminal and type the following </p>
+         
+             <pre class="r"><code>sudo apt-get install gfortran </code></pre>
+           
+                
+     
+         
+         
+         
+
+    </details>
+
+<details>
+    
+    		<summary>  <img src="images/opensuse.png" 
+										    class="img-responsive" width="120px" height="90px"/>  </summary>
+
+           This text will be hidden if your browser supports it.
+
+    </details>
+
+
+
+
+
+
+
+
         <hr />
 
 					    

@@ -937,21 +937,13 @@ tabPanel("FAQ",
 
 
 
-                       tabPanel("Documents", 
-
-#fluidRow(
-#a(h4("R/Eagle complete reference manual"),  href="manual.pdf", target="_blank"), br()
-#),  ## end fluidRow
-
-fluidRow(
-  actionButton(inputId="quickstart", h4("QuickStart guide"))
-)  ## end fluidRow
-
 
 
 
 
 ) ## end tabPanel
+
+
 )  ##  navbarMenu                 
                        ) ## end navbarPage
 
@@ -1288,9 +1280,9 @@ sapply(rmdfiles, knit, quiet = T)
               quiet = TRUE),options=c('toc'), fragment.only=TRUE))
     })
 
- observeEvent(input$quickstart, {
-      RShowDoc("QuickStart", package="Eagle")
-})
+# observeEvent(input$quickstart, {
+#      RShowDoc("QuickStart", package="Eagle")
+#})
 
   ##---------------------------------
   ## Help files   - addPopover

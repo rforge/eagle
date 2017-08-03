@@ -28,19 +28,19 @@ Eagle does its best to capture errors, especially in the input files.
 Eagle also issues error messages that we hope will be helping for solving the problem. 
 
 
-## Using OpenUI
+## Using OpenGUI
 
 ### I cannot see the file browser when I click on Choose File?
 This has been a source of frustration.  The file browser has opened, it is sitting in the background. 
 This behaviour of the R file browser opening behind instead of in front of the active window is a known problem which has yet to be solved. 
 
 
-### When I use OpenUI, nothing happens
+### When I use OpenGUI, nothing happens
 Make sure you are running the latest version of R along with updated versions of the packages (use `update.packages`). 
 
 
-### When I use OpenUI, my web browser opens but everything is greyed out and I cannot click on any of the widgets
-Go back to the window from which you issued the `OpenUI` command.  If an error has occurred, it will be printed here. 
+### When I use OpenGUI, my web browser opens but everything is greyed out and I cannot click on any of the widgets
+Go back to the window from which you issued the `OpenGUI` command.  If an error has occurred, it will be printed here. 
 The most likely cause is that your packages have been installed under a version of R that is different to the one being used. 
 Run the following to update all your installed packages 
 ```{r, eval=FALSE}
@@ -131,7 +131,7 @@ update.packages(checkBuilt=TRUE, ask=FALSE)
 ### Do I need to update Eagle if I have updated my version of R?
 Yes. 
 
-We have seen some strange behaviour, especially with `OpenUI()`, when Eagle and its dependencies 
+We have seen some strange behaviour, especially with `OpenGUI()`, when Eagle and its dependencies 
 have been installed under different versions of R. When ever a newer version of R is installed, it is good practice to 
 update it's packages with  
 ```{r, eval=FALSE}
@@ -153,7 +153,7 @@ Eagle is based on linear mixed models. Linear mixed models assume a response (or
 robust to violations of their assumptions. 
 
 ### Am I allowed to have interactions between my fixed effects?
-Yes, but using Eagle via OpenUI can only handle main effects. One solution is to add an 
+Yes, but using Eagle via OpenGUI can only handle main effects. One solution is to add an 
 extra column to the phenotypic data file that is the interaction of the two effects that are of interest. Then,  include these data 
 as an extra fixed effect in the analysis. Alternately, from the R prompt, use the `AM` function and define the fixed effect part of the model 
 by setting fformula. It would be best to look online for information on how to specify 
@@ -170,13 +170,12 @@ such as MKL or openBLAS. Look at our installation notes on how to install R that
 ## Help
 
 ### Where can I go for help?  
-* Help is available through this user interface. Just move your mouse pointer over a widget and a pop-up window will appear
+* Help is available through this GUI. Just move your mouse pointer over a widget and a pop-up window will appear
   giving additional information on its use. 
-* Click the Help tab at the top of a page. A sub-menu will  appear with About, FAQ, and Documents. 
-* A quick start guide is available under Help/Documents. It can also be accessed by `vignette("QuickStart", "Eagle")` at the R prompt. 
+* Visit our Eagle website at http://eagle.r-forge.r-project.org where you will find a quick start guide, these FAQ, and other useful 
+  resources.
 * We have produced a Youtube video where we run through a complete analysis with Eagle. It can be found on Youtube by searching for 
 "How to use Eagle for genome-wide association mapping".
-* If all else has failed,  email us on <eaglehelp@csiro.au>
 
 
 

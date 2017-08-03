@@ -7,11 +7,13 @@
 ## Opening message
 ##--------------------------------
 packageStartupMessage(' ')
-packageStartupMessage('   +---------------------------------------------------+ ')
-packageStartupMessage('   |              Eagle has been loaded.               | ')               
-packageStartupMessage('   |  Documentation: vignette("QuickStart", "Eagle")   | ')
-packageStartupMessage('   |  Run OpenUI() to open web-based user interface.   | ')
-packageStartupMessage('   +---------------------------------------------------+ ')
+packageStartupMessage('   +--------------------------------------------------------------------------+ ')
+packageStartupMessage('   |  Eagle has been loaded...................................................| ')  
+packageStartupMessage('   |                                                                          | ')             
+packageStartupMessage('   |  Visit eagle.r-forge.r-project.org for Quick Start guide and FAQ.........| ')               
+packageStartupMessage('   |                                                                          | ')
+packageStartupMessage('   |  Type OpenGUI() to open web-based GUI....................................| ')
+packageStartupMessage('   +--------------------------------------------------------------------------+ ')
 packageStartupMessage(' ')
 }
 
