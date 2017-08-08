@@ -2,7 +2,7 @@
 % Please edit documentation in R/wgEMMA.R
 \name{OpenGUI}
 \alias{OpenGUI}
-\title{Browser-based User Interface}
+\title{Browser-based Graphical User Interface}
 \usage{
 OpenGUI()
 }

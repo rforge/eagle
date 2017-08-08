@@ -39,7 +39,7 @@
 			<section id="One" class="wrapper style3">
 				<div class="inner">
 					<header class="align-center">
-						<p>How to Install multi-threaded R for Linux</p>
+						<p>How to Install multi-threaded Eagle for Linux</p>
 						<h2>Eagle</h2>
 					</header>
 				</div>
@@ -50,6 +50,22 @@
 			<div id="main" class="container">
 
 				<!-- Elements -->
+				<h2> Purpose of this guide </h2>
+				<p> Eagle is built with the R language. R, by default, is installed for 
+				single-thread computation.  
+				However, it is possible to replace R’s default single-thread math 
+				libraries with multi-thread libraries.  In doing so, many of R’s 
+				linear algebra operations become implicitly parallelized. 
+				We have purposely built Eagle to take full advantage of this 
+				implicit parallelization.  
+				</p>
+				
+			
+				<p> In this guide, we will show you how to install R for multi-thread 
+				 computation. Once R is installed, it is then simple to install Eagle. 
+				 </p>
+				<hr />
+				
 					<h2 id="elements">What you need</h2>
 					
 					<p> You will need administrator privileges. That is, you will 

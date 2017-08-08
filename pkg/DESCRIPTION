@@ -33,6 +33,4 @@ Roxygen:
 LazyData: true
 ByteCompile: TRUE
 NeedsCompilation: yes
-VignetteBuilder: knitr
-NeedsCompilation: yes
 URL: http://eagle.r-forge.r-project.org

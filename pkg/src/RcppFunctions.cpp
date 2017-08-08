@@ -19,7 +19,8 @@
 
 // This was causing issues when building on clean Linux system
 // creates reliance on mkl.h 
-// #define EIGEN_USE_BLAS
+//#define EIGEN_USE_BLAS
+// #define EIGEN_USE_MKL_ALL
 
 // [[Rcpp::depends(RcppEigen)]]
 
@@ -35,7 +36,6 @@
 #include <time.h>
 // end added by Ryan
 
-#include <omp.h>
 #include <iostream>
 #include <fstream>
 #include <istream>
@@ -1735,7 +1735,9 @@ if(mem_bytes_needed < max_memory_in_Gbytes){
 
   // Added 26 April
   long i;
-  #pragma omp parallel for shared(var_ans, var_ans_tmp, Mt)  private(i) schedule(static)
+  #if defined(_OPENMP)
+     #pragma omp parallel for shared(var_ans, var_ans_tmp, Mt)  private(i) schedule(static)
+  #endif
   for(i=0; i< dims[0]; i++){
            var_ans(i,0) =   var_ans_tmp.row(i)   * (Mt.row(i)).transpose() ;
   }
@@ -1846,7 +1848,10 @@ if(mem_bytes_needed < max_memory_in_Gbytes){
 
    //    var_ans_tmp(j,0)  =   vt.row(j)  * ((Mt.row(j)).transpose()) ;
            // Added 26 April
-            #pragma omp parallel for
+#if defined(_OPENMP)
+           #pragma omp parallel for
+#endif
+
             for(long j=0; j < num_rows_in_block1; j++){
                       var_ans_tmp(j,0)  =   vt.row(j)  * ((Mt.row(j)).transpose()) ;
             }

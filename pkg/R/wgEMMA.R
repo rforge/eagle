@@ -1851,7 +1851,7 @@ constructX <- function(fnameM=NULL, currentX=NULL, loci_indx=NULL,
 
 
 
-#' @title Browser-based User Interface
+#' @title Browser-based Graphical User Interface
 #' @description Opens a web browser to act as a user-friendly user interface to Eagle
 #' @details
 #' \code{OpenGUI} is an easy to use web-based user interface for Eagle. By clicking on the navigation 
