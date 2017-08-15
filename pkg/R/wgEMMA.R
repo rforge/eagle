@@ -1,22 +1,3 @@
-# To do
-#  * write code to handle data larger than memory (need to slot in Ryan's code)
-#  * slot in GPU code of Ryan's
-#  * add ReadBlock code of Ryan's
-#  * tidy up doc 
-#  * change name to Eagle of package
-
-
-
-
-
-
-# Warranty
-# This software is distributed under the GNU General Public License.
-#
-#This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-#
-#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
-
 
 ##~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ##              Checks 
@@ -70,7 +51,7 @@
 #' Eagle was specifically designed to make 
 #' genome-wide association mapping with multiple-locus models simple and practical.  Much effort has been 
 #' devoted to making the package as easy to use as possible. As part of this effort, we 
-#' developed a web-based user interface to Eagle, shielding users from having to write R code to run the functions.  
+#' developed a web-based user interface to Eagle.
 #'
 #' @section Assumptions:
 #' \enumerate{
@@ -97,10 +78,10 @@
 #'
 #' @section Output: The aim of a genome-wide association study (GWAS) is to identify those marker loci 
 #' closest to the genes that are influencing a trait. So, when the GWAS data are 
-#' analysed, a set of marker loci labels are returned as the output. These marker 
+#' analysed, a set of marker loci labels are returned as the results These marker 
 #'  loci are closest to the genes underlying the trait and are found while simultaneously 
-#' accounting for multiple marker-trait associations, familial relatedness, and 
-#' fixed effects such as population structure (if included in the analysis).
+#' accounting for other marker-trait associations, familial relatedness, and 
+#' fixed effects such as population structure.
 #' More detailed output such as the additive effect of the marker locus, its 
 #' significance in the multiple-locus model ( measured by a p-value), and 
 #' an estimate of the amount of variation explained by the locus can be 
@@ -111,8 +92,9 @@
 #' \itemize{
 #'  \item At the R prompt, type  \preformatted{library(, "Eagle")} for an overview of the package and its functions. 
 #' \item For detailed help on a function called "foo" say, type  \preformatted{help("foo")} 
-#' \item A QuickStart vignette and WorkedExample vignette are available by typing, at the R prompt,  \preformatted{vignette("QuickStart", "Eagle")} and \preformatted{vignette("WorkedExample", "Eagle")}, respectively.  
-#' \item Email <Eagle@csiro.au>
+#' \item Visit the Eagle website at \url{http://eagle.r-forge.r-project.org/} where 
+#' you can find a quick start guide, instructions on getting the most out of Eagle, 
+#' tutorials, and other useful information. 
 #'}
 #' @keywords Association mapping, multiple-locus models, linear mixed models.
 NULL
@@ -140,8 +122,11 @@ fullpath <- function(fname){
 }
 
 
-##-------------------------------------
-##  EMMA code 
+##--------------------------------------------
+##  Effecient Mixed Model Association (EMMA) code
+##  Author: Hyun Min Kang (h3kang@cs.ucsd.edu), Noah A. Zaitlen, Claire M. Wade, Andrew Kirby, David Heckerman, and Eleazar Eskin (eeskin@cs.ucla.edu)
+## License: LGPL
+## URL: http://mouse.cs.ucla.edu/emma
 ##------------------------------------
 emma.delta.ML.dLL.w.Z <-  function (logdelta, lambda, etas.1, xi.1, n, etas.2.sq) 
 {
@@ -429,8 +414,6 @@ emma.delta.ML.dLL.wo.Z <- function (logdelta, lambda, etas, xi)
         logdelta <- (0:ngrids)/ngrids * (ulim - llim) + llim
         m <- length(logdelta)
         delta <- exp(logdelta)
-#print("eig.R$values")
-#print(eig.R$values)
         Lambdas <- matrix(eig.R$values, n - q, m) + matrix(delta, 
             n - q, m, byrow = TRUE)
         Etasq <- matrix(etas * etas, n - q, m)
@@ -451,7 +434,6 @@ emma.delta.ML.dLL.wo.Z <- function (logdelta, lambda, etas, xi)
                 eig.R$values, etas))
         }
         for (i in 1:(m - 1)) {
- #print(c(i, dLL[i], dLL[i+1], esp, m-1))
             if ((dLL[i] * dLL[i + 1] < 0 - esp * esp) && (dLL[i] > 
                 0) && (dLL[i + 1] < 0)) {
                 r <- uniroot(emma.delta.REML.dLL.wo.Z, lower = logdelta[i], 
@@ -558,7 +540,6 @@ message(cat("             been removed from the analysis.  \n"))
             message("Error:  (internal).  indxNA contains NA values. ")
             message(" AM has terminated with errors. ")
             return(NULL)
-            #stop(" AM has terminated with errors. ", call. = FALSE)
           }
         }
 
@@ -704,23 +685,6 @@ if(is.null(map)){
 
 
 
-#### To run multiple GPU's
-### > export OMP_NUM_THREADS=$PBS_NUM_PPN
-## > module load cuda/6.0 R
-## > module load R/3.0.0
-## > LD_PRELOAD=libnvblas.so R  
-## monitoring gpu usage
-##    nvidia-smi -l 3
-
-
-##  library('Rcpp')
-##  library('RcppEigen')
-##  library('matrixcalc')
-##  library('Matrix')
-## This builds a dll for the function
-## sourceCpp("/home/geo047/gitHUB_WMAM/MyPackage/RcppFunctions.cpp", rebuild=TRUE, quiet=TRUE)
-## source("/home/geo047/gitHUB_WMAM/MyPackage/wgEMMA.R")
-## source("/home/geo047/gitHUB_WMAM/MyPackage/multiple_am.R")
 
 
 ##-------------------------------
@@ -787,19 +751,12 @@ calculateMMt_sqrt_and_sqrtinv <- function(MMt=NULL, checkres=TRUE,
   } 
    res <- list()
 
-#   if(ngpu == 0){
       MMt.eigen <- eigen(MMt, symmetric=TRUE )
       sqrt_evals <- diag(sqrt(MMt.eigen$values))
       res[["sqrt"]] <- MMt.eigen$vectors %*% sqrt_evals %*% t(MMt.eigen$vectors)
       rm(MMt.eigen, sqrt_evals)
       gc()
       res[["invsqrt"]] <- chol2inv(chol(res[["sqrt"]]))
-#   }  else {
-#      #res <- rcppMagmaSYEVD::sqrt_invsqrt(MMt, symmetric=TRUE)
-#      if(requireNamespace("rcppMagmaSYEVD", quietly = TRUE)) {
-#        res <- rcppMagmaSYEVD::sqrt_invsqrt(MMt, symmetric=TRUE)
-#      }
-#   } 
 
 
 
@@ -932,61 +889,6 @@ return(a)
 
 
 
-mistake_calculate_reduced_a <- function(varG=NULL, P=NULL, y=NULL, availmemGb=8, dim_of_ascii_M=NULL, 
-                                 selected_loci=NA, quiet = TRUE, message=message)
-{
- ## Rcpp function to calculate the BLUP (a) values under a dimension reduced model
- ## Args:
- ##    varG is a scalar value
- ##    P   is a n x n matrix
- ##    y   is a n x 1 vector
- ##
- ## a* = sigma^2_a * t(M) * P * y
- ## Returns:
- ##   a numeric vector of dimension reduced a values 
-
- if(is.null(varG))
-   stop(" VarG must be specified.", call. = FALSE)
-
-  if(is.null(P))
-   stop(" P must be specified", call. = FALSE)
-
- 
-  if(is.null(y))
-   stop(" y must be specified", call. = FALSE)
-
- 
-  if( !(nrow(P) ==  length(y))){
-    message(" Error:  there is a problem with the  dimensions of  P, and/or the vector y.")
-    message("         They should  be of the dimension (n x n), and a vector of length n.")
-    message(" The dimensions are: \n")
-    message(" dim(P)      = ", dim(P), "\n")
-    message(" length(y)   = ", length(y), "\n")
-    stop(call. = FALSE)  
-
-  }
-
-
-
-  ycolmat <- matrix(data=y, ncol=1)  ## makes it easier when dealing with this in Rcpp
-  fnameascii <- fullpath("Mt.ascii")
-  if(!any(is.na(selected_loci))) selected_loci <- selected_loci-1
-  ar <- calculate_reduced_a_rcpp(f_name_ascii = fnameascii, varG=varG, P=P, 
-                                 y=ycolmat, max_memory_in_Gbytes=availmemGb, 
-                                 dims=dim_of_ascii_M , selected_loci = selected_loci , 
-                                 quiet = quiet , message=message)
-
-
-
-
-
-## t(t(y)) is a trick to get y as a row matrix 
-##return( varG * invMMt %*% P %*% t(t(y)))
-return(ar)
-
-}
-
-
 
 
 
@@ -1008,11 +910,6 @@ calculate_a_and_vara <- function(geno=NULL, maxmemGb=8,
 
 
 
-#  file_ascii <- fullpath("Mt.ascii")
-#  if(!file.exists(file_ascii)){
-#      message("\n\n  Error: ", file_ascii, " does not exist and it should have been created. \n\n")
-#      stop(call. = FALSE)
-#  }
   fnameMt <- geno[["asciifileMt"]]
   dimsMt <- c(geno[["dim_of_ascii_M"]][2], geno[["dim_of_ascii_M"]][1])
 
@@ -1061,10 +958,6 @@ calculate_reduced_vara <- function(X=NULL, varE=NULL, varG=NULL, invMMt=NULL, MM
 
   D1 <- solve(D)
 
-#  C1 <- cbind(A,B)
-#  C2 <- cbind(C,D)
-#  CC <- rbind(C1, C2)
-#  invCC <- solve(CC)
 
   vars <- varG * diag(nrow(D1))  - ( D1 + D1 %*% C %*% solve(A - B %*% D1 %*% C) %*% B %*% D1 )
 
@@ -1259,19 +1152,19 @@ message(" File name:                   ",  phenofile, "\n")
 message(" Number of individuals:       ", nrow(phenos), "\n")
 message(" Number of columns:           ", ncol(phenos), "\n\n")
 message(" First 5 rows of the phenotype file are \n")
-if(nrow(phenos)>5){
-    for(ii in 1:5){
-       lne <- paste(phenos[ii,], sep="   ")
-       message(lne)
-    }
+if(nrow(phenos) > 5){
+  for(ii in 1:5){
+  message(cat(paste(phenos[ii,], sep=" ")))
+  }
 } else {
-    for(ii in 1:nrow(phenos)){
-       lne <- paste(phenos[ii,], sep="   ")
-       message(lne)
-    }
-
-
+  for(ii in 1:nrow(phenos) ){
+  message(cat(paste(phenos[ii,], sep=" ")))
+  }
 }
+
+
+
+
 message("\n Column classes are  \n")
 for(ii in 1:ncol(phenos))
   message(c( sprintf("%20s   %15s", names(phenos)[ii], class(phenos[[ii]]) ), "\n"))
@@ -1344,7 +1237,6 @@ ReadMap  <- function( filename = NULL, csv=FALSE, header=TRUE)
   }
   sep=" "
   if(csv) sep=","
-  #map <- read.table(mapfile, header=header, sep=sep)
   map <- fread(mapfile, header=header, sep=sep)
   map <- as.data.frame(map)
 message("\n\n Loading map file ... \n\n")
@@ -1355,7 +1247,22 @@ message(" Number of marker loci:       ", nrow(map), "\n")
 message(" Number of columns:           ", ncol(map), "\n")
 message(" Number of chromosomes:       ", length(unique(map[[2]])), "\n\n")
 message(" First 5 markers of the map file are \n")
-message(head(map, n=5))
+
+if(nrow(map) > 5){
+  for(ii in 1:5){
+  message(cat(paste(map[ii,], sep=" ")))
+  }
+} else {
+  for(ii in 1:nrow(map) ){
+  message(cat(paste(map[ii,], sep=" ")))
+  }
+}
+
+
+
+
+
+
 message("\n\n")
 
 return(map)
@@ -1377,11 +1284,15 @@ create.ascii  <- function(file_genotype=NULL,  type="text", AA=NULL, AB=NULL, BB
  #asciiMfile <- fullpath("M.ascii")
  #asciiMtfile <- fullpath("Mt.ascii")
  if(.Platform$OS.type == "unix") {
-       asciiMfile <- paste(dirname(file_genotype), "/", "M.ascii", sep="")
-       asciiMtfile <- paste(dirname(file_genotype), "/", "Mt.ascii", sep="")
+       ##asciiMfile <- paste(dirname(file_genotype), "/", "M.ascii", sep="")
+       ##asciiMtfile <- paste(dirname(file_genotype), "/", "Mt.ascii", sep="")
+       asciiMfile <- paste(tempdir() , "/", "M.ascii", sep="")
+       asciiMtfile <- paste(tempdir()  , "/", "Mt.ascii", sep="")
  } else {
-       asciiMfile <- paste(dirname(file_genotype), "\\", "M.ascii", sep="")
-       asciiMtfile <- paste(dirname(file_genotype), "\\", "Mt.ascii", sep="")
+       ##asciiMfile <- paste(dirname(file_genotype), "\\", "M.ascii", sep="")
+       ##asciiMtfile <- paste(dirname(file_genotype), "\\", "Mt.ascii", sep="")
+       asciiMfile <- paste(tempdir() , "\\", "M.ascii", sep="")
+       asciiMtfile <- paste(tempdir() , "\\", "Mt.ascii", sep="")
  }
 
 
@@ -1427,47 +1338,31 @@ if (type=="text"){
 #' @title Read  marker data.
 #' 
 #' @description
-#' A function for reading in marker data. Three types of data can be read. 
+#' A function for reading in marker data. Two types of data can be read. 
 #' @param filename contains the name of the marker  file. The file name needs to be in quotes. 
 #' @param type  specify the type of file. Choices are "text" (the default) and "PLINK".
 #' @param missing the number or character for a missing genotype in the text file. There is no need to specify this for a PLINK ped file. Missing 
 #' allele values in a PLINK file must be coded as "0" or "-".  
-#' @param AA     the character(s) or number corresponding to the AA snp genotype in the marker genotype file. 
-#' This must be specified if the file type is "text".  If a character then it must be in quotes.
-#' @param AB     the  character(s) or number  corresponding to the AB snp genotype in the marker genotype file. This can be left unspecified 
-#'               if there are no heterozygote genotypes (i.e. the individuals are inbred). 
-#' If specified and a character, then it must be in quotes. 
-#' @param BB        the character(s) or number corresponding to the BB snp genotype in the marker genotype file. 
-#' This must be specified if the file type is "text".  If a character, then it must be in quotes.
+#' @param AA     the character or number corresponding to the AA snp genotype in the marker genotype file. 
+#' This need only be specified if the file type is "text".  If a character then it must be in quotes.
+#' @param AB     the  character or number  corresponding to the AB snp genotype in the marker genotype file. 
+#' This need only be specified if the file type is "text".
+#'This can be left unspecified 
+#'               if there are no heterozygous genotypes (i.e. the individuals are inbred). Only a single 
+#'  heterozygous genotype is allowed (Eagle does not distinguish between AB and BA).  
+#' If specified and a character, it must be in quotes. 
+#' @param BB        the character or number corresponding to the BB snp genotype in the marker genotype file. 
+#' This need only be  specified if the file type is "text".  If a character, then it must be in quotes.
 #' @param availmemGb a numeric value. It specifies the amount of available memory (in Gigabytes). 
 #'         This should be set to be as large as possible for best performance.   
 #' @param  quiet      a logical value. If set to \code{TRUE}, additional runtime output is printed along with additional error checking. Specifically, 
-#'               \code{ReadMarker} will check that the marker file has the same number of entries per row. 
+#'               \code{ReadMarker} will check that the marker file has the same number of column entries per row. 
 #'
 #' @details
 #' 
-#' \code{ReadMarker} can handle three different types of marker data; namely,
-#' previously read marker data, genotype data in a plain text file, and PLINK ped files. 
+#' \code{ReadMarker} can handle two different types of marker data; namely,
+#' genotype data in a plain text file, and PLINK ped files. 
 #'  
-#' \subsection{\strong{Reading in previously read marker data}}{
-#' To read marker data that has been previously read with \code{ReadMarker} in another R session, run 
-#' the function with no arguments. For example 
-#'
-#' \preformatted{geno_obj <- ReadMarker()}
-#'
-#' where \code{geno_obj} is the name of the user defined R object that is to contain the 
-#' results from running \code{ReadMarker}.
-#'
-#' For this command to work without error, the working directory needs to 
-#' be the same as the working directory from  which the \code{\link{ReadMarker}} was first run. 
-#' That is, R needs to be started from the same directory for both sessions. 
-#' You can check what the 
-#' current working directory is with the command 
-#' \preformatted{getwd()}
-#'
-#' Loading the marker data in this way is much faster than reading the data again from file 
-#' because there is no need to pre-process the data, nor check the data for errors. }
-#'
 #' \subsection{\strong{Reading in a plain text file containing the marker genotypes}}{
 #' To load a text file that contains snp genotypes, run \code{ReadMarker} with \code{filename} set to the name of the file, 
 #' and \code{AA}, \code{AB}, \code{BB} set to the corresponding genotype values. 
@@ -1518,7 +1413,7 @@ if (type=="text"){
 #' \preformatted{geno_obj <- ReadMarker(filename="geno.txt", AA="a/a", AB="a/b", BB="b/b", 
 #'                                        type="text", missing = "NA")}
 #'
-#' where \code{geno_obj} is used by \code{\link{AM}}. 
+#' where the results from running the function are placed in \code{geno_obj}.
 #'}
 #'
 #' \subsection{\strong{Reading in a PLINK ped file}}{
@@ -1640,42 +1535,13 @@ ReadMarker <- function( filename=NULL, type="text", missing=NULL,
 
 
  if (nargs() == 0){
-   ## if no arguments are supplied to ReadMarker, then it is assumed that ReadMarker has been run
-   ## previously and the file M.RData  is in the current working directory. Need to check this. 
-   ## checks if M.RData which contains list object geno, Mt.ascii, and M.ascii exist. IF so, it returns list object geno
+    ## checking that function has arguments
 
-   if(file.exists(fullpath("M.RData")))
-   {
-       # check that M.ascii and Mt.ascii exist in this directory
-       if(!file.exists(fullpath("M.ascii"))){
-         message(" The binary file M.ascii could not be found in current working directory ", getwd(), "\n")
-         message(" This file is created when ReadMarker is run with either a text file or PLINK ped file as input. \n")
-         message(" Supply a file name to ReadMarker. Type  help(ReadMarker) for more details \n")
-         message(" ReadMarker has terminated with errors.")
-         return(NULL)
-       }
+    message(" Please supply arguments to function \n")
+    return(NULL)
 
-       if(!file.exists(fullpath("Mt.ascii"))){
-         message(" The binary file Mt.ascii could not be found in current working directory ", getwd(), "\n")
-         message(" This file is created when ReadMarker is run with either a text file or PLINK ped file as input. \n")
-         message(" Supply a file name to ReadMarker. Type  help(ReadMarker) for more details \n")
-         message(" ReadMarker has terminated with errors.")
-         return(NULL)
-       }
-       ## looks like everything is good. Return geno list object
-       message(" The files M.RData, M.ascii, and Mt.ascii, in current working directory ", getwd(), " have been found and will be used for the association mapping analysis. \n")
-   load("M.RData")
-       return(geno)
 
-   } else {
 
-       message(" The R file M.RData could not be found in current working directory ", getwd(), "\n")
-       message(" This file is created when ReadMarker is run with either a text file or PLINK ped file as input. \n")
-       message(" Supply a file name to ReadMarker. Type  help(ReadMarker) for more details \n")
-       message(" ReadMarker has terminated with errors.")
-       return(NULL)
-
-   }  ## end if(file.exists(fullpath("M.RData"))
 
  }  else {
       ## read in either a text file or a PLINK file. The parameter type must be specified. Default it text file. 
@@ -1714,16 +1580,20 @@ ReadMarker <- function( filename=NULL, type="text", missing=NULL,
        it_worked <- create.ascii(file_genotype=fullpath(filename), type=type, availmemGb=availmemGb, dim_of_ascii_M=dim_of_ascii_M,  quiet=quiet  )
        if(!it_worked)
            return(NULL) 
-# prompted by issues with ubuntu and file permissions with shiny and shiny being run from install library
-#       asciifileM <- fullpath("M.ascii")
-#       asciifileMt <- fullpath("Mt.ascii")
+          # prompted by issues with ubuntu and file permissions with shiny and shiny being run from install library
+          #       asciifileM <- fullpath("M.ascii")
+          #       asciifileMt <- fullpath("Mt.ascii")
 
     if(.Platform$OS.type == "unix") {
-       asciifileM <- paste(dirname(filename), "/", "M.ascii", sep="")
-       asciifileMt <- paste(dirname(filename), "/", "Mt.ascii", sep="")
+       ## asciifileM <- paste(dirname(filename), "/", "M.ascii", sep="")
+        ## asciifileMt <- paste(dirname(filename), "/", "Mt.ascii", sep="")
+       asciifileM <- paste(tempdir(), "/", "M.ascii", sep="")
+       asciifileMt <- paste(tempdir(), "/", "Mt.ascii", sep="")
      } else {
-       asciifileM <- paste(dirname(filename), "\\", "M.ascii", sep="")
-       asciifileMt <- paste(dirname(filename), "\\", "Mt.ascii", sep="")
+       ##asciifileM <- paste(dirname(filename), "\\", "M.ascii", sep="")
+       ##asciifileMt <- paste(dirname(filename), "\\", "Mt.ascii", sep="")
+       asciifileM <- paste(tempdir()  , "\\", "M.ascii", sep="")
+       asciifileMt <- paste(tempdir() , "\\", "Mt.ascii", sep="")
      }
 
 
@@ -1769,17 +1639,21 @@ ReadMarker <- function( filename=NULL, type="text", missing=NULL,
     if(!it_worked)   ## error has occurred. 
        return(NULL)
 
-  #  causing issues with shiny on VB on ubuntu
-  #  asciifileM <- fullpath("M.ascii")
-  #  asciifileMt <- fullpath("Mt.ascii")
+       #  causing issues with shiny on VB on ubuntu
+       #  asciifileM <- fullpath("M.ascii")
+       #  asciifileMt <- fullpath("Mt.ascii")
 
 
      if(.Platform$OS.type == "unix") {
-       asciifileM <- paste(dirname(filename), "/", "M.ascii", sep="")
-       asciifileMt <- paste(dirname(filename), "/", "Mt.ascii", sep="")
+       ##asciifileM <- paste(dirname(filename), "/", "M.ascii", sep="")
+       ##asciifileMt <- paste(dirname(filename), "/", "Mt.ascii", sep="")
+       asciifileM <- paste(tempdir() , "/", "M.ascii", sep="")
+       asciifileMt <- paste(tempdir() , "/", "Mt.ascii", sep="")
      } else {
-       asciifileM <- paste(dirname(filename), "\\", "M.ascii", sep="")
-       asciifileMt <- paste(dirname(filename), "\\", "Mt.ascii", sep="")
+       ##asciifileM <- paste(dirname(filename), "\\", "M.ascii", sep="")
+       ##asciifileMt <- paste(dirname(filename), "\\", "Mt.ascii", sep="")
+       asciifileM <- paste(tempdir() , "\\", "M.ascii", sep="")
+       asciifileMt <- paste(tempdir() , "\\", "Mt.ascii", sep="")
      }
 
 
@@ -1790,9 +1664,11 @@ ReadMarker <- function( filename=NULL, type="text", missing=NULL,
                "dim_of_ascii_M" = dim_of_ascii_M)
 
   if(.Platform$OS.type == "unix") {
-       RDatafile <- paste(dirname(filename), "/", "M.RData", sep="")
+       #RDatafile <- paste(dirname(filename), "/", "M.RData", sep="")
+       RDatafile <- paste(tempdir() , "/", "M.RData", sep="")
   } else {
-       RDatafile <- paste(dirname(filename), "\\", "M.RData", sep="")
+       #RDatafile <- paste(dirname(filename), "\\", "M.RData", sep="")
+       RDatafile <- paste( tempdir() , "\\", "M.RData", sep="")
   }
 
 
@@ -1874,14 +1750,6 @@ OpenGUI <- function() {
   #shiny::runApp(appDir, display.mode = "normal")
   shinyAppDir(appDir)
 }
-
-
-
-
-
-
-
-
 
 
 

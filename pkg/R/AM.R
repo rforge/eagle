@@ -1,9 +1,5 @@
 # This software is distributed under the GNU General Public License.
 #
-#This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-#
-#This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details. 
-
 
 
 ReshapeM  <- function(fnameM, fnameMt, indxNA, dims){
@@ -179,8 +175,6 @@ if(length(indx) > 0)
 
     ## Trick for dealing with singular MMt due to collinearity
     MMt <- MMt/max(MMt) + diag(0.95, nrow(MMt)) 
-    #n <- nrow(MMt)
-    #MMt<-(n-1)/sum((diag(n)-matrix(1,n,n)/n)*MMt)*MMt
     return(MMt)
   }
 
@@ -381,7 +375,7 @@ if(length(indx) > 0)
 #' \preformatted{
 #'   geno_obj <-  ReadMarker(filename="geno.txt", AA=0, AB=1, BB=2, type="text", missing="X")
 #'   
-#'   pheno_obj <- ReadPheno(filename="pheno.txt", header=TRUE)
+#'   pheno_obj <- ReadPheno(filename="pheno.txt")
 #'
 #'   res <- AM(trait="y", geno=geno_obj, pheno=pheno_obj)
 #' }
@@ -414,7 +408,7 @@ if(length(indx) > 0)
 #' \preformatted{
 #'   geno_obj <-  ReadMarker(filename="/my/dir/geno.ped", type="PLINK", availmemGb=32)
 #'   
-#'   pheno_obj <- ReadPheno(filename="/my/dir/pheno.txt", header=TRUE, missing=99)
+#'   pheno_obj <- ReadPheno(filename="/my/dir/pheno.txt", missing=99)
 #'
 #'   map_obj   <- ReadMap(filename="/my/dir/map.txt")
 #'
@@ -475,6 +469,7 @@ if(length(indx) > 0)
 #'}
 #'
 #' @examples
+#' \dontrun{
 #'   #-------------------------
 #'   #  Example  
 #'   #------------------------
@@ -488,9 +483,6 @@ if(length(indx) > 0)
 #'                                    package="Eagle")
 #'   map_obj <- ReadMap(filename=complete.name) 
 #'
-#'  # to look at the first few rows of the map file
-#'  head(map_obj)
-#'
 #'   # read marker data
 #'   #~~~~~~~~~~~~~~~~~~~~
 #'   # Reading in a PLINK ped file 
@@ -503,15 +495,15 @@ if(length(indx) > 0)
 #'   #~~~~~~~~~~~~~~~~~~~~~~~
 #'
 #'   # Read in a plain text file with data on a single trait and two covariates
-#'   # The first row of the text file contains the column names "trait", "cov1", and "cov2". 
+#'   # The first row of the text file contains the column names "y", "cov1", and "cov2". 
 #'   complete.name <- system.file("extdata", "pheno.txt", package="Eagle")
 #'   
 #'   pheno_obj <- ReadPheno(filename=complete.name)
 #'            
 #'   # Perform multiple-locus genome-wide association mapping 
 #'   #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#'   res <- AM(trait = "trait",
-#'                            fformula = c("cov1 + "cov2"),
+#'   res <- AM(trait = "y",
+#'                            fformula = "cov1 + cov2",
 #'                            map = map_obj,
 #'                            pheno = pheno_obj,
 #'                            geno = geno_obj, availmemGb=8)
@@ -520,11 +512,11 @@ if(length(indx) > 0)
 #'  #    with no fixed effects except for an intercept. 
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 #'  
-#'   res <- AM(trait = "trait",
+#'   res <- AM(trait = "y",
 #'                            map = map_obj,
 #'                            pheno = pheno_obj,
 #'                            geno = geno_obj, availmemGb=8)
-#'
+#'}
 #'
 AM <- function(trait=NULL, 
                fformula  = NULL,
@@ -669,14 +661,6 @@ if(!is.null(fformula)){
  indxNA <- check.for.NA.in.trait(trait=trait)
 
 
-  ## setting up gpu server
-#  if(ngpu > 0 ){
-#     if(requireNamespace("rcppMagmaSYEVD", quietly = TRUE)) {
-#        library(rcppMagmaSYEVD)
-#         rcppMagmaSYEVD::RunServer( matrixMaxDimension=geno[["dim_of_ascii_M"]][1],  numGPUsWanted=ngpu, memName="/syevd_mem", semName="/syevd_sem", print=0)
-#     } 
-#  }
-
 
  ## remove missing observations from trait
  if(length(indxNA)>0){
@@ -697,15 +681,19 @@ if(length(indxNA)>0){
     message(cat("new dimensions of reshaped M", res, "\n"))
 
      if(.Platform$OS.type == "unix") {
-       geno$asciifileM <- paste(dirname(geno$asciifileM), "/", "M.asciitmp", sep="")
+       ## geno$asciifileM <- paste(dirname(geno$asciifileM), "/", "M.asciitmp", sep="")
+       geno$asciifileM <- paste(tempdir() , "/", "M.asciitmp", sep="")
      } else {
-       geno$asciifileM <- paste(dirname(geno$asciifileM), "\\", "M.asciitmp", sep="")
+       ## geno$asciifileM <- paste(dirname(geno$asciifileM), "\\", "M.asciitmp", sep="")
+       geno$asciifileM <- paste( tempdir() , "\\", "M.asciitmp", sep="")
      }
 
      if(.Platform$OS.type == "unix") {
-       geno$asciifileMt <- paste(dirname(geno$asciifileMt), "/", "Mt.asciitmp", sep="")
+       ## geno$asciifileMt <- paste(dirname(geno$asciifileMt), "/", "Mt.asciitmp", sep="")
+       geno$asciifileMt <- paste( tempdir() , "/", "Mt.asciitmp", sep="")
      } else {
-       geno$asciifileMt <- paste(dirname(geno$asciifileMt), "\\", "Mt.asciitmp", sep="")
+       ##geno$asciifileMt <- paste(dirname(geno$asciifileMt), "\\", "Mt.asciitmp", sep="")
+       geno$asciifileMt <- paste( tempdir() , "\\", "Mt.asciitmp", sep="")
      }
 
     #geno$asciifileM  <-  fullpath("M.asciitmp")
@@ -776,10 +764,6 @@ currentX <- .build_design_matrix(pheno=pheno, indxNA=indxNA, fformula=fformula, 
     best_ve <- vc[["ve"]]
     best_vg <- vc[["vg"]]
 
-#   if(!quiet){
-#      message(" Residual variance estimate is ", best_ve, "\n")
-#      message(" Polygenic variance estimate is ", best_vg, "\n")
-#   }
 
 
     ## Calculate extBIC
@@ -852,11 +836,6 @@ if( itnum > maxit){
 return( sigres )
 
 } ## end AM
-
-
-
-
-
 
 
 

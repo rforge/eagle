@@ -11,8 +11,6 @@ Description: An implementation  of multiple-locus association mapping on a genom
 License: GPL-3
 Depends:
    R (>= 3.3.2)
-Suggests:
-  rmarkdown
 Imports: 
    matrixcalc,
    shiny,
@@ -23,9 +21,7 @@ Imports:
    utils,
    parallel,
    data.table,
-   tcltk,
-   markdown,
-   knitr
+   tcltk
 LinkingTo: 
    RcppEigen, Rcpp
 Roxygen: 

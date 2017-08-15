@@ -29,6 +29,7 @@ in this table is the proportion of phenotype variance after the marker locus has
 multiple locus model. Our calculations of variance explained are based on Sun et al. (2010).
 }
 \examples{
+\dontrun{
   #---------------
   # read the map 
   #---------------
@@ -76,7 +77,7 @@ multiple locus model. Our calculations of variance explained are based on Sun et
 
   SummaryAM(AMobj=res, pheno=pheno_obj, geno=geno_obj, map=map_obj)
 
-
+}
 
 }
 \references{

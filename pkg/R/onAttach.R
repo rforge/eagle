@@ -8,11 +8,11 @@
 ##--------------------------------
 packageStartupMessage(' ')
 packageStartupMessage('   +--------------------------------------------------------------------------+ ')
-packageStartupMessage('   |  Eagle has been loaded...................................................| ')  
+packageStartupMessage('   |                       Eagle has been loaded                              | ')  
 packageStartupMessage('   |                                                                          | ')             
-packageStartupMessage('   |  Visit eagle.r-forge.r-project.org for Quick Start guide and FAQ.........| ')               
+packageStartupMessage('   |    Visit eagle.r-forge.r-project.org for Quick Start guide and FAQ       | ')               
 packageStartupMessage('   |                                                                          | ')
-packageStartupMessage('   |  Type OpenGUI() to open web-based GUI....................................| ')
+packageStartupMessage('   |                Type OpenGUI() to open web-based GUI                      | ')
 packageStartupMessage('   +--------------------------------------------------------------------------+ ')
 packageStartupMessage(' ')
 }

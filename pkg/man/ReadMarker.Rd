@@ -15,21 +15,24 @@ ReadMarker(filename = NULL, type = "text", missing = NULL, AA = NULL,
 \item{missing}{the number or character for a missing genotype in the text file. There is no need to specify this for a PLINK ped file. Missing 
 allele values in a PLINK file must be coded as "0" or "-".}
 
-\item{AA}{the character(s) or number corresponding to the AA snp genotype in the marker genotype file. 
-This must be specified if the file type is "text".  If a character then it must be in quotes.}
+\item{AA}{the character or number corresponding to the AA snp genotype in the marker genotype file. 
+This need only be specified if the file type is "text".  If a character then it must be in quotes.}
 
-\item{AB}{the  character(s) or number  corresponding to the AB snp genotype in the marker genotype file. This can be left unspecified 
-              if there are no heterozygote genotypes (i.e. the individuals are inbred). 
-If specified and a character, then it must be in quotes.}
+\item{AB}{the  character or number  corresponding to the AB snp genotype in the marker genotype file. 
+This need only be specified if the file type is "text".
+This can be left unspecified 
+              if there are no heterozygous genotypes (i.e. the individuals are inbred). Only a single 
+ heterozygous genotype is allowed (Eagle does not distinguish between AB and BA).  
+If specified and a character, it must be in quotes.}
 
-\item{BB}{the character(s) or number corresponding to the BB snp genotype in the marker genotype file. 
-This must be specified if the file type is "text".  If a character, then it must be in quotes.}
+\item{BB}{the character or number corresponding to the BB snp genotype in the marker genotype file. 
+This need only be  specified if the file type is "text".  If a character, then it must be in quotes.}
 
 \item{availmemGb}{a numeric value. It specifies the amount of available memory (in Gigabytes). 
 This should be set to be as large as possible for best performance.}
 
 \item{quiet}{a logical value. If set to \code{TRUE}, additional runtime output is printed along with additional error checking. Specifically, 
-\code{ReadMarker} will check that the marker file has the same number of entries per row.}
+\code{ReadMarker} will check that the marker file has the same number of column entries per row.}
 }
 \value{
 To allow \code{\link{AM}} to handle data larger than the memory capacity of a machine, \code{ReadMarker} doesn't load 
@@ -40,31 +43,12 @@ for the transpose of the marker  data,  and a 2 element vector with the first el
 element the number of marker loci.
 }
 \description{
-A function for reading in marker data. Three types of data can be read.
+A function for reading in marker data. Two types of data can be read.
 }
 \details{
-\code{ReadMarker} can handle three different types of marker data; namely,
-previously read marker data, genotype data in a plain text file, and PLINK ped files. 
+\code{ReadMarker} can handle two different types of marker data; namely,
+genotype data in a plain text file, and PLINK ped files. 
  
-\subsection{\strong{Reading in previously read marker data}}{
-To read marker data that has been previously read with \code{ReadMarker} in another R session, run 
-the function with no arguments. For example 
-
-\preformatted{geno_obj <- ReadMarker()}
-
-where \code{geno_obj} is the name of the user defined R object that is to contain the 
-results from running \code{ReadMarker}.
-
-For this command to work without error, the working directory needs to 
-be the same as the working directory from  which the \code{\link{ReadMarker}} was first run. 
-That is, R needs to be started from the same directory for both sessions. 
-You can check what the 
-current working directory is with the command 
-\preformatted{getwd()}
-
-Loading the marker data in this way is much faster than reading the data again from file 
-because there is no need to pre-process the data, nor check the data for errors. }
-
 \subsection{\strong{Reading in a plain text file containing the marker genotypes}}{
 To load a text file that contains snp genotypes, run \code{ReadMarker} with \code{filename} set to the name of the file, 
 and \code{AA}, \code{AB}, \code{BB} set to the corresponding genotype values. 
@@ -115,7 +99,7 @@ To load these data, we would use the command
 \preformatted{geno_obj <- ReadMarker(filename="geno.txt", AA="a/a", AB="a/b", BB="b/b", 
                                        type="text", missing = "NA")}
 
-where \code{geno_obj} is used by \code{\link{AM}}. 
+where the results from running the function are placed in \code{geno_obj}.
 }
 
 \subsection{\strong{Reading in a PLINK ped file}}{

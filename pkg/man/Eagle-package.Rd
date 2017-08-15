@@ -19,7 +19,7 @@ to use.
 Eagle was specifically designed to make 
 genome-wide association mapping with multiple-locus models simple and practical.  Much effort has been 
 devoted to making the package as easy to use as possible. As part of this effort, we 
-developed a web-based user interface to Eagle, shielding users from having to write R code to run the functions.
+developed a web-based user interface to Eagle.
 }
 
 \section{Assumptions}{
@@ -55,10 +55,10 @@ user interface for Eagle.
 \section{Output}{
  The aim of a genome-wide association study (GWAS) is to identify those marker loci 
 closest to the genes that are influencing a trait. So, when the GWAS data are 
-analysed, a set of marker loci labels are returned as the output. These marker 
+analysed, a set of marker loci labels are returned as the results These marker 
  loci are closest to the genes underlying the trait and are found while simultaneously 
-accounting for multiple marker-trait associations, familial relatedness, and 
-fixed effects such as population structure (if included in the analysis).
+accounting for other marker-trait associations, familial relatedness, and 
+fixed effects such as population structure.
 More detailed output such as the additive effect of the marker locus, its 
 significance in the multiple-locus model ( measured by a p-value), and 
 an estimate of the amount of variation explained by the locus can be 
@@ -71,8 +71,9 @@ A variety of different help options are available.
 \itemize{
  \item At the R prompt, type  \preformatted{library(, "Eagle")} for an overview of the package and its functions. 
 \item For detailed help on a function called "foo" say, type  \preformatted{help("foo")} 
-\item A QuickStart vignette and WorkedExample vignette are available by typing, at the R prompt,  \preformatted{vignette("QuickStart", "Eagle")} and \preformatted{vignette("WorkedExample", "Eagle")}, respectively.  
-\item Email <Eagle@csiro.au>
+\item Visit the Eagle website at \url{http://eagle.r-forge.r-project.org/} where 
+you can find a quick start guide, instructions on getting the most out of Eagle, 
+tutorials, and other useful information. 
 }
 }
 \author{

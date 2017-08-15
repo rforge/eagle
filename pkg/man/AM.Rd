@@ -78,7 +78,7 @@ The file is located in the current working directory.}
 \preformatted{
   geno_obj <-  ReadMarker(filename="geno.txt", AA=0, AB=1, BB=2, type="text", missing="X")
   
-  pheno_obj <- ReadPheno(filename="pheno.txt", header=TRUE)
+  pheno_obj <- ReadPheno(filename="pheno.txt")
 
   res <- AM(trait="y", geno=geno_obj, pheno=pheno_obj)
 }
@@ -111,7 +111,7 @@ and the available memory is set to 32 gigabytes.}
 \preformatted{
   geno_obj <-  ReadMarker(filename="/my/dir/geno.ped", type="PLINK", availmemGb=32)
   
-  pheno_obj <- ReadPheno(filename="/my/dir/pheno.txt", header=TRUE, missing=99)
+  pheno_obj <- ReadPheno(filename="/my/dir/pheno.txt", missing=99)
 
   map_obj   <- ReadMap(filename="/my/dir/map.txt")
 
@@ -147,6 +147,57 @@ Most errors occur when reading in the data. However, as an extra precaution, if 
 output is printed during the running of \code{AM}. If \code{AM} is failing, then this output can be useful for diagnosing 
 the problem. 
 }
+}
+\examples{
+\dontrun{
+  #-------------------------
+  #  Example  
+  #------------------------
+
+  # read the map 
+  #~~~~~~~~~~~~~~
+  
+  # File is a plain space separated text file with the first row 
+  # the column headings
+  complete.name <- system.file("extdata", "map.txt", 
+                                   package="Eagle")
+  map_obj <- ReadMap(filename=complete.name) 
+
+  # read marker data
+  #~~~~~~~~~~~~~~~~~~~~
+  # Reading in a PLINK ped file 
+  # and setting the available memory on the machine for the reading of the data to 8  gigabytes
+  complete.name <- system.file("extdata", "geno.ped", 
+                                     package="Eagle")
+  geno_obj <- ReadMarker(filename=complete.name,  type="PLINK", availmemGb=8) 
+ 
+  # read phenotype data
+  #~~~~~~~~~~~~~~~~~~~~~~~
+
+  # Read in a plain text file with data on a single trait and two covariates
+  # The first row of the text file contains the column names "y", "cov1", and "cov2". 
+  complete.name <- system.file("extdata", "pheno.txt", package="Eagle")
+  
+  pheno_obj <- ReadPheno(filename=complete.name)
+           
+  # Perform multiple-locus genome-wide association mapping 
+  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  res <- AM(trait = "y",
+                           fformula = "cov1 + cov2",
+                           map = map_obj,
+                           pheno = pheno_obj,
+                           geno = geno_obj, availmemGb=8)
+
+ # Performing multiple-locus genome-wide association mapping with a model 
+ #    with no fixed effects except for an intercept. 
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+  res <- AM(trait = "y",
+                           map = map_obj,
+                           pheno = pheno_obj,
+                           geno = geno_obj, availmemGb=8)
+}
+
 }
 \seealso{
 \code{\link{ReadMarker}}, \code{\link{ReadPheno}}, and \code{\link{ReadMap}}
