@@ -87,4 +87,3 @@ mapping. Heredity 105, 330-340.
 \seealso{
 \code{\link{AM}}
 }
-

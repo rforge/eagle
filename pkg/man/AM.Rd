@@ -202,4 +202,3 @@ the problem.
 \seealso{
 \code{\link{ReadMarker}}, \code{\link{ReadPheno}}, and \code{\link{ReadMap}}
 }
-

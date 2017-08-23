@@ -188,33 +188,6 @@ trigger="hover",
 
 
                                       
-                                         fluidRow(
-                                           column(12,
-                                                  wellPanel(
-                                                  radioButtons(inputId="error_geno", label=h4("Step 4: Additional error checking"),
-                                                               choices=c("no"="no", "yes"="yes" )),
-                                                  style="padding: 1px",
-                                                  bsTooltip("error_geno",
-title='<font size="5" > If set to yes, the number of elements in a row are printed as the file is read into Eagle. </font>',
-placement="right",
-trigger="hover",
-                                                            options=list(container="body")
-                                                      )
-                                                  )  ## wellPanel
-
-
-
-                                             ) ## end column
-
-                                         ), ## end fluidRow choose file type
-
-
-
-
-
-
-
-
 
 
 
@@ -226,7 +199,7 @@ trigger="hover",
                                          fluidRow(column(12, 
                                                        wellPanel(
                                                           shinyjs::useShinyjs(),
-                                                          h4("Step 5: Upload file"),
+                                                          h4("Step 4: Upload file"),
 
 
 
@@ -703,9 +676,11 @@ filter: alpha(opacity=50);
                                     fluidRow(column(12,  
                                       wellPanel(
                                             uiOutput("analyse_names"),
+
                                            bsTooltip("analyse_names",
 title='<font size="5" > Select a single variable to be treated as the trait for the analysis  </font>',
                                          placement="right", trigger="hover", options=list(container="body"))
+
                                       ) ## end wellPanel
                                           ) ## end column
                                     ), ## end fluidRow                             
@@ -713,10 +688,17 @@ title='<font size="5" > Select a single variable to be treated as the trait for 
                                     fluidRow(column(12, 
                                         wellPanel(
                                             uiOutput("analyse_fnames"),
-                               bsTooltip("analyse_fnames",
-title='<font size="5" > Select the variables, if any,  to be used as fixed effects in the analysis. If no 
-variables are selected, then only an overall mean will be fitted.  </font>',
-placement="right", trigger="hover", options=list(container="body")),
+
+                                           bsTooltip("analyse_fnames",
+title='<font size="5" > Select the variables, if any, to be used as fixed effects in the analysis. If no variables are selected, then only an overall mean will be fitted. </font>',
+                                         placement="right", trigger="hover", options=list(container="body")),
+
+
+
+#                               bsTooltip("analyse_fnames",
+#title='<font size="5" > Select the variables, if any,  to be used as fixed effects in the analysis. If no 
+#variables are selected, then only an overall mean will be fitted.  </font>',
+#placement="right", trigger="hover", options=list(container="body")),
 
                                             textOutput("fmodel")
                                         ) ## end wellPanel
@@ -1082,17 +1064,13 @@ server <- function(input, output, session){
    observeEvent(input$marker_go, {
 
 
-  quiet_flag <- TRUE
-   if(input$error_geno  == "yes"){
-      quiet_flag <- FALSE
-   }
 
 
      if(input$filetype == "plink"){
 
         withCallingHandlers({
                  shinyjs::html("ReadMarker", "")
-                 geno <<- ReadMarker(filename = path_to_file, type = "PLINK", availmemGb = input$memsize, quiet = quiet_flag)
+                 geno <<- ReadMarker(filename = path_to_file, type = "PLINK", availmemGb = input$memsize, quiet = FALSE)
               },  ## end withCallingHandlers
               message = function(m) {
                  shinyjs::html(id = "ReadMarker", html = m$message, add = TRUE)
@@ -1122,7 +1100,7 @@ server <- function(input, output, session){
  
 
                  geno <<- ReadMarker(filename = path_to_file, type = "text", AA = aa, 
-                            AB = ab  , BB = bb, availmemGb = input$memsize,  quiet = quiet_flag , missing=missing) 
+                            AB = ab  , BB = bb, availmemGb = input$memsize,  quiet = FALSE , missing=missing) 
 
               },  ## end withCallingHandlers
               message = function(m) {

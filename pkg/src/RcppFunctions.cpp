@@ -7,34 +7,8 @@
 // [[Rcpp::depends(RcppEigen)]]
 
 #include <RcppEigen.h>
-#include <R.h>
-
-#include <cstring>
-#include <iostream>
-#include <sstream>
-#include <time.h>
-
-#include <iostream>
-#include <fstream>
-#include <istream>
-#include <vector>
-#include <bitset>
-#include <string>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <ctime>
 
 
-using namespace std;
-using namespace Rcpp;
-using namespace RcppEigen;
-
-using Eigen::MatrixXi;
-using Eigen::MatrixXd;  
-using Eigen::Lower;
-using Eigen::Map;   // maps rather than copies
 
 #ifdef _OPENMP
 #include <omp.h>
@@ -47,8 +21,8 @@ const size_t bits_in_int = std::numeric_limits<int>::digits;
 
 
 // [[Rcpp::export]]
-std::vector <long>    ReshapeM_rcpp( CharacterVector  fnameM, 
-               CharacterVector  fnameMt, 
+std::vector <long>    ReshapeM_rcpp( Rcpp::CharacterVector  fnameM, 
+               Rcpp::CharacterVector  fnameMt, 
                std::vector <long> indxNA, 
                std::vector <long> dims){
 
@@ -97,7 +71,7 @@ std::vector <long>    ReshapeM_rcpp( CharacterVector  fnameM,
                 writeline = false;
           }
           if(writeline){
-              fileOUT << line << endl;
+              fileOUT << line << std::endl;
               newdims[0]++;
           }
           rownum++;
@@ -137,7 +111,7 @@ std::vector <long>    ReshapeM_rcpp( CharacterVector  fnameM,
           for(unsigned long ii=0; ii<indxNA.size(); ii++){
             line.erase ( indxNA[ii], 1 );
           }  // end for a
-          fileOUTt << line << endl;
+          fileOUTt << line << std::endl;
       }  // end inner while
  }  // end outer while(fileIN
 
@@ -217,7 +191,7 @@ return dimen;
 
 // recode PLINK as ASCII with no spaces
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-void  CreateASCIInospace_PLINK(std::string fname, std::string asciifname, std::vector<long> dims,
+bool  CreateASCIInospace_PLINK(std::string fname, std::string asciifname, std::vector<long> dims,
                          bool quiet, Rcpp::Function message)
 {
 
@@ -226,14 +200,6 @@ int
 
 
 
-
-
-
-// char alleles [ 2 ][ n_of_cols_in_geno ];  // holds alleles  
-//char* alleles0 = NULL;
-//      alleles0 = new char[ n_of_cols_in_geno ];
-//char* alleles1 = NULL;
-//      alleles1 = new char[ n_of_cols_in_geno ];
 std::vector<char> alleles0( n_of_cols_in_geno );
 std::vector<char> alleles1( n_of_cols_in_geno );
 
@@ -259,9 +225,9 @@ std::string
 // open PLINK ped  file
 std::ifstream fileIN(fname.c_str());
 if(!fileIN.good()) {
-  message("\nERROR: PLINK ped file could not be opened with filename  ",   fname );
-  os << "\n\nERROR: ReadMarkerData has terminated with errors.  " << fname << "\n\n" << std::endl;
-  Rcpp::stop(os.str() );
+  message("ERROR: PLINK ped file could not be opened with filename  ",   fname );
+  message("ERROR: ReadMarkerData has terminated with errors.  ");
+  return false;
 }
 
 // open ascii file that is to hold no-spaces genotype data
@@ -284,35 +250,38 @@ while(getline(fileIN, line ))
  long number_of_columns = 0;
  std::string rowinfile(n_of_cols_in_geno, '0'); // s == "000000"
  
- if (!quiet ){
-    while(streamLine >> tmp)
-        number_of_columns ++;
 
-        message(" Number of columns in line " , counter+1 , " is " , number_of_columns);
+   std::istringstream check_number_row_elements(line);
 
+   long numcols = std::distance(std::istream_iterator<std::string>(check_number_row_elements), 
+              std::istream_iterator<std::string>()) ;
 
-
-
-
-
-     if (number_of_columns != dims[1] ){
+   if (numcols  != dims[1] ){
          message("\n");
          message( "Error:  PLINK file contains an unequal number of columns per row.  " );
-         message( "        The error has occurred at row " ,  counter+1 , " which contains " ,  number_of_columns ,  " but " );
+         message( "        The error has occurred at row " ,  counter+1 , " which contains " ,  numcols  ,  " but " );
          message( "        it should contain " , dims[1] , " columns of data. " );
          message("\n");
-          os << " ReadMarkerData has terminated with errors\n" << std::endl;
-         Rcpp::stop(os.str() );
-       }  // end  if (number_of_columns != dims[1] )
-   } // end  if (quiet )
+         message(" ReadMarkerData has terminated with errors");
+         return false;
+   }  // end  if (number_of_columns != dims[1] )
 
+
+
+
+   
    std::istringstream streamA(line);
+
+
+
    // tokenized row and placed it in std::vector rowvec
-   for(int i=0; i <= 5; i++)
+   for(int i=0; i <= 5; i++){
      streamA >> tmp;
+   }
    for(long i=6; i < dims[1] ; i++){
             streamA >> rowvec[i-6];
    }  // end  for(long i=0; i < dims[1] ; i++)
+
 
 
    // initialize alleles structure to first row of PLINK info
@@ -331,8 +300,9 @@ while(getline(fileIN, line ))
 
    // turn allelic info from PLINK into genotype 0,1,2 data
      // also do some checks for more than 2 alleles, and 0 and - for missing data
-     for(long i=0; i < n_of_cols_in_geno; i++){
+     for(long i=0; i <  n_of_cols_in_geno; i++){
         // Checking for missing allelic information in PLINK file
+    
         if( rowvec[ (2*i ) ] == '0' ||  rowvec[ (2*i + 1) ] == '0' || rowvec[ (2*i ) ] == '-' ||  rowvec[ (2*i + 1) ] == '-'){
            if (printOnlyOnce == 0){
                  message("\n");
@@ -348,12 +318,16 @@ while(getline(fileIN, line ))
             rowvec[ (2*i + 1) ] = 'I';  // impute
         }
 
-
         // Check if allele has been seen before in allele file. 
         // If so, make sure alleles doesn't already  contain two alleles - otherwise generate error message
         for(int j = 1; j >= 0; --j){ // looping over the two alleles with indexes 0 and 1
+
+
            if (rowvec[ (2*i + j) ] != alleles0[ i ] && rowvec[ (2*i + j) ] != alleles1[ i ]){
               // situation 1: rowvec contains missing values ie 'I' then do nothing
+
+
+
               if (rowvec[ (2*i + j) ] == 'I' ){
                  // do nothing here
 
@@ -374,8 +348,8 @@ while(getline(fileIN, line ))
                             message("Error:  PLINK file cannot contain more than two alleles at a locus.");
                             message("        The error has occurred at snp locus " , i  + 1 , " for individual " , counter+1 );
                             message("\n");
-                            os << " ReadMarkerData has terminated with errors\n" << std::endl;
-                             Rcpp::stop(os.str() );
+                            message(" ReadMarkerData has terminated with errors");
+                            return false;
                           } // end inner if else
 
                        } // end if (alleles1[i] == 'I')
@@ -457,6 +431,7 @@ while(getline(fileIN_backtobeginning, line ) && counter < nrowsp)
 fileIN.close();
 fileOUT.close();
 
+return true;
 
 }
 
@@ -526,7 +501,7 @@ while(getline(fileIN, line ))
 {
 
 
-   Rcout << "\r" << 100.0*counter/dims[0] << "% read of text file.       " << flush;
+   Rcpp::Rcout << "\r" << 100.0*counter/dims[0] << "% read of text file.       " << std::flush;
 
  // Here, BB is coded into 2 
  //       AB is coded into 1, 
@@ -536,7 +511,6 @@ while(getline(fileIN, line ))
   number_of_columns = 0;
   while(streamA >> token)
   {
- //    if(quiet )
         number_of_columns++;
 
 
@@ -551,33 +525,30 @@ while(getline(fileIN, line ))
              rowinfile[i] = '1'; 
         } else {
           if (AB=="NA"){
-              message( "Marker file contains marker genotypes that are different to AA=" , AA , " BB=" , BB);
-              message(" For example , " , token );
-              message(" ReadMarker has terminated with errors");
+              message( "\n Marker file contains marker genotypes that are different to AA=" , AA , " BB=" , BB);
+              message(" For example , " , token, " in row ", counter+1 );
+              message("\n ReadMarker has terminated with errors\n");
               return false;
           } else {
-              message( "Marker file contains marker genotypes that are different to AA=" , AA , " AB=" , AB , " BB=" , BB);
-              message( "For example , " , token );
-              message( "ReadMarker has terminated with errors");
+              message( "\n Marker file contains marker genotypes that are different to AA=" , AA , " AB=" , AB , " BB=" , BB);
+              message( " For example , " , token , " in row ", counter+1);
+              message( "\n ReadMarker has terminated with errors\n");
               return false;
          }
        }  //end if else 
        i++;
   } // end whle streamA
 
-  if (!quiet){
-        message(" Number of columns in line " , counter+1 , " is " , number_of_columns);
 
-        if (number_of_columns != dims[1] ){
-             message("\n");
-             message("Error:  Marker text file contains an unequal number of columns per row.  ");
-             message("        The error has occurred at row " , counter+1 , " which contains " , number_of_columns , " but ");
-             message("        it should contain " , dims[1] , " columns of data. ");
-             message("\n");
-             message(" ReadMarkerData has terminated with errors");
-             return false;
-       }  // end if number_of_columns
-  } // end if quiet
+  if (number_of_columns != dims[1] ){
+      message("\n");
+      message("Error:  Marker text file contains an unequal number of columns per row.  ");
+      message("        The error has occurred at row " , counter+1 , " which contains " , number_of_columns , " but ");
+      message("        it should contain " , dims[1] , " columns of data. ");
+      message("\n");
+      message(" ReadMarkerData has terminated with errors");
+      return false;
+  } 
   for(long ii=0; ii< number_of_columns; ii++){
      fileOUT << rowinfile[ii];
   }
@@ -620,7 +591,6 @@ while(getline(fileIN, line ))
         message(rowline);
         counter++;
       }  // end  while(getline(fileIN, line ))
-//  } // end if(quiet)
 
 // close files
 fileIN.close();
@@ -690,7 +660,9 @@ Eigen::MatrixXd
 
 
 // [[Rcpp::export]]
-void  createMt_ASCII_rcpp(CharacterVector f_name, CharacterVector f_name_ascii, 
+void  createMt_ASCII_rcpp(Rcpp::CharacterVector f_name, 
+                          Rcpp::CharacterVector f_name_ascii, 
+                          Rcpp::CharacterVector  type,
                               double  max_memory_in_Gbytes,  std::vector <long> dims,
                               bool  quiet, Rcpp::Function message )
 {
@@ -709,6 +681,7 @@ long
 
 
 std::string
+     ftype = Rcpp::as<std::string>(type),
      fname = Rcpp::as<std::string>(f_name),
      fnameascii = Rcpp::as<std::string>(f_name_ascii);
 
@@ -770,7 +743,7 @@ if(mem_bytes < max_mem_in_bytes){
    }  // end while getline
 
   // take transpose of matrix M
-  MatrixXi Mt = M.transpose();
+  Eigen::MatrixXi Mt = M.transpose();
   
   // write out contents fo Mt to file (no spaces)a
  std::vector<char> rowinfile( Mt.cols() );
@@ -830,7 +803,7 @@ if(mem_bytes < max_mem_in_bytes){
               end_val = dims[1];
 
          long ncols = end_val - start_val ;
-         MatrixXi
+         Eigen::MatrixXi
               M(dims[0], ncols );
 
 
@@ -857,7 +830,7 @@ if(mem_bytes < max_mem_in_bytes){
        // transpose M
 
 
-       MatrixXi Mt = M.transpose();
+       Eigen::MatrixXi Mt = M.transpose();
 
 
       // write out contents fo Mt to file (no spaces)a
@@ -894,7 +867,33 @@ fileOUT.close();
 }  // end if else situation 
 
 
+
+
+//--------------------------------------
+// Summary of Genotype File
+//--------------------------------------
+
+message( "\n\n                    Summary of Marker File  " );
+message( "                   ~~~~~~~~~~~~~~~~~~~~~~~~   " );
+message( " File type:                " , type  );
+message(" File name:                " , fname );
+message(" New ASCII file name:  " , fnameascii  );
+message(" Number of individuals:    "     , dims[0] );
+if (ftype == "PLINK"  ){
+// message(" Number of loci:           "  , (dims[1] -6)/2.0   );
+message(" Number of loci:           "  , dims[1]   );
+} else {
+message(" Number of loci:           "  , dims[1] );
+}
+message( " File size (gigabytes):       "  , mem_bytes/1000000000 );
+message(" Available memory (gigabytes):" , max_memory_in_Gbytes  );
+message("\n\n" );
 message(" The marker file has been Uploaded");
+
+
+
+
+
 
 
 }  // end function 
@@ -909,7 +908,7 @@ message(" The marker file has been Uploaded");
 // Calculation of transformed blup a values
 //--------------------------------------------
 // [[Rcpp::export]]
-Eigen::MatrixXd calculate_reduced_a_rcpp ( CharacterVector f_name_ascii, double varG, 
+Eigen::MatrixXd calculate_reduced_a_rcpp ( Rcpp::CharacterVector f_name_ascii, double varG, 
                                            Eigen::Map<Eigen::MatrixXd> P,
                                            Eigen::Map<Eigen::MatrixXd>  y,
                                            double max_memory_in_Gbytes,  
@@ -1099,7 +1098,7 @@ void removeColumn(Eigen::MatrixXd& matrix, unsigned long colToRemove)
 // ------------------------------------------------------
 
 // [[Rcpp::export]]
-Rcpp::List   calculate_a_and_vara_rcpp(  CharacterVector f_name_ascii,  
+Rcpp::List   calculate_a_and_vara_rcpp(  Rcpp::CharacterVector f_name_ascii,  
                                     Rcpp::NumericVector  selected_loci,
                                     Eigen::Map<Eigen::MatrixXd> inv_MMt_sqrt,
                                     Eigen::Map<Eigen::MatrixXd> dim_reduced_vara,
@@ -1141,7 +1140,6 @@ Eigen::MatrixXd
 
 
    // Calculate memory footprint for Mt %*% inv(sqrt(MMt)) %*% var(a) %*% inv(sqrt(MMt)%*%M)
-//AWG  double mem_bytes_needed =   ( dims[0]   +  2*dims[1]   + 1 ) *  (dims[1] * sizeof(double) /( 1000000000));
  double mem_bytes_needed =   ( 4   *dims[1]  *  dims[0] * sizeof(double))/1000000000;
 
 if (!quiet){
@@ -1176,8 +1174,6 @@ if(mem_bytes_needed < max_memory_in_Gbytes){
 
 
   // calculate untransformed variances of BLUP values
-//  Eigen::MatrixXd var_ans_tmp_part1 =  inv_MMt_sqrt * dim_reduced_vara * inv_MMt_sqrt;
-
     Eigen::MatrixXd var_ans_tmp_part1 =   dim_reduced_vara * inv_MMt_sqrt;
     var_ans_tmp_part1 = inv_MMt_sqrt * var_ans_tmp_part1;
 
@@ -1186,9 +1182,8 @@ if(mem_bytes_needed < max_memory_in_Gbytes){
 //  Eigen::MatrixXd var_ans_tmp_part1 =  inv_MMt_sqrt * dim_reduced_vara * inv_MMt_sqrt;a
     var_ans_tmp  =  Mt  *  var_ans_tmp_part1;
     var_ans_tmp_part1.resize(0,0);  // erase matrix 
-
-  // Added 26 April
   long i;
+
   #if defined(_OPENMP)
      #pragma omp parallel for shared(var_ans, var_ans_tmp, Mt)  private(i) schedule(static)
   #endif
@@ -1203,7 +1198,6 @@ if(mem_bytes_needed < max_memory_in_Gbytes){
     //       BLOCK WISE UPDATE
     //  -----------------------------------------
 
-      // ans.resize(dims[0],1);   //added AWG 12/03/16 in a bid to improve GPU performance
 
       // calculation being processed in block form
       message(" Increasing maxmemGb would improve performance... \n");
@@ -1285,11 +1279,6 @@ if(mem_bytes_needed < max_memory_in_Gbytes){
 
 
         // performing quadratic form, remembering only diag elements are needed for variances. 
-//        for(long j=0; j < num_rows_in_block1; j++){
-//           var_ans_tmp(j,0) =  Mt.row(j) * vt1 * ((Mt.row(j)).transpose()) ;
-//        }
-//        Rcout << "end of computing variances ... " << endl;
-            // vt.noalias() =  Mt *  vt1;
            Eigen::MatrixXd vt;
               vt.noalias()  =  Mt *  vt1;
 
@@ -1298,8 +1287,6 @@ if(mem_bytes_needed < max_memory_in_Gbytes){
 
 
 
-   //    var_ans_tmp(j,0)  =   vt.row(j)  * ((Mt.row(j)).transpose()) ;
-           // Added 26 April
 #if defined(_OPENMP)
            #pragma omp parallel for
 #endif
@@ -1339,8 +1326,8 @@ if(mem_bytes_needed < max_memory_in_Gbytes){
 
 
 // [[Rcpp::export]]
-bool  createM_ASCII_rcpp(CharacterVector f_name, CharacterVector f_name_ascii, 
-                  CharacterVector  type,
+bool  createM_ASCII_rcpp(Rcpp::CharacterVector f_name, Rcpp::CharacterVector f_name_ascii, 
+                  Rcpp::CharacterVector  type,
                   std::string AA,
                   std::string AB, 
                   std::string BB,
@@ -1391,7 +1378,9 @@ double
      //------------------------------------
      // convert PLINK ped file into ASCII file with no spaces
      //----------------------------------------------
-       CreateASCIInospace_PLINK(fname, fnameascii, dims, quiet, message);
+       bool it_worked = CreateASCIInospace_PLINK(fname, fnameascii, dims, quiet, message);
+       if (!it_worked) // an error has occurred in forming ascii file
+                 return false;
 
    }  else {
       //-------------------------------------------
@@ -1409,33 +1398,13 @@ double
            if (!it_worked) // an error has occurred in forming ascii file
                  return false;
        } else {
-        //    bool it_worked =  CreateASCIInospaceFast(fname, fnameascii, dims, AA, AB, BB, quiet, message, missing);
-            bool it_worked =  CreateASCIInospace(fname, fnameascii, dims, AA, AB, BB, quiet, message, missing);
+           bool it_worked =  CreateASCIInospace(fname, fnameascii, dims, AA, AB, BB, quiet, message, missing);
           if (!it_worked) // an error has occurred in forming ascii file
                  return false;
        } 
 
 
    }  // end if type == "PLINK" 
-
-//--------------------------------------
-// Summary of Genotype File
-//--------------------------------------
-
-message( "\n\n                    Summary of Marker File  " );
-message( "                   ~~~~~~~~~~~~~~~~~~~~~~~~   " );
-message( " File type:                " , type  );
-message(" File name:                " , fname );
-message(" New ASCII file name:  " , fnameascii  );
-message(" Number of individuals:    "     , dims[0] );
-if (ftype == "PLINK"  ){
-message(" Number of loci:           "  , (dims[1] -6)/2.0   );
-} else {
-message(" Number of loci:           "  , dims[1] );
-}
-message( " File size (gigabytes):       "  , memory_needed_in_Gb );
-message(" Available memory (gigabytes):" , max_memory_in_Gbytes  );
-message("\n\n" );
 
 
   return true; 
@@ -1454,7 +1423,7 @@ message("\n\n" );
 
 
 // [[Rcpp::export]]
-Eigen::VectorXi  extract_geno_rcpp(CharacterVector f_name_ascii, 
+Eigen::VectorXi  extract_geno_rcpp(Rcpp::CharacterVector f_name_ascii, 
                                    double  max_memory_in_Gbytes, 
                                     long  selected_locus, 
                                     std::vector<long> dims)
@@ -1485,7 +1454,6 @@ Eigen::VectorXi
 if(max_memory_in_Gbytes > memory_needed_in_Gb ){
    // reading entire data file into memory
      Eigen::MatrixXd genoMat =  ReadBlock(fnamebin,  0, dims[1], dims[0]);
-  //  Eigen::MatrixXd genoMat =  ReadBlockFast(fnamebin,  0, dims[1], dims[0]);
 
    column_of_genos = genoMat.col(selected_locus).cast<int>() ;
    
@@ -1507,13 +1475,6 @@ if(max_memory_in_Gbytes > memory_needed_in_Gb ){
 
               Eigen::MatrixXd    
                 genoMat_block1 ( ReadBlock(fnamebin,  start_row1, dims[1], num_rows_in_block1)) ;
-              // Eigen::MatrixXd    
-             //    genoMat_block1 ( ReadBlockFast(fnamebin,  start_row1, dims[1], num_rows_in_block1)) ;
-
-              // removing rows that correspond to individuals with no 
-              // trait data
-           //   long start = start_row1;
-           //   long  finish = start_row1 + num_rows_in_block1;
 
 
               // dealing with assigning column_of_genos when some values 
@@ -1540,7 +1501,7 @@ return(column_of_genos);
 
 
 // [[Rcpp::export]]
-Eigen::MatrixXd  calculateMMt_rcpp(CharacterVector f_name_ascii, 
+Eigen::MatrixXd  calculateMMt_rcpp(Rcpp::CharacterVector f_name_ascii, 
                                    double  max_memory_in_Gbytes, int num_cores,
                                    Rcpp::NumericVector  selected_loci , std::vector<long> dims, 
                                    bool  quiet, Rcpp::Function message) 
@@ -1659,9 +1620,6 @@ if(max_memory_in_Gbytes > memory_needed_in_Gb ){
              for(long ii=0; ii < selected_loci.size() ; ii++)
                 genoMat_block1.col(selected_loci(ii)).setZero();
              }
-             // Rcpp::Rcout << "  Block 1  "  << std::endl;
-             // Rcpp::Rcout << genoMat_block1.rows() << std::endl;
-             // Rcpp::Rcout << genoMat_block1.cols() << std::endl;
               MMtsub.noalias() = genoMat_block1 * genoMat_block1.transpose(); 
               //          i            j            num rows               num   cols
               MMt.block(start_row1, start_row1, num_rows_in_block1, num_rows_in_block1) = MMtsub;
