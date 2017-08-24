@@ -1,0 +1,315 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Eagle Quick Start</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			
+				<header id="header">
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="#" class="icon fa-angle-down">Eagle</a>
+								<ul>
+									<li><a href="quickstart.html">Quick Start</a></li>
+									<li><a href="multithreadR.html">Multi-threaded R</a></li>
+									<li><a href="instruction.html">Installation</a></li>
+									<li><a href="videos.html">Videos</a></li>
+									<li><a href="faq.html">faq</a></li>
+<!--									<li>
+										<a href="#">Submenu</a>
+										<ul>
+											<li><a href="#">Option One</a></li>
+											<li><a href="#">Option Two</a></li>
+											<li><a href="#">Option Three</a></li>
+											<li><a href="#">Option Four</a></li>
+										</ul> -->
+									</li>
+								</ul>
+							</li>
+							<li><a href="demo.html">Demo</a></li>
+							<li><a href="contact.html">Contact Us</a></li>
+							<!-- <li><a href="#" class="button">Contact Us</a></li> -->
+						</ul>
+					</nav>
+				</header>
+
+			
+			
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>Quick Start</h2>
+						<p>A How To guide for using the Eagle GUI</p>
+					</header>
+		<!--			<div class="box">
+						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<h3>This is a subheading</h3>
+						<p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
+						<div class="row">
+							<div class="6u 12u(mobilep)">
+								<h3>And now a subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+							<div class="6u 12u(mobilep)">
+								<h3>And another subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+						</div>
+					</div>   -->
+				<div class="box">
+				
+											
+					  <h3>Getting Started</h3>
+					  
+					  <p> To install the Eagle package, from an interactive session in <a href="https://www.r-project.org/about.html">R</a>, type the following command   </p>
+					  <pre class="r"><code>install.packages(&quot;Eagle&quot;, dependencies=TRUE)</code></pre>
+					This will install the Eagle package and any missing packages upon which Eagle depends. As 
+							   part of the install, you will be prompted to chose a mirror site from which to install 
+							   the packages. Chose the site closest to your location. </p>
+						    <p>The Eagle package is loaded into your R session with
+                           <pre class="r"><code>library(&quot;Eagle&quot;)</code></pre>   
+                           and you will see a message saying that Eagle has been loaded. </p>								
+						
+				</div>	
+					
+				
+				<div class="box">
+				<h3>Running Eagle via the GUI</h3>
+								
+				<p> The easiest way of interacting with Eagle and performing an analysis is through 
+					    our web-based graphical user interface (GUI). To run the GUI, at the R prompt, type
+					    <pre class="r"><code>OpenUI()</code></pre>
+                        which will automatically open your web browser to our GUI. 
+                </p>
+                
+				</div>	
+					
+
+
+				<div class="box">	
+				<h3>The Eagle GUI home page - a good place to start</h3>
+								
+			    <p> When the Eagle GUI is run, it opens the web browser to a home page. 
+				         At the top of the page is a navigation bar. To perform an analysis, 
+				         work your way 
+				         through each navigation item, from left to right, with the Read Map item being optional. </p>
+				         
+				<p> The flow 
+				         chart on the home page shows the five steps to performing an analysis. It
+				         also shows how your data should be <a href="#div_organise">organised</a>. 
+				         
+				         The first step is to read in the marker data. The second step is to read in the 
+				         phenotypic data. The third step, which is optional, is to read in the marker map. 
+				         The fourth step is to perform the association mapping analysis. 
+				         The fifth step is to inspect the results. 
+				         Each step corresponds to an item in the navigation bar at the top of the page. 
+				         
+				</p>
+					    
+			   <img src="images/home.png" width="80%">
+                      
+		       </div>				
+
+
+
+               <div class="box">	
+						
+																
+				<h3>How to organize your association mapping data</h3>
+								
+					  
+				<p> We split the study data into three separate datasets:</p>
+											<ul>
+											<li>a  <a href="#div_markerdata">marker dataset</a>  </li>
+											<li>a <a href="#div_phenotypedata">phenotype dataset</a>  </li>
+											<li>the <a href="#div_markermapdata">marker map dataset</a>  </li>
+			   </ul>
+		            
+		       </div>			
+
+               <div class="box" id="div_markerdata">	
+								
+			   <h3>Reading in the Marker Data</h3>
+								
+				
+					    <p> There are two types of marker data file that Eagle can handle; 
+					    a PLINK ped file and a plain text file. Below, is an example of each of these file types. </p>
+					
+                           <img src="images/ReadMarker_slide1.jpg" width="80%"  >
+                    
+                       <p> </p>
+                       
+  
+                       
+                       <p>  
+                       To read in the marker data which are in PLINK format, click on the Read Genotype tab 
+                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button 
+                       has been pushed, a loading animation will appear along with summary output. </p>
+ 					   
+                      <img src="images/ReadMarkerScreen_PLINK.jpg" width="80%">
+                      
+                       <p></p>
+                       
+                       <p> To read in the marker data which are in a plain text file, click on the Read Genotype tab 
+                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button 
+                       has been pushed, a loading animation will appear along with summary output. </p>
+                       
+                       <p>
+  					
+                       <img src="images/ReadMarkerScreen_text.jpg" width="80%">
+                    
+                       </p>
+                       
+		       </div>			
+
+
+
+               <div class="box"  id="div_phenotypedata">	
+																	
+			   <h3>Reading in the Phenotypic Data</h3>
+							
+				    	<p> The file containing the phenotypic data is a plain text file. Below are 
+				    	 three examples of what this file could contain. </p>
+				    	
+				    	<img src="images/ReadPheno_slide1.jpg" width="70%">
+                       <p></p>
+                       
+                       <p> To read in the phenotypic data, click on the Read Phenotype tab in the navigation bar and 
+                        complete the form (see below). After the upload file has been pushed, a loading animation 
+                        will appear along with summary information. </p>
+
+				    	<img src="images/ReadPhenoScreen.jpg" width="70%">
+
+		       </div>			
+
+
+               <div class="box"  id="div_markermapdata" >	
+						
+																	
+									<h3>Reading in the Marker Map</h3>
+								
+                        	<p> The file containing the marker map is a plain text file. Below are 
+				    	 two examples of what this file could contain. </p>
+				    	<img src="images/ReadMap_slide1.jpg" width="70%">
+				    	
+				    	
+				    	
+				    	<p> To read in the map data, click on the Read Map tab in the navigation bar and 
+                        complete the form (see below). After the upload file has been pushed, a loading animation 
+                        will appear along with summary information. </p>
+				    	<img src="images/ReadMapScreen.jpg" width="70%">
+          
+          
+          
+		       </div>			
+               <div class="box"  id="div_analysis"  >	
+							
+																	
+			   <h3>Performing Genome-wide Association Mapping</h3>
+								
+                    
+
+                       <p>
+                       We will assume that you have loaded your data successfully into Eagle. 
+                       You are now ready to analyse your data. To demonstrate how to do this, below we present two scenarios. </p>
+                       
+                       
+                      
+                       
+                      <img style="float: left; padding: 0px 10px 10px 20px;" width="60%" src="images/Analysis_scenario1.jpg"/>
+                      
+                      <p>  <b>Scenario 1:</b>  here the phenotypic data file  contains observations 
+                        from a single quantitative trait.  There are no fixed effects (or features) in 
+                        the file.  Our computer has a quad-core processor so we can distribute our computations 
+                        across four cores. 
+                      </p>
+                    
+                       
+                       
+                      <div style="clear: both"></div>
+                       
+                          <img style="float: left; padding: 0px 10px 10px 20px;" width="60%" src="images/Analysis_scenario2.jpg"/>
+                      
+                      <p>  <b>Scenario 2:</b>  here the phenotypic data file contains observations 
+                        from three quantitative traits and two fixed effects. The trait of interest is "y2". 
+                        The fixed effects that are to be included in the model are "pc1" and "pc2".  Our system
+                        has a quad-core processor so we can distribute our computations across four cores. 
+                      </p>
+                      <div style="clear: both"></div>
+                                        
+                      <p></p>
+                     <hr />
+
+                      <h2> Findings </h2>
+                      <p> Below are the two pages associated with Findings. The first page 
+                      is what appears by default.  It lists those snp, if any, that are 
+                      in strongest linkage disequilibrium with the genes that are 
+                      controlling the trait.  That is, the snp listed are the snp closest to 
+                      the regions of the genome housing genes that influence the trait. 
+                       </p>
+                      
+                      <p> The second page gives additional information on the (additive) size of the snp effects, 
+                      on their p-values, and an estimate of the amount of phenotypic variation explained by the snps. 
+                      </p>
+                      
+    	           <img src="images/FindingsScreen.jpg" width="90%">
+
+               
+
+
+		
+		       </div>			
+
+
+					
+					
+					
+				</section>
+
+
+
+
+
+			<!-- Footer -->
+				<footer id="footer">
+					<ul class="icons">
+						<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+						<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+						<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+						<li><a href="#" class="icon fa-github"><span class="label">Github</span></a></li>
+						<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+						<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+					</ul>
+					<ul class="copyright">
+						<li>&copy; Untitled. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+					</ul>
+				</footer>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

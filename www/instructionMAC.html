@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Eagle installation Iinstructions for Mac OS</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			
+				<header id="header">
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="#" class="icon fa-angle-down">Eagle</a>
+								<ul>
+									<li><a href="quickstart.html">Quick Start</a></li>
+									<li><a href="multithreadR.html">Multi-threaded R</a></li>
+									<li><a href="instruction.html">Installation</a></li>
+									<li><a href="videos.html">Videos</a></li>
+									<li><a href="faq.html">faq</a></li>
+<!--									<li>
+										<a href="#">Submenu</a>
+										<ul>
+											<li><a href="#">Option One</a></li>
+											<li><a href="#">Option Two</a></li>
+											<li><a href="#">Option Three</a></li>
+											<li><a href="#">Option Four</a></li>
+										</ul> -->
+									</li>
+								</ul>
+							</li>
+							<li><a href="demo.html">Demo</a></li>
+							<li><a href="contact.html">Contact Us</a></li>
+							<!-- <li><a href="#" class="button">Contact Us</a></li> -->
+						</ul>
+					</nav>
+				</header>
+
+			
+			
+			<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>Eagle for Mac OS</h2>
+						<p>A How To guide for installing Eagle along with multi-threaded R  </p>
+					</header>
+		<!--			<div class="box">
+						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<h3>This is a subheading</h3>
+						<p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
+						<div class="row">
+							<div class="6u 12u(mobilep)">
+								<h3>And now a subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+							<div class="6u 12u(mobilep)">
+								<h3>And another subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+						</div>
+					</div>   -->
+				
+				
+
+
+
+
+
+  <div class="box">
+
+				<h3> Purpose of this guide </h3>
+			
+			    
+				<p> Eagle is built with the R language. R, by default, is installed for 
+				single-thread computation.  
+				However, it is possible to replace R’s default single-thread math 
+				libraries with multi-threaded libraries.  In doing so, many of R’s 
+				linear algebra operations become implicitly parallelized. 
+				We have purposely built Eagle to take full advantage of this 
+				implicit parallelisation.  
+				</p>
+				
+			
+				<p> In this guide, we will show you how to install R for multi-threaded 
+				 computation. Once R is installed, it is then simple to install Eagle. 
+				 </p>
+		 
+		</div>		      
+
+	 
+
+				
+  <div class="box">		
+
+					<h3 id="elements">What you need</h3>
+				
+					<p> You will need administrator privileges.  This 
+					gives the installation script write access to write-protected 
+					parts of the system.  </p>
+					
+					<p>
+				    It would also be advantageous if you have had previous experience 
+				    with installing software to your computer and experience with 
+				    installing R packages. 
+					
+					</p>
+			
+		</div>		      
+
+		
+				
+				
+  <div class="box">			      
+
+				<h3>Systems Tested</h3>
+			
+				
+                 <p> We have tested our installation procedure on macOS 10.11 (El Capitan), and 
+                 10.12 (Sierra). </p>
+                 
+			
+		</div>		      
+
+							    
+
+
+  <div class="box" id="step1">	
+	
+            <h3> Step 1: Install XQuartz</h3>
+          
+            
+            <p>Go to the  <a href="http://www.xquartz.org/">XQuartz web site</a> 
+            and download the dmg file.  
+            The file will be downloaded into your DOWNLOADS folder.
+            
+            <img src="images/XQuartz.jpg"  width="800px"  height="600px" >      
+         
+            Click on the XQuartz dmg file in your DOWNLOADS folder and a
+            window will appear with the icon 
+            <img src="images/XQuartzInstall1.png"   style="vertical-align:middle; width:70px; height:70px" >.     
+             Double click on the icon and the installation program will begin.
+            You will see the following. You will need administrator privileges to install XQuartz.
+             </p>  
+            
+            <img src="images/XQuartzInstall2.png"  width="600px"  height="400px" >      
+         
+            
+         
+		
+	</div>		      
+
+
+
+  <div class="box"  id="step2">	
+	
+            <h3> Step 2: Download R Open</h3>
+            
+            <p>Installing a multi-threaded version of R is now much easier with 
+            <a href="http://mran.microsoft.com/open/">Microsoft R Open</a>.  
+               R Open behaves exactly the same as R, except, by default, it comes with multi-threaded math libraries. </p>
+               
+               <p>
+               Go to the  <a href="http://mran.microsoft.com/open/">Microsoft R Open web site</a>
+               and download the Mac OS X version of R Open. 
+</p>
+		   
+	</div>		      
+
+
+
+  <div class="box" id="step3">
+	
+		<h3> Step 3: Run the installation program for R Open </h3>
+	
+		
+		<p> Once R Open has finished downloading, run the program. 
+		There are various ways of doing this. Our preferred approach 
+		is to go into the Download folder and click on the file 
+		microsoft-r-open-3.4.0.pkg. This will run the installation program.  
+		You will need administrator privileges to run 
+		this program. 	
+		 </p>
+		 
+
+</div>		      
+
+
+       
+        
+  <div class="box" id="step4">
+ 
+        <h3> Step 4: Run R Open </h3>
+      
+
+
+<p> R Open can be run as an App from the Launchpad  </p>
+
+        <img src="images/macROpen.jpg"  width="500px"  height="400px" > 
+        
+        <p></p>
+        
+ <p> By clicking on the R Open App, the following R console window will appear. 
+ It tells you how many cores are available for distributed computation.
+  </p>
+ 
+ 
+       <img src="images/macROpenRun.jpg"  text-align="right" width="500px"  height="350px" >  
+
+	
+	</div>		      
+
+
+
+  <div class="box" id="step5">
+
+        <h3> Step 5: Installation of the Eagle package </h3>
+      
+
+<p> To install the Eagle package, from the R Console window, use the <em>install.packages( )</em> command
+
+<pre class="r"><code>  install.packages("Eagle", dependencies=TRUE)  </code></pre>
+
+
+ </div>		      
+
+
+
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

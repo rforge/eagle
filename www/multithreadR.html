@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Multi-threaded R</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			
+				<header id="header">
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="#" class="icon fa-angle-down">Eagle</a>
+								<ul>
+									<li><a href="quickstart.html">Quick Start</a></li>
+									<li><a href="multithreadR.html">Multi-threaded R</a></li>
+									<li><a href="instruction.html">Installation</a></li>
+									<li><a href="videos.html">Videos</a></li>
+									<li><a href="faq.html">faq</a></li>
+<!--									<li>
+										<a href="#">Submenu</a>
+										<ul>
+											<li><a href="#">Option One</a></li>
+											<li><a href="#">Option Two</a></li>
+											<li><a href="#">Option Three</a></li>
+											<li><a href="#">Option Four</a></li>
+										</ul> -->
+									</li>
+								</ul>
+							</li>
+							<li><a href="demo.html">Demo</a></li>
+							<li><a href="contact.html">Contact Us</a></li>
+							<!-- <li><a href="#" class="button">Contact Us</a></li> -->
+						</ul>
+					</nav>
+				</header>
+
+			
+						<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>Multi-threaded R</h2>
+						<p>How to get R to harness multiple treads for distributed computing</p>
+					</header>
+		<!--			<div class="box">
+						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<h3>This is a subheading</h3>
+						<p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
+						<div class="row">
+							<div class="6u 12u(mobilep)">
+								<h3>And now a subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+							<div class="6u 12u(mobilep)">
+								<h3>And another subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+						</div>
+					</div>   -->
+				
+				
+			  <div class="box">
+			  <h3>Multi-threaded R</h3>
+					
+			
+			 <p> 
+			 Eagle is built with the R language. R, by default, is installed for 
+			 single-threaded computation. However, it is possible to replace R’s 
+			 default single-threaded math libraries with multi-threaded libraries. 
+			 In doing so, many of R’s linear algebra operations become implicitly 
+			 parallelised. We have purposely built Eagle to take full advantage of 
+			 this implicit parallelisation. 
+			 
+			 </p>
+			 
+			 <p>
+			 There are two ways in which to install R that is multi-threaded:
+			 <ul>
+			 <li> <p> The easiest approach is to install Microsoft's version of R   which is called  <a href="https://mran.microsoft.com/open/">R Open</a>. R Open 
+			 looks and works exactly the same as standard R. However, those functions which make calls to the single-threaded 
+			 linear algebra libraries BLAS and LAPACK 
+			 are replaced by calls to the high-performance multi-threaded MKL libraries.  </p>
+			 
+			 <p>For instructions on how to install   <a href="https://mran.microsoft.com/open/">R Open</a> 
+			 for your system, go to our <a href="installation.html">Installation</a> page. </p>
+			  </li>
+			  <li>
+			  <p>  An alternate approach is to install standard R from <a href="https://cran.r-project.org/">CRAN</a> 
+			  and to replace the single-threaded BLAS library with <a href="http://www.openblas.net/">OpenBLAS</a>, 
+			  a free multi-threaded BLAS library. Before  <a href="https://mran.microsoft.com/open/">R Open</a>, 
+			  this was the favoured way of making R calculations multi-threaded.  </p>
+			  
+			  <p>If you search for "openblas for R" you will find multiple sites with instructions on how to do this. However, briefly, first 
+			  download openblas. How you do this exactly will be dependent upon which platform you are running. Second, install the 
+			  latest version of R from <a href="https://cran.r-project.org/">CRAN</a>. Third, replace the library libRblas.so 
+			  with a soft link to the Open BLAS library libopenblas.so. </p>
+			  </li>
+			  
+			 </ul>
+			 
+			 </p>
+			 
+			 <p> Both approaches for installing a multi-threaded version of R have advantages and disadvantages. However,
+			 we have opted with the first approach (installing R Open) since R Open is trivial to install on a Windows system
+			 and the MKL libraries are 
+			 <a href="https://software.intel.com/en-us/articles/performance-comparison-of-openblas-and-intel-math-kernel-library-in-r"> better performing  </a>
+			 than openBLAS libraries. 
+			 
+			 </p>
+			 
+				</div>		      
+
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

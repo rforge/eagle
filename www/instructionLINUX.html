@@ -1,0 +1,614 @@
+<!DOCTYPE HTML>
+<!--
+	Alpha by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Eagle Installation Instructions - LINUX</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+			
+				<header id="header">
+					<nav id="nav">
+						<ul>
+							<li><a href="index.html">Home</a></li>
+							<li>
+								<a href="#" class="icon fa-angle-down">Eagle</a>
+								<ul>
+									<li><a href="quickstart.html">Quick Start</a></li>
+									<li><a href="multithreadR.html">Multi-threaded R</a></li>
+									<li><a href="instruction.html">Installation</a></li>
+									<li><a href="videos.html">Videos</a></li>
+									<li><a href="faq.html">faq</a></li>
+<!--									<li>
+										<a href="#">Submenu</a>
+										<ul>
+											<li><a href="#">Option One</a></li>
+											<li><a href="#">Option Two</a></li>
+											<li><a href="#">Option Three</a></li>
+											<li><a href="#">Option Four</a></li>
+										</ul> -->
+									</li>
+								</ul>
+							</li>
+							<li><a href="demo.html">Demo</a></li>
+							<li><a href="contact.html">Contact Us</a></li>
+							<!-- <li><a href="#" class="button">Contact Us</a></li> -->
+						</ul>
+					</nav>
+				</header>
+
+			
+						<!-- Main -->
+				<section id="main" class="container">
+					<header>
+						<h2>Eagle for Linux</h2>
+						<p>A How To guide for installing multi-threaded R and Eagle </p>
+					</header>
+		<!--			<div class="box">
+						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
+						<h3>This is a subheading</h3>
+						<p>Cep risus aliquam gravida cep ut lacus amet. Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae ante vestibulum ante. Blandit. Ante accumsan nisi eu placerat gravida placerat adipiscing in risus fusce vitae ac mi accumsan nunc in accumsan tempor blandit aliquet aliquet lobortis. Ultricies blandit lobortis praesent turpis. Adipiscing accumsan adipiscing adipiscing ac lacinia cep. Orci blandit a iaculis adipiscing ac. Vivamus ornare laoreet odio vis praesent nunc lorem mi. Erat. Tempus sem faucibus ac id. Vis in blandit. Nascetur ultricies blandit ac. Arcu aliquam. Accumsan mi eget adipiscing nulla. Non vestibulum ac interdum condimentum semper commodo massa arcu.</p>
+						<div class="row">
+							<div class="6u 12u(mobilep)">
+								<h3>And now a subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+							<div class="6u 12u(mobilep)">
+								<h3>And another subheading</h3>
+								<p>Adipiscing faucibus nunc placerat. Tempus adipiscing turpis non blandit accumsan eget lacinia nunc integer interdum amet aliquam ut orci non col ut ut praesent. Semper amet interdum mi. Phasellus enim laoreet ac ac commodo faucibus faucibus. Curae lorem ipsum adipiscing ac. Vivamus ornare laoreet odio vis praesent.</p>
+							</div>
+						</div>
+					</div>   -->
+				
+				
+		
+
+			  <div class="box">
+			
+				<h3> Purpose of this guide </h3>
+			     
+			    
+				<p> Eagle is built with the R language. R, by default, is installed for 
+				single-thread computation.  
+				However, it is possible to replace R’s default single-thread math 
+				libraries with multi-threaded libraries.  In doing so, many of R’s 
+				linear algebra operations become implicitly parallelized. 
+				We have purposely built Eagle to take full advantage of this 
+				implicit parallelisation.  
+				</p>
+				
+			
+				<p> In this guide, we will show you how to install R for multi-threaded 
+				 computation. Once R is installed, it is then simple to install Eagle. 
+				 </p>
+		  
+		      				</div>		      
+
+
+		 	 <div class="box" id="elements">
+			 
+					<h3>What you need</h3>
+			
+				
+					
+					<p> You will need administrator privileges. That is, you will 
+					need to be able to run the sudo (superuser do) command.  This 
+					gives the installation script write access to write-protected 
+					parts of the system.  You will also need the library libpng12 
+					(see Step 1 below). </p>
+					
+					<p>
+				    It would also be advantageous if you have had previous experience 
+				    with installing R packages. 
+					
+					</p>
+			
+			 				</div>		      
+
+					    
+			<div class="box">      
+		
+				<h3>Systems Tested</h3>
+			
+				
+                 <p> We have tested our installation procedure on the linux distributions 
+                  Fedora, Red Hat Enterprise Linux (RHEL), Debian, openSUSE, and Ubuntu. 
+                  For each distribution, we started with a clean install. Hence, you may 
+                  not need to install all the packages listed in <a href="#step1">Step 1</a> . 
+                  It will depend upon 
+                  the state of your system.</p>
+                 
+                 
+                 
+                 <table style="width=50%">
+                 <tr>
+                    <th>Distribution </th>
+                    <th>Version   </ht>
+                 </tr>
+                 <tr>
+                    <td> Fedora </td>  <td> 24, 25, 26 Beta </td>
+                 </tr>
+                <tr>
+                    <td> RHEL </td> <td> 6.8, 6.9, 7.1, 7.2, 7.3, 7.4 </td>
+                </tr>
+                <tr>
+                  <td> Fedora  </td> <td> 24, 25, 26 Beta </td>
+                </tr>
+                <tr>  
+                  <td>  Debian </td> <td> 8.8  (Jessie) &  9.0 (Stretch) </td>
+                </tr>
+                <tr>
+                  <td>  openSUSE Leap </td> <td> 42.1 (Malachite) & 42.2 </td>
+                 </tr>
+                 <tr> 
+                  <td>  Ubuntu </td> <td> 14.04.5 LTS (Trusty Tahr), 16.04.2 LTS  (Xenial Xerus) & 17.04 (Zesty Zapus) </td>
+                 </tr>
+                 </table>           
+            
+            
+
+			
+			</div>		      
+
+
+				
+			<div class="box"  id="step1">			 
+		
+          <h3> Step 1: Getting your System Ready</h3>
+       
+
+
+			<!-- Getting Fedora ready  -->
+           <details>
+    
+    		<summary>  <img src="images/fedora.png" 
+										    class="img-responsive" width="90px" height="90px"/>  </summary>
+           <p> </p>
+           <p> For the following steps to work, your system needs the reference library libpng12,  
+           a c++ compiler, and a Fortran compiler.  
+           If you don't have these on your system already, fortunately they are  freely available and 
+           easy to install. </p>
+
+
+           <h4> <b> Installation of libpng12 </b> </h4>
+           
+           <p>Libpng is a reference library containing functions to read, create, and 
+         manipulate PNG image files.  You need the libpng12 version on your system. A different 
+         version will not suffice.   </p>
+                
+                
+           <p> To install libpng12, from a terminal, type the following </p>
+            
+               
+	         <pre class="r"><code>sudo yum install libpng12 </code></pre>
+               
+
+         <h4> <b> Installation of a C++ compiler </b> </h4>           
+         To install a C++ compiler, open a terminal and type the following
+             <pre class="r"><code>sudo yum install gcc-c++  </code></pre>
+           
+                 <h4> <b> Installation of a Fortran compiler </b> </h4>           
+         To install a Fortran  compiler, open a terminal and type the following
+             <pre class="r"><code>sudo yum install gcc-gfortran </code></pre>           
+           
+
+         </details>
+
+         <p></p>
+
+		  <!-- Getting RHLE ready  -->
+          <details>
+    
+    		<summary>  <img src="images/rhle.jpg" 
+										    class="img-responsive" width="120px" height="90px"/>  </summary>
+
+                  <p> For the following steps to work, your system needs the reference library libpng12,  
+           a c++ compiler, and a Fortran compiler.  
+           If you don't have these on your system already, fortunately they are  freely available and 
+           easy to install. </p>
+
+
+           <h4> <b> Installation of libpng12 </b> </h4>
+           
+           <p>Libpng is a reference library containing functions to read, create, and 
+         manipulate PNG image files.  You need the libpng12 version on your system. A different 
+         version will not suffice.   </p>
+                
+               
+                
+           <p> To install libpng12, from a terminal, type the following </p>
+            
+               
+	         <pre class="r"><code>sudo yum install libpng12 </code></pre>
+               
+            <p> If you receive an error regarding not being registered to the Red Hat Subscription 
+           Management system, type </p>     
+              
+         <pre class="r"><code>sudo subscription-manager register –-username &ltusername&gt --password &ltpassword&gt  --auto-attach </code></pre>
+      
+         <p> Your &ltusername&gt  and  &ltpassword&gt is the username and password you used to register via the redhat customer portal </p>
+         
+         <p> Once you have registered your system with Red Hat, rerun the command to install libpng12 </p>
+         
+               
+
+         <h4> <b> Installation of a C++ compiler </b> </h4>           
+         To install a C++ compiler, open a terminal and type the following
+             <pre class="r"><code>sudo yum install gcc-c++  </code></pre>
+           
+                 <h4> <b> Installation of a Fortran compiler </b> </h4>           
+         To install a Fortran  compiler, open a terminal and type the following
+             <pre class="r"><code>sudo yum install gcc-gfortran </code></pre>           
+           
+
+    </details>
+
+<p></p>
+		  <!-- Getting Debian ready  -->
+  <details>
+    
+    		<summary>  <img src="images/debian.png" 
+										    class="img-responsive" width="120px" height="90px"/>  </summary>
+
+           <p> </p>
+           <p> For the following steps to work, your system needs the reference library libpng12,  
+           a c++ compiler, and a Fortran compiler.  
+           If you don't have these on your system already, fortunately they are  freely available and 
+           easy to install. </p>
+
+
+           <h4> <b> Installation of libpng12 </b> </h4>
+           
+           <p>Libpng is a reference library containing functions to read, create, and 
+         manipulate PNG image files.  You need the libpng12 version on your system. A different 
+         version will not suffice.   </p>
+                
+            <p> To install libpng12, from a terminal, type the following
+            <div id="div_aptget">
+            <pre class="r"><code>sudo apt-get install libpng12-0  </code></pre>
+             </div>
+            If the package is unable to be located, via an 
+            editor, to the end of the file /etc/apt/sources.list add the following two lines </p>
+            
+            <pre>
+            deb       http://ftp.debian.org/debian/ jessie  main  non-free
+            deb-src   http://ftp.debian.org/debian/ jessie  main  non-free
+            </pre>
+            
+            <p>and save the file.  
+            You will need administrator privileges to save this file to this directory.
+            This adds the repository that contains the libpng12 library. </p>
+
+             <p> Update the package listings in the repositories by running </p>
+           
+	         <pre class="r"><code>sudo apt-get update </code></pre>
+               
+             <p> Once the above command has finished updating, 
+             install libpng12 again with </p>
+             
+             <pre class="r"><code>sudo apt-get install libpng12-0  </code></pre>           
+
+
+
+         <h4> <b> Installation of a compiler for C++</b> </h4>           
+         <p> To install a compiler for C++, open a terminal and type the following </p>
+      
+             <pre class="r"><code>sudo apt-get install build-essential  </code></pre>
+           
+                
+            <h4> <b> Installation of a compiler for Fortran</b> </h4>           
+         <p> To install a compiler for Fortran, open a terminal and type the following </p>
+         
+             <pre class="r"><code>sudo apt-get install gfortran </code></pre>
+           
+                
+     
+         
+         
+         
+
+    </details>
+
+  <p></p>
+           
+	  <!-- Getting openSUSE ready  -->
+    <details>
+    
+    		<summary>  <img src="images/opensuse.png" 
+										    class="img-responsive" width="120px" height="90px"/>  </summary>
+
+          <p> </p>
+           <p> For the following steps to work, your system needs the reference library libpng12, the 
+           <code>make</code> command, and the C++ and Fortran compilers. 
+           If you don't have these on your system already, fortunately they are  freely available and 
+           easy to install. </p>
+
+
+           <h4> <b> Installation of libpng12 </b> </h4>
+           
+           <p>Libpng is a reference library containing functions to read, create, and 
+         manipulate PNG image files.  You need the libpng12 version on your system. A different 
+         version will not suffice.   </p>
+                
+                
+           <p> To install libpng12, from a terminal, type the following </p>
+            
+               
+	         <pre class="r"><code>sudo zypper install libpng12-0 </code></pre>
+               
+        
+            <h4> <b> Installation of the make command</b> </h4>           
+         <p> To install the make command, from a terminal and type the following </p>
+      
+             <pre class="r"><code>sudo  zypper install gmake  </code></pre>
+           
+                
+  
+        
+        
+               
+        <h4> <b> Installation of a compiler for C++</b> </h4>           
+         <p> To install a compiler for C++, from a terminal and type the following </p>
+      
+             <pre class="r"><code>sudo  zypper install gcc-c++  </code></pre>
+           
+                
+            
+               
+     
+                 <h4> <b> Installation of a Fortran compiler </b> </h4> 
+                 <p>          
+         To install a Fortran  compiler, from a terminal and type the following
+             <pre class="r"><code>sudo zypper install gcc-fortran </code></pre>           
+                    </p> 
+           <h4> <b> Tricking our installation procedure </b> </h4>
+           <p> Our installation procedure was designed to run on SUSE Enterprise. As such, 
+           it looks for a file called SuSE-brand which does not exist in openSUSE.  The 
+           work around though is easy. Just type the following (making sure you type SuSE and not SUSE)
+           </p>
+           
+    	         <pre class="r"><code>sudo cp /etc/SuSE-release /etc/SuSE-brand </code></pre>
+               
+       
+         
+           
+           
+
+    </details>
+
+  <p></p>
+           
+
+  <!-- Getting openSUSE ready  -->
+    <details>
+    
+    		<summary>  <img src="images/ubuntu.jpg" 
+										    class="img-responsive" width="120px" height="90px"/>  </summary>
+
+
+          <p> </p>
+           <p> For the following steps to work, your system needs the reference library libpng12,  
+           a c++ compiler, and a Fortran compiler.  
+           If you don't have these on your system already, fortunately they are  freely available and 
+           easy to install. </p>
+
+
+           <h4> <b> Installation of libpng12 </b> </h4>
+           
+           <p>Libpng is a reference library containing functions to read, create, and 
+         manipulate PNG image files.  You need the libpng12 version on your system. A different 
+         version will not suffice.   </p>
+                
+            <p> To install libpng12, from a terminal, type the following
+            <div id="div_aptget">
+            <pre class="r"><code>sudo apt-get install libpng12-0  </code></pre>
+             </div>
+            If the package is unable to be located, via an 
+            editor, to the end of the file /etc/apt/sources.list add the following two lines </p>
+            
+            <pre>
+            deb  http://mirrors.kernel.org/ubuntu  xenial  main  universe
+            </pre>
+            
+            <p>and save the file.  
+            You will need administrator privileges to save this file to this directory.
+            This adds the repository that contains the libpng12 library. </p>
+
+             <p> Update the package listings in the repositories by running </p>
+           
+	         <pre class="r"><code>sudo apt-get update </code></pre>
+               
+             <p> Once the above command has finished updating, 
+             install libpng12 again with </p>
+             
+             <pre class="r"><code>sudo apt-get install libpng12-0  </code></pre>           
+
+
+
+         <h4> <b> Installation of a compiler for C++</b> </h4>           
+         <p> To install a compiler for C++, open a terminal and type the following </p>
+      
+             <pre class="r"><code>sudo apt-get install build-essential  </code></pre>
+           
+                
+            <h4> <b> Installation of a compiler for Fortran</b> </h4>           
+         <p> To install a compiler for Fortran, open a terminal and type the following </p>
+         
+             <pre class="r"><code>sudo apt-get install gfortran </code></pre>
+           
+                
+    
+
+   </details>
+
+    
+        				</div>		      
+
+
+
+
+
+			  <div class="box"  id="step2" >
+		
+            <h3> Step 2: Download R Open</h3>
+       
+        
+            <p>Installing a multi-threaded version of R is now much easier with 
+            <a href="http://mran.microsoft.com/open/">Microsoft R Open</a>.  
+               R Open behaves exactly the same as R, except, by default, it comes with multi-threaded math libraries. </p>
+               
+               <p>
+               Go to the  <a href="http://mran.microsoft.com/open/">Microsoft R Open web site</a>
+               and download the version of R Open that corresponds (closest) to your system.  
+               If your system is not listed, pick the distribution closest to your operating system. For 
+               example, select SUSE for openSUSE,   Red Hat Enterprise Linux  for Fedora, and Ubuntu for Debian. 
+</p>
+
+        
+	  
+	  				</div>		      
+
+
+
+			  <div class="box"  id="step3" >
+		
+	 	<h3> Step 3: Uncompress microsoft-r-open-3.4.0.tar.gz </h3>
+		
+		
+		<p> First, create (<em>mkdir</em>) a separate directory in which to uncompress the R Open files. </p>
+  <pre class="r"><code> mkdir ~/RHome  </code></pre>
+           
+
+
+<p> Second, move (<em>mv</em>) <em>microsoft-r-open-3.4.0.tar.gz</em> from the <em>Downloads</em> directory into the newly 
+created <em>ROpen</em> directory. </p>
+  <pre class="r"><code> mv ~/Downloads/microsoft-r-open-3.4.0.tar.gz  ~/ROpen/.  </code></pre>
+           
+
+ 
+<p> Third, change directory (<em>cd</em>) into <em>~/ROpen</em> and extract the files via the <em>tar xvfz</em> command.  
+    This will create a new directory in <em>~/ROpen</em> called <em>microsoft-r-open</em> </p>
+  <pre class="r"><code>cd ~/ROpen 
+ tar xvfz  microsoft-r-open-3.4.0.tar.gz </code>
+  </pre>
+  
+  				</div>		      
+
+
+
+			  <div class="box"  id="step4">
+		
+        <h3> Step 4:  Run <em>./install.sh</em> as sudo to install R Open </h3>
+      
+
+
+<p> First, change directory into the <em>microsoft-r-open</em> directory </p>
+ <pre class="r"><code> cd ~/ROpen/microsoft-r-open    </code></pre>
+ 
+
+<p> Second, run the installation script <em>install.sh</em> as sudo. You will be prompted to enter your administrator password. </p>
+ <pre class="r"><code> sudo ./install.sh  </code></pre>
+ 
+
+<p> Third, follow the instructions where 
+ <ul>
+  <li>	<em>ENTER</em> to display the Microsoft R Open license and MKL license, </li> 
+  <li>   <em>q</em> to close the license </it>
+  <li> <em>y</em> to agree to the licenses and install files.  </li>
+  </ul>
+and R Open will be installed. </p>
+
+				</div>		      
+
+
+
+			  <div class="box"  id="step5" >
+	
+		<h3>Step 5: Only needed if a previously installed version of R is on your system</h3>
+		
+
+
+<p>Place the following at the end of your <em>.bashrc</em> file 
+(the dot in front of the <em>bashrc</em> name means that it is a hidden file). </p>
+
+ <pre class="r"><code>  export PATH=/usr/lib64/microsoft-r/3.4/lib64/R/bin:$PATH  </code></pre>
+
+<p> As part of the installation process for R Open, a link to the executables <em>R</em> and <em>Rscript</em> 
+is created in <em>/usr/bin/.</em>  Since these files already exist if R has already been installed, 
+an error occurs which is reported in  
+<em>~/ROpen/microsoft-r-open/logs/mro.txt</em>. 
+The solution is to change the environment variable <em>PATH</em> by putting the directory containing 
+the R Open executable at the beginning of the listed directories (directories in <em>PATH</em> are searched sequentially). 
+ 
+ </p>
+
+				</div>		      
+
+
+
+			  <div class="box"  id="step6">
+
+<h3> Step 6: Run R Open </h3>
+
+
+<p> To run R Open, it is best to run it with administrator privileges. From a terminal, type the following 
+
+<pre class="r"><code>  sudo env  “PATH=$PATH”  R </code></pre>
+
+<p>The following with then appear</p>
+
+<img src="images/ROpen.jpg"   width="600px" height="450px"/>
+
+
+
+				</div>		      
+
+
+
+			  <div class="box"  id="step7">
+
+<h3> Step 7: Installation of the Eagle package </h3>
+
+<p> To install the Eagle package, from the R command window, use the <em>install.packages( )</em> command
+
+<pre class="r"><code>  install.packages("Eagle", dependencies=TRUE)  </code></pre>
+
+<p> You will be asked to select a CRAN mirror. Once selected, Eagle and any missing packages upon which Eagle is 
+dependent will begin to be installed. </p> 
+				</div>		      
+
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/jquery.scrollgress.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
