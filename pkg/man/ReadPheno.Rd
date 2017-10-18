@@ -56,9 +56,9 @@ individuals.
 
 To load these data, we would use the command 
 
-\preformatted{pheno_obj <- ReadPheno(filename="pheno.dat", missing="NA")}
+\preformatted{pheno_obj <- ReadPheno(filename='pheno.dat', missing='NA')}
 
-where "pheno.dat" is the name of the phenotype file, and \code{pheno_obj} is the R object that contains the 
+where pheno.dat is the name of the phenotype file, and \code{pheno_obj} is the R object that contains the 
 results from reading in the phenotype data.    The file is located in the working directory so there is no need to specify the full path, just the file name is suffice. 
 
 
@@ -78,7 +78,7 @@ These individuals are removed from the analysis and a warning message is generat
 # Read in  phenotype data from ./extdata/
 
 # find the full location of the phenotype data 
-complete.name <- system.file("extdata", "pheno.txt", package="Eagle")
+complete.name <- system.file('extdata', 'pheno.txt', package='Eagle')
 
 pheno_obj <- ReadPheno(filename=complete.name)
   

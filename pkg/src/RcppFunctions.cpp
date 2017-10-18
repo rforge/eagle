@@ -247,7 +247,6 @@ while(getline(fileIN, line ))
   std::istringstream streamLine(line);
 
  // check number of columns for each line
- long number_of_columns = 0;
  std::string rowinfile(n_of_cols_in_geno, '0'); // s == "000000"
  
 
@@ -875,18 +874,17 @@ fileOUT.close();
 
 message( "\n\n                    Summary of Marker File  " );
 message( "                   ~~~~~~~~~~~~~~~~~~~~~~~~   " );
-message( " File type:                " , type  );
-message(" File name:                " , fname );
-message(" New ASCII file name:  " , fnameascii  );
-message(" Number of individuals:    "     , dims[0] );
+message( " File type:                   " , type  );
+message(" Reformatted ASCII file name:  " , fname  );
+message(" Number of individuals:        "     , dims[0] );
 if (ftype == "PLINK"  ){
 // message(" Number of loci:           "  , (dims[1] -6)/2.0   );
-message(" Number of loci:           "  , dims[1]   );
+message(" Number of loci:               "  , dims[1]   );
 } else {
-message(" Number of loci:           "  , dims[1] );
+message(" Number of loci:               "  , dims[1] );
 }
 message( " File size (gigabytes):       "  , mem_bytes/1000000000 );
-message(" Available memory (gigabytes):" , max_memory_in_Gbytes  );
+message(" Available memory (gigabytes): " , max_memory_in_Gbytes  );
 message("\n\n" );
 message(" The marker file has been Uploaded");
 

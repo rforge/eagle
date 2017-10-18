@@ -108,7 +108,7 @@ FullPage <- navbarPage(title="test",  theme = shinytheme("flatly"),
                                                                choices=c("PLINK"="plink","Text/ASCII"="text" )),
                                                   style="padding: 1px",
                                                   bsTooltip("filetype",
-title='<font size="5" > click on file type </font>',
+title='<font size="3" > click on file type </font>',
 placement="right", trigger="hover",
                                                             options=list(container="body")
                                                       )
@@ -126,11 +126,11 @@ placement="right", trigger="hover",
                                                   column(4, textInput(inputId="BB",label="BB", value="") ),
                                                   column(4, textInput(inputId="missing",label="missing", value="") ) ,
 bsTooltip("AB", 
-title='<font size="5" > Only a single value can be entered. If inbreds, leave blank  </font>',
+title='<font size="4" > Only a single value can be entered. If inbreds, leave blank  </font>',
 placement="right", trigger="hover",
                                                             options=list(container="body")),
 bsTooltip("missing",
-title='<font size="5" > Enter genotype code used in file that is to be missing. Leave blank if data contains no missing marker genotypes </font>' , 
+title='<font size="3" > Enter genotype code used in file that is to be missing. Leave blank if data contains no missing marker genotypes </font>' , 
 placement="right", trigger="hover",
                                                             options=list(container="body"))
 
@@ -159,14 +159,18 @@ placement="right", trigger="hover",
                                                                value=8, min = 2, max = NA, step = NA),
                                                   style="padding: 1px",
                                                   bsTooltip("memsize",
-title='<font size="5" > set to maximum available memory in Gbytes  </font>',
+title='<font size="3" > set to maximum available memory in Gbytes  </font>',
 placement="right", trigger="hover",
                                                           options=list(container="body"))
                                                   )) ## end column
                                            
                                            
                                          ), ## end fluidRow specify amout of memory
-                                         
+                                        
+
+
+
+ 
                                          
                                          fluidRow(column(12, 
                                           wellPanel(
@@ -176,7 +180,7 @@ placement="right", trigger="hover",
                                            textOutput("choose_marker_file"),
                                            style='padding: 1px',
                                            bsTooltip("choose_marker_file", 
-title='<font size="5" >WARNING! File browser window may open behind web browser  </font>', 
+title='<font size="3" >WARNING! File browser window may open behind web browser  </font>', 
 placement="right", 
 trigger="hover",
                                                      options=list(container="body"))
@@ -211,7 +215,7 @@ trigger="hover",
 
                                                           style='padding: 1px',
                                                           bsTooltip("marker_go", 
-title='<font size="5" > Upload file. <br> This may take some time if the file is large.  </font>',
+title='<font size="3" > Upload file. <br> This may take some time if the file is large.  </font>',
 placement="right", trigger="hover",
                                                                      options=list(container="body"))
 
@@ -317,7 +321,7 @@ filter: alpha(opacity=50);
                                                                choices=c("yes"="yes","no"="no" )),
                                                   style="padding: 1px",
                                                   bsTooltip("pheno_header",
-title='<font size="5" > click on yes if the first row of the file contains the column names. Generic names will be assigned if no is clicked.  </font>',
+title='<font size="3" > click on yes if the first row of the file contains the column names. Generic names will be assigned if no is clicked.  </font>',
 placement="right", 
 trigger="hover",
                                                             options=list(container="body")
@@ -336,7 +340,7 @@ trigger="hover",
                                                                choices=c("yes"="yes","no"="no" )),
                                                   style="padding: 1px",
                                                   bsTooltip("pheno_csv",
-title='<font size="5" > click on yes if the file is a csv file. </font>',
+title='<font size="3" > click on yes if the file is a csv file. </font>',
 placement="right", trigger="hover",
                                                             options=list(container="body")
                                                       )
@@ -351,7 +355,7 @@ placement="right", trigger="hover",
                                                    textInput(inputId="pheno_missing", label=h4("Step 3: Code for missing value", value="") ),
                                                   style="padding: 1px",
                                                   bsTooltip("pheno_missing",
-title='<font size="5" > Assign value that denotes a missing value. Leave blank if file does not contain missing data. </font>',
+title='<font size="3" > Assign value that denotes a missing value. Leave blank if file does not contain missing data. </font>',
 placement="right", trigger="hover",
                                                             options=list(container="body")
                                                       )
@@ -371,7 +375,7 @@ placement="right", trigger="hover",
                                            textOutput("choose_pheno_file"),
                                            style='padding: 1px',
                                            bsTooltip("choose_pheno_file",
-title='<font size="5" >WARNING! File browser window may open behind web browser  </font>', 
+title='<font size="3" >WARNING! File browser window may open behind web browser  </font>', 
 placement="right", trigger="hover",
                                                      options=list(container="body"))
  
@@ -396,7 +400,7 @@ placement="right", trigger="hover",
 
                                                           style='padding: 1px',
                                                           bsTooltip("pheno_go",
-title='<font size="5" > Upload file. <br> This may take some time if the file is large. </font>',
+title='<font size="3" > Upload file. <br> This may take some time if the file is large. </font>',
 placement="right", trigger="hover",
                                                                      options=list(container="body"))
 
@@ -462,6 +466,10 @@ filter: alpha(opacity=50);
 
 
 
+
+
+
+
                       ##-------------------------##
                       ## Read Marker map         ##
                       ##-------------------------##
@@ -512,7 +520,7 @@ filter: alpha(opacity=50);
                                                                choices=c("yes"="yes","no"="no" )),
                                                   style="padding: 1px",
                                                   bsTooltip("map_header",
-title='<font size="5" > click on yes if the first row of the file contains the column names. Generic names will be assigned if no is clicked. </font>',
+title='<font size="3" > click on yes if the first row of the file contains the column names. Generic names will be assigned if no is clicked. </font>',
 placement="right", trigger="hover",
                                                             options=list(container="body")
                                                       )
@@ -531,7 +539,7 @@ placement="right", trigger="hover",
                                                                choices=c("yes"="yes","no"="no" )),
                                                   style="padding: 1px",
                                                   bsTooltip("map_csv",
-title='<font size="5" > click on yes/no  </font>',
+title='<font size="3" > click on yes/no  </font>',
 placement="right", trigger="hover",
                                                             options=list(container="body")
                                                       )
@@ -543,25 +551,26 @@ placement="right", trigger="hover",
 
 
 
- 
-                                         
-                                         fluidRow(column(12, 
+
+                                         fluidRow(column(12,
                                           wellPanel(
                                             h4("Step 3: Select map file"),
-                                         
-                                           actionButton(inputId="choose_map_file", h6("Choose File")), br(), 
+
+                                           actionButton(inputId="choose_map_file", h6("Choose File")), br(),
                                            textOutput("choose_map_file"),
                                            style='padding: 1px',
- bsTooltip("choose_map_file",
-title='<font size="5" >WARNING! File browser window may open behind web browser  </font>', 
-placement="right", trigger="hover",
+                                           bsTooltip("choose_map_file",
+title='<font size="3" >WARNING! File browser window may open behind web browser  </font>',
+placement="right",
+trigger="hover",
                                                      options=list(container="body"))
 
 
-                                           
                                           )
                                          )
                                          ), ## end fluidRow
+
+
                                        
                                          
                                          fluidRow(column(12, 
@@ -579,20 +588,13 @@ placement="right", trigger="hover",
 
                                                           style='padding: 1px',
                                                           bsTooltip("map_go",
-title='<font size="5" > Upload file. <br> This may take some time if the file is large.   </font>',
+title='<font size="3" > Upload file. <br> This may take some time if the file is large.   </font>',
 placement="right", trigger="hover",
                                                                      options=list(container="body"))
-
-
-
-
  
                                                         )
                                                   )
                                          ) ## end fluidRow
-                                         
-                                         
-                                         
                                        ) ## end fluidPage -- widgets on left hand side
                                        
                                        
@@ -1185,7 +1187,7 @@ server <- function(input, output, session){
      }
 
 #    rChoiceDialogs::rchoose.files()
-#    output$choose_map_file <- renderText( path_to_map_file )
+    output$choose_map_file <- renderText( path_to_map_file )
   })
 
 

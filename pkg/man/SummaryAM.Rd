@@ -29,15 +29,19 @@ in this table is the proportion of phenotype variance after the marker locus has
 multiple locus model. Our calculations of variance explained are based on Sun et al. (2010).
 }
 \examples{
-\dontrun{
+ \dontrun{
+  # Since the following code takes longer than 5 seconds to run, it has been tagged as dontrun. 
+  # However, the code can be run by the user. 
+  #
+
   #---------------
   # read the map 
   #---------------
   #
   # File is a plain space separated text file with the first row 
   # the column headings
-  complete.name <- system.file("extdata", "map.txt", 
-                                   package="Eagle")
+  complete.name <- system.file('extdata', 'map.txt', 
+                                   package='Eagle')
   map_obj <- ReadMap(filename=complete.name) 
 
  # to look at the first few rows of the map file
@@ -48,25 +52,25 @@ multiple locus model. Our calculations of variance explained are based on Sun et
   #------------------
   # Reading in a PLINK ped file 
   # and setting the available memory on the machine for the reading of the data to 8 gigabytes
-  complete.name <- system.file("extdata", "geno.ped", 
-                                     package="Eagle")
-  geno_obj <- ReadMarker(filename=complete.name,  type="PLINK", availmemGb=8) 
+  complete.name <- system.file('extdata', 'geno.ped', 
+                                     package='Eagle')
+  geno_obj <- ReadMarker(filename=complete.name,  type='PLINK', availmemGb=8) 
  
   #----------------------
   # read phenotype data
   #-----------------------
 
   # Read in a plain text file with data on a single trait and two fixed effects
-  # The first row of the text file contains the column names "y", "cov1", and "cov2". 
-  complete.name <- system.file("extdata", "pheno.txt", package="Eagle")
+  # The first row of the text file contains the column names y, cov1, and cov2. 
+  complete.name <- system.file('extdata', 'pheno.txt', package='Eagle')
   
   pheno_obj <- ReadPheno(filename=complete.name)
            
   #-------------------------------------------------------
   # Perform multiple-locus genome-wide association mapping 
   #-------------------------------------------------------                   
-  res <- AM(trait = "y",
-                           fformula = c("cov1 + cov2"),
+  res <- AM(trait = 'y',
+                           fformula=c("cov1 + cov2"),
                            map = map_obj,
                            pheno = pheno_obj,
                            geno = geno_obj, availmemGb=8)
@@ -76,8 +80,9 @@ multiple locus model. Our calculations of variance explained are based on Sun et
   #------------------------------------------
 
   SummaryAM(AMobj=res, pheno=pheno_obj, geno=geno_obj, map=map_obj)
+ }
 
-}
+
 
 }
 \references{

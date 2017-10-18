@@ -29,7 +29,7 @@ marker loci where the number refers to the  column number in the marker file.
 
 A space separated text file with column headings is assumed as the default input. The map file can have three or four 
 columns. If the map file has three columns, then it is assumed that the three columns are the marker locus names, 
-the chromosome number, and the map position (in any units). If the map file has four columns as with a PLINK map file, 
+the chromosome number, and the map position (in any units). If the map file has four columns as with a 'PLINK map file, 
 then the columns are assumed to be the marker locus names, the chromosome number, the map position in centimorgans, 
 and the map position in base pairs. 
 
@@ -43,7 +43,7 @@ The first column of the map file is assumed to contain the marker names.
 # Read in  example map data from ./extdata/
 
 # find the full location of the map data 
-complete.name <- system.file("extdata", "map.txt", package="Eagle")
+complete.name <- system.file('extdata', 'map.txt', package='Eagle')
   
 # read in map data 
 map_obj <- ReadMap(filename=complete.name) 
