@@ -79,7 +79,8 @@
     <details>
     		<summary style="font-size: 20px" > How should I organize my input data? </summary>   		
     		
-           <p style="font-size: 16px; color: grey" > Organize your data
+           <p style="font-size: 16px; color: grey" > When for the trait of interest, each 
+           individual has only a single observation, then organize your data
            into three separate files; a file with the marker data, 
             a file with the phenotypic data, and a file with the marker map data. </p>
             <p style="font-size: 16px; color: grey" > The marker file has rows which 
@@ -97,6 +98,13 @@
             marker map file must be equal to the number of columns in the marker file. 
             It is optional if the first row of this file has column headings. This file cannot
             contain missing data. The file can be space or comma separated.  </p>
+             <p style="font-size: 16px; color: grey" > When for the trait of interest, some individuals have multiple observations, then still follow the above process. However, an extra  file containing the Z matrix is also needed. 
+The Z matrix is used in the linear mixed model to match the obsersations to their corresponding genetic effects. In the 
+above case, this happens automatically. Here, since we have multiple observations per genetic effect, we must do this manually. </p>
+
+<p style="font-size: 16px; color: grey" > The Z matrix is only allowed to contain 0's and 1's. The number of rows must match the number of observations (rows in the phenotype file).  The number of columns must match the number of rows in the marker genotype file.  When a Z matrix is  used, the number of rows must be greater than the number of columns. Each row must contain a single 1 value that matches the observation to its corresponding genetic effect. That is, a 1 value occurs in the column that corresponds to the matching row in the marker genotype file. 
+</p> 
+            
                        <p style="font-size: 16px; color: grey" >
              For further details, go to   <a href="quickstart.html">Quick Start guide</a>.
           </p>
