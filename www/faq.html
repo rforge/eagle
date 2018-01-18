@@ -79,35 +79,18 @@
     <details>
     		<summary style="font-size: 20px" > How should I organize my input data? </summary>   		
     		
-           <p style="font-size: 16px; color: grey" > When for the trait of interest, each 
-           individual has only a single observation, then organize your data
+           <p style="font-size: 16px; color: grey" >  For the trait of interest, if an individual has only a single 
+          measurement, then organize your data
            into three separate files; a file with the marker data, 
             a file with the phenotypic data, and a file with the marker map data. </p>
-            <p style="font-size: 16px; color: grey" > The marker file has rows which 
-            correspond to data on individuals and columns which 
-            correspond to data on snp. Missing genotypes are allowed. The file does not have
-            column headings. It is a space separated file. </p>
-            <p style="font-size: 16px; color: grey" >
-            The phenotype file has rows which correspond to data on individuals and columns which 
-             correspond to data on traits  and fixed effects. There can be data on multiple traits
-             in this file. Also, the file does not have to include fixed effects. It is optional 
-             whether the first row of this file has the column headings. The file can contain 
-             missing data. The file can be space or comma separated. </p>
-            <p style="font-size: 16px; color: grey" >
-            The marker map file has rows that correspond to snp. The number of rows in the 
-            marker map file must be equal to the number of columns in the marker file. 
-            It is optional if the first row of this file has column headings. This file cannot
-            contain missing data. The file can be space or comma separated.  </p>
-             <p style="font-size: 16px; color: grey" > When for the trait of interest, some individuals have multiple observations, then still follow the above process. However, an extra  file containing the Z matrix is also needed. 
-The Z matrix is used in the linear mixed model to match the obsersations to their corresponding genetic effects. In the 
-above case, this happens automatically. Here, since we have multiple observations per genetic effect, we must do this manually. </p>
-
-<p style="font-size: 16px; color: grey" > The Z matrix is only allowed to contain 0's and 1's. The number of rows must match the number of observations (rows in the phenotype file).  The number of columns must match the number of rows in the marker genotype file.  When a Z matrix is  used, the number of rows must be greater than the number of columns. Each row must contain a single 1 value that matches the observation to its corresponding genetic effect. That is, a 1 value occurs in the column that corresponds to the matching row in the marker genotype file. 
-</p> 
             
-                       <p style="font-size: 16px; color: grey" >
-             For further details, go to   <a href="quickstart.html">Quick Start guide</a>.
-          </p>
+              <p style="font-size: 16px; color: grey" >  If for the trait of interest multiple measurements have been made per 
+              individual (as is common in plant studies), then four separate files are needed; a file with the marker data, 
+            a file with the phenotypic data, a file with the marker map data, and a Z matrix file that contains 0's and 1's 
+            that match an individual to their measurement values. </p>
+           
+           
+
      </details>
   
       
@@ -171,11 +154,13 @@ is best to supply a marker map. </p>
 <h3>Using OpenGUI</h3>
 
    <details>
-    		<summary style="font-size: 20px" >  I cannot see the file browser when I click on Choose File? </summary>
-           <p style="font-size: 16px; color: grey" > This has been a source of frustration.  
-           The file browser has opened, it is sitting in the background. 
-This behaviour of the R file browser opening behind instead of in front of the active window 
-is a known problem which has yet to be solved. </p>
+    		<summary style="font-size: 20px" > When I click on Choose File, the file browser does not start where I want it to start </summary>
+           <p style="font-size: 16px; color: grey" > 
+           The file browser is based on functionality contained in the shinyFiles package. One of the inherent features of 
+           this shinyFiles package is that a user cannot traverse up a directory structure beyond the starting directory. 
+           We have tried to choose a starting directory that we hope will suite most users. If not, a user can always enter the full 
+           path name in the file box manually. 
+           </p>
      </details>
 
    <details>
@@ -239,7 +224,7 @@ form. Go to our <a href="quickstart.html">Quick Start guide</a> for further deta
     		<summary style="font-size: 20px" >  Am I allowed to have missing marker data? </summary>
            <p style="font-size: 16px; color: grey" >Yes. If genotype data are available, 
            then any alphanumeric value can be used to denote missing data (as long
-           as only a single value across all the loci is used). If allelic data are available, 
+           as only a single value for missingness is used across all the loci). If allelic data are available, 
 PLINK only allows 0 or - to be missing alleles. However, ideally, missing marker genotypes 
 should be imputed with programs like 
 <a href="https://faculty.washington.edu/browning/beagle/beagle.html">BEAGLE</a> or 
@@ -331,12 +316,20 @@ involved in the analysis will not be removed.
    <details>
     		<summary style="font-size: 20px" >  Do I need to be concerned with the order of 
     		the rows in my phenotypic file? </summary>
-          <p style="font-size: 16px; color: grey" >Yes. The rows are ordered by 
-          individual in the phenotypic file.  This same ordering of rows by individual 
-          must be followed for the 
-marker file. Eagle will check to make sure the total number of rows in the genotypic and 
-phenotypic files match. However, 
-Eagle  cannot check that the ordering of the rows in both files is the same.  </p>
+          <p style="font-size: 16px; color: grey" >Yes. </p>
+          
+           <p style="font-size: 16px; color: grey" >
+          If the trait contains n measurements on n individuals, then the ordering of the 
+          individuals in the phenotypic file must be the same as the ordering of the individuals 
+          in the marker file. </p>
+          
+            <p style="font-size: 16px; color: grey" >
+          If the trait contains n measurements on m individuals, where n is greater than m, then a   Z matrix (n x m) 
+          is needed to associate the n measurements to the m individuals. The (column) order of the m individuals in the Z matrix 
+          is assumed to be the same as the ordering of individuals in the marker file. 
+            </p>
+          
+          
    </details>
 
 
@@ -350,7 +343,7 @@ Eagle  cannot check that the ordering of the rows in both files is the same.  </
 
 
    <details>
-    		<summary style="font-size: 20px" >  Where can I get the latest version of Eagle? </summary>
+    		<summary style="font-size: 20px" >  How can I get the latest version of Eagle? </summary>
     <p style="font-size: 16px; color: grey" >If Eagle has not been previously installed, then start  
     R and at the R prompt, type
 <pre>
@@ -419,14 +412,17 @@ robust to violations of their assumptions. </p>
    <details>
     		<summary style="font-size: 20px" > Am I allowed to have interactions 
     		between my fixed effects? </summary>
-    <p style="font-size: 16px; color: grey" > Yes, but using Eagle via OpenGUI can only 
+    <p style="font-size: 16px; color: grey" > Yes. 
+    
+    However,  using Eagle via OpenGUI can only 
     handle main effects. One solution is to add an 
 extra column to the phenotypic data file that is the interaction of the two effects that 
 are of interest. Then,  include these data 
 as an extra fixed effect in the analysis. Alternately, from the R prompt, use the `AM` 
 function and define the fixed effect part of the model 
-by setting fformula. It would be best to look online for information on how to specify 
-linear models in R which include interaction terms. </p>
+by setting fformula. For example, if you have two effects, called x1 and x2 say, then 
+to fit a model that has x1 and x2 as main effects and their interaction, set the fformula option to
+fformula="x1*x2" in the AM() function.   </p>
   </details>
   
    <details>
