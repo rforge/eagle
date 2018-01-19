@@ -54,7 +54,7 @@
 				<section id="main" class="container">
 					<header>
 						<h2>Quick Start</h2>
-						<p>A How To guide for using the Eagle GUI</p>
+						<p>A How To guide for using the Eagle GUI [revised Jan 2018] </p>
 					</header>
 		<!--			<div class="box">
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -107,14 +107,17 @@
 			    <p> When the Eagle GUI is run, it opens the web browser to a home page. 
 				         At the top of the page is a navigation bar. To perform an analysis, 
 				         work your way 
-				         through each navigation item, from left to right, with the Read Map item being optional. </p>
+				         through each navigation item, from left to right, with the Read Z matrix item being only if you have 
+				         multiple trait measurements per individual and 
+				        Read Map item being optional. </p>
 				         
 				<p> The flow 
 				         chart on the home page shows the five steps to performing an analysis. It
 				         also shows how your data should be <a href="#div_organise">organised</a>. 
 				         
 				         The first step is to read in the marker data. The second step is to read in the 
-				         phenotypic data. The third step, which is optional, is to read in the marker map. 
+				         phenotypic data. The third step, which may not be needed, is to read in 
+				         the Z matrix and/or read in the marker map. 
 				         The fourth step is to perform the association mapping analysis. 
 				         The fifth step is to inspect the results. 
 				         Each step corresponds to an item in the navigation bar at the top of the page. 
@@ -131,18 +134,29 @@
 						
 																
 				<h3>How to organize your association mapping data</h3>
-								
-					  
-				<p> We split the study data into three separate datasets:</p>
+							
+				
+				
+		    	<details>
+         	   <summary style="font-size: 20px" > When an individual has a single trait value   </summary>
+               <p style="font-size: 16px; color: grey" > 
+             
+             
+             Suppose there are <em> n </em> individuals and for the trait of interest, each individual has a single observation, so 
+             that there are <em> n </em> trait values.  Here, we split the data into three separate datasets:
+             
 											<ul>
-											<li>a  <a href="#div_markerdata">marker dataset</a>  </li>
-											<li>a <a href="#div_phenotypedata">phenotype dataset</a>  </li>
-											<li>the <a href="#div_markermapdata">marker map dataset</a>  </li>
-			   </ul>
+											<li>a  <a href="#div1_markerdata">marker dataset</a>  </li>
+											<li>a <a href="#div1_phenotypedata">phenotype dataset</a>  </li>
+											<li>the <a href="#div1_markermapdata">marker map dataset</a>  </li>
+			                                </ul>
 		            
-		       </div>			
-
-               <div class="box" id="div_markerdata">	
+             
+             
+             
+             
+       
+               <div class="box" id="div1_markerdata">	
 								
 			   <h3>Reading in the Marker Data</h3>
 								
@@ -179,7 +193,7 @@
 
 
 
-               <div class="box"  id="div_phenotypedata">	
+               <div class="box"  id="div1_phenotypedata">	
 																	
 			   <h3>Reading in the Phenotypic Data</h3>
 							
@@ -198,7 +212,7 @@
 		       </div>			
 
 
-               <div class="box"  id="div_markermapdata" >	
+               <div class="box"  id="div1_markermapdata" >	
 						
 																	
 									<h3>Reading in the Marker Map</h3>
@@ -216,7 +230,161 @@
           
           
           
+		       </div>		
+		       
+		       
+	      
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+             
+              </p>
+              </details>
+  		
+				
+				    	<details>
+         	   <summary style="font-size: 20px" > When an individual has multiple trait values  </summary>
+               <p style="font-size: 16px; color: grey" > 
+               
+               
+               Suppose there are <em> m </em> individuals and for the trait of interest, there are 
+               <em> n </em> trait values where  <em> n   > m </em>. Here, some individuals have multiple 
+               observations for the trait. For example, we may have a plant study where the trait of interest is yield. 
+               The study may contain <em> m </em> different plant varieties. For each variety, we may plant them in 
+               multiple plots and record the yield per plot. Here, were split the data into four separate datasets:
+               
+											<ul>
+											<li>a  <a href="#div2_markerdata">marker dataset</a>  </li>
+											<li>a <a href="#div2_phenotypedata">phenotype dataset</a>  </li>
+											<li>a <a href="#div2_markermapdata">marker map dataset</a>  </li>
+											<li>a <a href="#div2_Zmatrix">Z matrix file</a>  </li>
+											
+			                                </ul>
+		    
+               
+    
+               <div class="box" id="div2_markerdata">	
+								
+			   <h3>Reading in the Marker Data</h3>
+								
+				
+					    <p> There are two types of marker data file that Eagle can handle; 
+					    a PLINK ped file and a plain text file. Below, is an example of each of these file types. </p>
+					
+                           <img src="images/ReadMarker_slide1.jpg" width="80%"  >
+                    
+                       <p> </p>
+                       
+  
+                       
+                       <p>  
+                       To read in the marker data which are in PLINK format, click on the Read Genotype tab 
+                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button 
+                       has been pushed, a loading animation will appear along with summary output. </p>
+ 					   
+                      <img src="images/ReadMarkerScreen_PLINK.jpg" width="80%">
+                      
+                       <p></p>
+                       
+                       <p> To read in the marker data which are in a plain text file, click on the Read Genotype tab 
+                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button 
+                       has been pushed, a loading animation will appear along with summary output. </p>
+                       
+                       <p>
+  					
+                       <img src="images/ReadMarkerScreen_text.jpg" width="80%">
+                    
+                       </p>
+                       
 		       </div>			
+
+
+
+               <div class="box"  id="div2_phenotypedata">	
+																	
+			   <h3>Reading in the Phenotypic Data</h3>
+							
+				    	<p> The file containing the phenotypic data is a plain text file. Below are 
+				    	 three examples of what this file could contain. </p>
+				    	
+				    	<img src="images/ReadPheno_slide1.jpg" width="70%">
+                       <p></p>
+                       
+                       <p> To read in the phenotypic data, click on the Read Phenotype tab in the navigation bar and 
+                        complete the form (see below). After the upload file has been pushed, a loading animation 
+                        will appear along with summary information. </p>
+
+				    	<img src="images/ReadPhenoScreen.jpg" width="70%">
+
+		       </div>			
+
+
+               <div class="box"  id="div2_markermapdata" >	
+						
+																	
+									<h3>Reading in the Marker Map</h3>
+								
+                        	<p> The file containing the marker map is a plain text file. Below are 
+				    	 two examples of what this file could contain. </p>
+				    	<img src="images/ReadMap_slide1.jpg" width="70%">
+				    	
+				    	
+				    	
+				    	<p> To read in the map data, click on the Read Map tab in the navigation bar and 
+                        complete the form (see below). After the upload file has been pushed, a loading animation 
+                        will appear along with summary information. </p>
+				    	<img src="images/ReadMapScreen.jpg" width="70%">
+          
+          
+          
+		       </div>		
+		       
+		         <div class="box"  id="div2_Zmatrix" >
+	           
+	           <h3>Reading in the Z matrix file</h3>
+	           
+	           <p> The Z matrix file is a plain text, space separate file with no row or column headings. Each row contains  
+	           0's and a single entry that is 1. If the <em>i</em>th row and <em>j</em>th column  contains a 1, then this means the <em>i</em>th row of the phenotype file 
+	           corresponds to the <em>j</em>th row of the marker file. A row can only contain a single entry with a value of 1. 
+	           </p>
+	           
+	           <p>
+	           To read the Z matrix file, click on the Z matrix tab 
+	           in the navigation bar and 
+                        complete the form (see below). After the upload file has been pushed, a loading animation 
+                        will appear along with summary information. </p>
+				    	<img src="images/ReadZmatrixScreen.jpg" width="80%">
+          
+	      
+	           </p>
+	           
+	           
+	           
+               </div>
+               
+               
+              </p>
+              </details>
+  		
+				
+				
+							
+				
+					  
+				
+		       </div>			
+
+   	       
+		       
+		       	
                <div class="box"  id="div_analysis"  >	
 							
 																	
@@ -236,7 +404,7 @@
                       <p>  <b>Scenario 1:</b>  here the phenotypic data file  contains observations 
                         from a single quantitative trait.  There are no fixed effects (or features) in 
                         the file.  Our computer has a quad-core processor so we can distribute our computations 
-                        across four cores. 
+                        across four cores. Output from the analysis appears in the right hand window. 
                       </p>
                     
                        
@@ -246,9 +414,10 @@
                           <img style="float: left; padding: 0px 10px 10px 20px;" width="60%" src="images/Analysis_scenario2.jpg"/>
                       
                       <p>  <b>Scenario 2:</b>  here the phenotypic data file contains observations 
-                        from three quantitative traits and two fixed effects. The trait of interest is "y2". 
+                        from two quantitative traits and two fixed effects. The trait of interest is "trait1". 
                         The fixed effects that are to be included in the model are "pc1" and "pc2".  Our system
                         has a quad-core processor so we can distribute our computations across four cores. 
+                        Output from the analysis appears in the right hand window. 
                       </p>
                       <div style="clear: both"></div>
                                         
