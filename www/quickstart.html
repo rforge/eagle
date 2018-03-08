@@ -78,12 +78,12 @@
 					  
 					  <p> To install the Eagle package, from an interactive session in <a href="https://www.r-project.org/about.html">R</a>, type the following command   </p>
 					  <pre class="r"><code>install.packages(&quot;Eagle&quot;, dependencies=TRUE)</code></pre>
-					This will install the Eagle package and any missing packages upon which Eagle depends. As 
-							   part of the install, you will be prompted to chose a mirror site from which to install 
-							   the packages. Chose the site closest to your location. </p>
-						    <p>The Eagle package is loaded into your R session with
+					This will install the Eagle package along with any missing packages upon which Eagle is dependent. As 
+							   part of the installation, you will be prompted to choose a mirror site from which to install 
+							   the packages. Choose the site closest to your location. </p>
+						    <p>Once Eagle has been installed, the package is ready to be loaded into your R session with
                            <pre class="r"><code>library(&quot;Eagle&quot;)</code></pre>   
-                           and you will see a message saying that Eagle has been loaded. </p>								
+                           You will see a message saying that Eagle has been loaded. </p>								
 						
 				</div>	
 					
@@ -93,7 +93,7 @@
 								
 				<p> The easiest way of interacting with Eagle and performing an analysis is through 
 					    our web-based graphical user interface (GUI). To run the GUI, at the R prompt, type
-					    <pre class="r"><code>OpenUI()</code></pre>
+					    <pre class="r"><code>OpenGUI()</code></pre>
                         which will automatically open your web browser to our GUI. 
                 </p>
                 
@@ -172,16 +172,20 @@
                        
                        <p>  
                        To read in the marker data which are in PLINK format, click on the Read Genotype tab 
-                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button 
-                       has been pushed, a loading animation will appear along with summary output. </p>
+                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page.  </p>
  					   
                       <img src="images/ReadMarkerScreen_PLINK.jpg" width="80%">
                       
                        <p></p>
                        
                        <p> To read in the marker data which are in a plain text file, click on the Read Genotype tab 
-                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button 
-                       has been pushed, a loading animation will appear along with summary output. </p>
+                       in the navigation bar at the top of the home page and complete the form (see below). 
+                       After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page. 
+                       </p>
                        
                        <p>
   					
@@ -204,8 +208,9 @@
                        <p></p>
                        
                        <p> To read in the phenotypic data, click on the Read Phenotype tab in the navigation bar and 
-                        complete the form (see below). After the upload file has been pushed, a loading animation 
-                        will appear along with summary information. </p>
+                        complete the form (see below). After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page. </p>
 
 				    	<img src="images/ReadPhenoScreen.jpg" width="70%">
 
@@ -224,8 +229,9 @@
 				    	
 				    	
 				    	<p> To read in the map data, click on the Read Map tab in the navigation bar and 
-                        complete the form (see below). After the upload file has been pushed, a loading animation 
-                        will appear along with summary information. </p>
+                        complete the form (see below). After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page.  </p>
 				    	<img src="images/ReadMapScreen.jpg" width="70%">
           
           
@@ -287,16 +293,18 @@
                        
                        <p>  
                        To read in the marker data which are in PLINK format, click on the Read Genotype tab 
-                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button 
-                       has been pushed, a loading animation will appear along with summary output. </p>
+                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page.  </p>
  					   
                       <img src="images/ReadMarkerScreen_PLINK.jpg" width="80%">
                       
                        <p></p>
                        
                        <p> To read in the marker data which are in a plain text file, click on the Read Genotype tab 
-                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button 
-                       has been pushed, a loading animation will appear along with summary output. </p>
+                       in the navigation bar at the top of the home page and complete the form (see below). After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page. </p>
                        
                        <p>
   					
@@ -319,8 +327,9 @@
                        <p></p>
                        
                        <p> To read in the phenotypic data, click on the Read Phenotype tab in the navigation bar and 
-                        complete the form (see below). After the upload file has been pushed, a loading animation 
-                        will appear along with summary information. </p>
+                        complete the form (see below). After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page.  </p>
 
 				    	<img src="images/ReadPhenoScreen.jpg" width="70%">
 
@@ -339,8 +348,9 @@
 				    	
 				    	
 				    	<p> To read in the map data, click on the Read Map tab in the navigation bar and 
-                        complete the form (see below). After the upload file has been pushed, a loading animation 
-                        will appear along with summary information. </p>
+                        complete the form (see below). After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page.  </p>
 				    	<img src="images/ReadMapScreen.jpg" width="70%">
           
           
@@ -359,8 +369,9 @@
 	           <p>
 	           To read the Z matrix file, click on the Z matrix tab 
 	           in the navigation bar and 
-                        complete the form (see below). After the upload file has been pushed, a loading animation 
-                        will appear along with summary information. </p>
+                        complete the form (see below). After the upload file button has been clicked, a loading animation 
+                        will appear in the bottom right of the page. Once the loading is complete, summary information will appear
+                        on the right of the page.  </p>
 				    	<img src="images/ReadZmatrixScreen.jpg" width="80%">
           
 	      

@@ -103,7 +103,7 @@
 			
 			
 			
-			  <div class="box">
+			  <div class="box" id="useGUI">
 			  <h3>A Eagle tutorial for those new to R  or are in a hurry</h3>
 					
 			  <p> In this tutorial video, we show how to use the Eagle GUI to perform a genome-wide 
@@ -118,7 +118,11 @@
              </iframe> 
            --> 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/mg-FLFp3_Fo" frameborder="0" allowfullscreen></iframe>	
-			  			  
+			
+
+             <p style="margin-bottom:1cm;"> </p>
+	  
+	        <div  id="demo_data">
 			<h4>Data files used in this video</h4>
 			<div class="table-wrapper">
 			<table class="alt">
@@ -130,20 +134,27 @@
 			</tr>
 			</thead>
 			<tbody>
-			<tr>
-			<td>tut_geno.dat</td>
-			<td>Genotype data. 500 individuals by 2243 snp.</td>
-			<td> <a href="download/tut_geno.dat" download="tut_geno.dat" class="button special"> Download</a> </td>
+			<tr><div id="genoDemo"> 
+			<td>genoDemo.dat </td>
+			<td>Genotype data. 150 individuals by 4998 snp.</td>
+			<td>  
+			<a href="download/genoDemo.dat" download="genoDemo.dat" class="button special"> Download</a> 
+			</td>
+			</div>
 			</tr>
 			<tr>
-			<td>tut_pheno.dat</td>
-			<td>Phenotype data. 500 individuals. 3 traits and 4 predictors </td>
-			<td><a href="download/tut_pheno.dat" download="tut_pheno.dat" class="button special"> Download</a>  </td>
+			<div id="phenoDemo">
+			<td> phenoDemo.dat </td>
+			<td>Phenotype data. 150 individuals. two traits (trait1, trait2) and four predictors </td>
+			<td><a href="download/phenoDemo.dat" download="phenoDemo.dat" class="button special"> Download</a>  </td>
+            </div>
 			</tr>
 			<tr>
-			<td>tut_map.dat</td>
-			<td> Map data. 2243 snp by 3 columns for snp name, chromosome, and map position</td>
-			<td><a href="download/tut_map.dat" download="tut_map.dat" class="button special"> Download</a> </td>
+			<div id="mapDemo">
+			<td>mapDemo.dat<</td>
+			<td> Map data. 4998 snp by 3 columns for snp name, chromosome, and map position</td>
+			<td><a href="download/mapDemo.dat" download="mapDemo.dat" class="button special"> Download</a> </td>
+            </div>
 			</tr>
 
 			</tbody>
@@ -158,7 +169,8 @@
 			  
 			  
 				</div>		      
-
+            </div>
+            
             </div>
             
           
