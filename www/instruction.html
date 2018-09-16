@@ -54,7 +54,7 @@
 				<section id="main" class="container">
 					<header>
 						<h2>How to Install</h2>
-						<p>A guide for installing Eagle along with multi-threaded R  </p>
+						<p>A guide for installing Eagle along with multi-threaded R </p>
 					</header>
 		<!--			<div class="box">
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -74,38 +74,100 @@
 				
 				
 			  <div class="box">
-			  <h3>If you are in a hurry</h3>
+			  <h3>If you already have R installed and you are in a hurry</h3>
 					
-					
+			<details>
+			
+			<summary style="font-size: 18px" > Step 1:  Update packages        </summary>
+			<p></p>
+			<p style="margin-top:0.5cm; font-size: 16px">
+			Problems can occur, especially with shiny, if the packages upon which Eagle is 
+			dependent, are not current. To update the packages, in your R session, type the following </p>
+			
+			<pre class="r"> update.packages()  </pre>
+			
+			<p></p>
+			<p style="font-size: 16px">
+			<code>update.packages</code> will update all the packages in your library, interactively. 
+			</p>
+			
+			<p style="font-size: 16px"> If you would like to automate the update, use the <code> ask=FALSE </code> argument. 
+			</p>
+			
+			</details>
+			
+			
+			<details>
+			
+			<summary style="margin-top:0.25cm; font-size: 18px ">  Step 2:  Install Eagle  </summary>
+			<p></p>
+		    <p style="margin-top:0.5cm; font-size: 16px"> 
+		    To install Eagle, Fortran and C++ compilers are needed. </p> 
+		    
+		    <p style="font-size: 16px">
+		    In your R session, if you have root access, use the following 
+		    command to install Eagle </p>
+		    
+		    <pre class="r"> install.packages("Eagle")  </pre>
+    
+			<p></p>
+			<p style="font-size: 16px"> If you don't have root access,  use </p>
+	        <pre class="r"> install.packages("Eagle", lib="/your/Rlibrary/")  </pre>
+    		<p style="font-size: 16px" > where <code> "/your/RLibrary/" </code> is the name of the directory 
+    		where R packages are to be installed.
+    		</p>
+				
+			<p style="font-size: 16px" > <code class="inlinecode"> install.packages("Eagle") </code> will install Eagle and any missing 
+			dependent packages. 
+			</p>	
 		
 			
-			 <p> Eagle is built on the <a href="https://www.r-project.org/about.html">R language</a>. 
-					If you just want to try Eagle out,  run <a href="https://www.r-project.org/about.html">R </a> 
-					(assuming you already have R installed) 
-					and from an interactive session, type the command
-							<pre class="r"><code>install.packages(&quot;Eagle&quot;, dependencies=TRUE)</code></pre>
-				   This will install the Eagle package and any missing packages upon which Eagle depends.  </p>
-					
-				    <p> To get started analysing data with Eagle, see our 	
-					 <a href="quickstart.html" >Quick Start</a> page for easy to follow instructions. </p>
-				</div>		      
-
-
-
-				<div class="box">
-				<h3>Super-charging Eagle with multi-threaded computation </h3>	     
 			
-				<p>  Eagle is built on the <a href="https://www.r-project.org/about.html">R language</a>. 
-				When you install R, by default, R is installed with single-thread math libraries. 
-				However, it is possible to replace these single-thread libraries with multi-threaded libraries. 
-                In doing so, many of R’s linear algebra operations become implicitly parallelized. 
-                We have purposely built Eagle to take full advantage of these implicitly-parallelised linear 
-                algebra operations. </p>
-                
-                
-                
-                
-                 <h4> Choose your Platform </h4>
+			
+			</summary>
+			
+			
+			</details>
+			
+			
+		
+			<details>
+			<summary style="margin-top:0.25cm; font-size: 18px">  Step 3: Run Eagle  </summary>
+			<p style="margin-top:0.5cm; font-size: 16px">  To run Eagle and given 
+			that you have installed it in a default library, use 
+			  </p>
+			<pre class="r"> library("Eagle")  </pre>
+			
+			<p style="font-size: 16px"> or if you don't have root access, use </p>
+			<pre class="r"> library("Eagle", lib="/your/Rlibrary/")  </pre>
+    		<p style="font-size: 16px"> where <code> "/your/RLibrary/" </code> is the name of your local directory 
+    		where R packages are installed. 
+    		</p>
+			
+			</details>
+			
+		
+			
+			</div>
+			
+			
+			
+						  <div class="box">
+			  <h3>Installing R Open and Eagle</h3>
+	
+	<p style="margin-top:0.5cm; font-size: 16px">
+		Eagle was designed to harness parallel computation.  R, upon which Eagle 
+		is based, is not set up for parallel computation. Fortunately, there is a simple 
+		solution.  Microsoft have developed an open source freely available version of 
+		R, called R Open.  R Open is the same as R except that it comes with multi-threaded 
+		maths libraries for parallel computation.  </p>
+		
+		
+		<details>
+		<summary style="margin-top:0.25cm;font-size: 18px" > Step 1:  Install R Open for multi-threaded computation       </summary>
+
+   		 <h4 style="margin-top:0.5cm; font-size: 20px"> 
+   		 Choose your Platform for instructions on how to install R Open</h4>
                  
                  <ul class="alt">
                  <li> 
@@ -123,31 +185,60 @@
 				 
                  </ul>
                  
-      </section>
-      
-
-		<!-- Footer -->
-				<footer id="footer">
-					<ul class="icons">
-					    <li><a href="http://www.csiro.au"> <img src="images/csiro.jpg" 
-										    class="img-responsive" width="100px" height="80px"/> </a> </li>
-										    <li>  </li>
-										      <li>  </li>
-										        <li>  </li>
-										          <li>  </li>
-					<li><a href="http://data61.csiro.au"> <img src="images/data61.jpg" 
-										     width="100px" height="80px"/> </a> </li>
-										
-				
-
-					
-					</ul>
-					
-				</footer>
+		
 
 
-		</div>
 
+
+
+
+
+
+		</details>
+		
+		
+		<details>
+		<summary style="margin-top:0.25cm;font-size: 18px" > Step 2:  Install Eagle        </summary>
+		<p></p>
+		<p> To install the Eagle package, from the R command window, use the <em>install.packages( )</em> command
+
+<pre class="r"> install.packages("Eagle")  </pre>
+<p></p>
+<p> This can take a bit of time as it is not only Eagle that needs installing but 
+several other packages upon which Eagle is dependent.   </p> 
+		</details>
+		
+		
+		<details>
+		<summary style="margin-top:0.25cm;font-size: 18px" > Step 3:  Run Eagle        </summary>
+		<p></p>
+	
+		<p> To start using Eagle, from the R command window, use </p>
+
+<pre class="r"> library("Eagle") </pre>
+
+<p> This will load the Eagle package into your R session, ready for use. 
+Go to <a href="quickstart.html">Quick Start Guide</a>  for instructions 
+on how to use Eagle. 
+
+</p>
+		</details>
+		
+		
+		
+		
+		
+		
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.dropotron.min.js"></script>
