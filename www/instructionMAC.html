@@ -53,7 +53,7 @@
 				<section id="main" class="container">
 					<header>
 						<h2>Eagle for Mac OS</h2>
-						<p>A How To guide for installing Eagle along with multi-threaded R [last revised Dec 2017] </p>
+						<p>A How To guide for installing Eagle along with multi-threaded R [last revised Sept 2018] </p>
 					</header>
 		<!--			<div class="box">
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -77,98 +77,284 @@
 
 
 
-  <div class="box">
-  
-    <h3> Disclaimer </h3>
-			   
-			   <p> Given the ever changing nature of R and the systems upon with R is built, 
-			   it is highly likely that some of the instructions below may be out-of-date. 
-			   We will try to keep these instructions current but this may be a challenge.  It is our hope that even if 
-			   some of the specific instructions are dated, our motivation behind the installation process is valid and useful. 
-			   
-			   </p>
-  
+ 
+	<div class="box">
 
-				<h3> Purpose of this guide </h3>
+					<h3 id="elements">Before You Start</h3>
 			
-			    
-				<p> Eagle is built with the R language. R, by default, is installed for 
-				single-thread computation.  
-				However, it is possible to replace R’s default single-thread math 
-				libraries with multi-threaded libraries.  In doing so, many of R’s 
-				linear algebra operations become implicitly parallelized. 
-				We have purposely built Eagle to take full advantage of this 
-				implicit parallelisation.  
-				</p>
-				
-			
-				<p> In this guide, we will show you how to install R for multi-threaded 
-				 computation. Once R is installed, it is then simple to install Eagle. 
-				 </p>
-		 
-		</div>		      
-
-	 
-
-				
-  <div class="box">		
-
-					<h3 id="elements">What you need</h3>
 				
 					<p> You will need administrator privileges.  This 
-					gives the installation script write access to write-protected 
+					gives the installation script access to write-protected 
 					parts of the system.  </p>
 					
-					<p>
-				    It would also be advantageous if you have had previous experience 
-				    with installing software to your computer and experience with 
-				    installing R packages. 
 					
-					</p>
 			
-		</div>		      
-
-		
-				
-				
-  <div class="box">			      
-
-				<h3>Systems Tested</h3>
-			
-				
-                 <p> We have tested our installation procedure on macOS 10.11 (El Capitan), and 
-                 10.12 (Sierra). </p>
-                 
-			
-		</div>		      
-
-							    
-
-
-  <div class="box" id="step1">	
+					      				</div>		      
 	
-            <h3> Step 1: Install XQuartz</h3>
-          
-            
-            <p>Go to the  <a href="http://www.xquartz.org/">XQuartz web site</a> 
-            and download the dmg file.  
-            The file will be downloaded into your DOWNLOADS folder.
-            
-            <img src="images/XQuartz.jpg"  width="800px"  height="600px" >      
-         
-            Click on the XQuartz dmg file in your DOWNLOADS folder and a
-            window will appear with the icon 
-            <img src="images/XQuartzInstall1.png"   style="vertical-align:middle; width:70px; height:70px" >.     
-             Double click on the icon and the installation program will begin.
-            You will see the following. You will need administrator privileges to install XQuartz.
-             </p>  
-            
-            <img src="images/XQuartzInstall2.png"  width="600px"  height="400px" >      
-         
-            
-         
-		
-	</div>		      
+	
+				
+	
+<div class="box" >
+			 
+<h3>Overview</h3>
+
+<p>
+Of all the operating systems, macOS proved to be the most challenging in which to develop 
+a  robust set of instructions for installing a multi-threaded version of 
+R and Eagle. Fortunately, the instructions below look worse than what they actually are. 
+The process is install R, install some compilers to allow R to handle source code, 
+install openBLAS for multi-threaded 
+computation, and then install Eagle. 
+
+
+</p>
+
+
+					
+</div>
+
+<div class ="box" id="step1">	
+<h3>Step 1: Install the latest version of <b>R</b> from CRAN </h3>
+<p></p>
+Eagle requires R 3.4 or later. However, it is always good practice the be using the latest version 
+of R. Below are instructions on where to get the latest version and its installation. 
+You will need administrator privileges to complete the installation process. 
+<p></p>
+
+<details> 
+<summary> Step i </summary>
+<p> Go to the <a href="https://cran.r-project.org/bin/macosx/">CRAN</a> website and click on the latest 
+release of R for the Mac (<b>R-3.5.1.pkg</b>). </p>
+</details>
+
+
+<details>
+<summary> Step ii </summary>
+<p> Once the file has finished downloading, go into the <b>Downloads</b> folder and click on the file to begin the 
+installation process.  </p>
+</details>
+
+<details>
+<summary> Step iii </summary>
+<p>Once the installation has finished, click on <b>Move to Trash</b> to remove the installation package. </p>
+</details>
+</div>
+
+
+<div class ="box" id="step2">	
+<h3>Step 2: Install  <b>XQuartz</b> </h3>
+
+<p></p>  
+As part of installing R, XQuartz is also needed. It contains libraries for running X11 from within a macOS 
+environment. Some of the packages upon which Eagle is dependent require X11 support.  
+You will need administrator privileges to complete the installation process. 
+<p></p>
+
+
+<details>
+<summary> Step i </summary>
+<p> Go to the  <a href="http://xquartz.org/">Quartz</a> website and 
+click on <b>XQuartz-2.7.11.dmg</b> to download the file</p>
+</details>
+
+<details>
+<summary> Step ii </summary>
+<p> Once the file has finished downloading, go into the <b>Downloads</b> folder and click on the file to begin the 
+installation process. You will need administrator  privileges.  </p>
+</details>
+
+
+<details>
+<summary> Step iii </summary>
+<p>Once the installation has finished, click on <b>Move to Trash</b> to remove the installation package. </p>
+</details>
+
+<details>
+<summary> Step iv </summary>
+<p>To complete the installation process, <b>Log out</b>  and log back in to your account. </p>
+</details>
+
+</ul>
+
+</div>
+
+
+<div class ="box" id="step3">	
+<h3>Step 3: Install  the latest version of <b>clang</b> </h3>
+<p></p>  
+Eagle, as well as some of its dependencies, require compilation via C and C++ compilers.
+Your system may already have these compilers, especially if you have Xcode installed. 
+However, the Eagle install did fail under some macOS versions when we used the C and C++ 
+compilers in  Xcode due to OpenMP parallelisation not being supported. 
+Below are instructions for installing a set of C and C++ compilers with OpenMP support. 
+You will need administrator privileges to complete the installation process. 
+<p></p>
+
+<details>
+<summary> Step i </summary>
+<p> Go to the <a href="https://cran.r-project.org/bin/macosx/tools/">Tools</a> page on CRAN. This page can also be 
+accessed by going to the <a href="https://cran.r-project.org/">CRAN</a> home page, clicking on 
+ <b>Download R for (Mac) OS X</b>, and clicking on the <b>tools</b> link that is buried in the fourth paragraph. 
+ </p>
+</details>
+
+<details>
+<summary> Step ii </summary>
+<p> Click on <b>clang-6.0.0.pgk</b> to begin downloading the package. </p>
+</details>
+
+<details>
+<summary> Step iii </summary>
+<p> Once it has finished downloading, go into the <b>Downloads</b> folder and click on the file to begin the 
+installation process.  </p>
+</details>
+
+<details>
+<summary> Step iv </summary>
+<p> Once the installation has finished, click on <b>Move to Trash</b> to remove the installation package. </p>
+</details>
+
+</div>
+
+<div class ="box" id="step3">	
+<h3>Step 4: Modify your <b>PATH</b> variable </h3>
+
+The easiest way we found of telling R to use the latest version of clang is to modify the <b>PATH</b> environment 
+variable. 
+
+<details>
+<summary> Step i </summary>
+<p> Run the command (remembering the period at the beginning of the file name) from a <b>terminal</b>
+<pre > nano .bash_profile </pre>
+</p>
+</details>
+
+<details>
+<summary> Step ii </summary>
+<p> To the  end of the file, add the extra line
+<pre > export PATH=/usr/local/clang6/bin:$PATH  </pre>  </p>
+</details>
+
+<details>
+<summary> Step iii </summary>
+<p> <b>Save</b> the file. </p>
+</details>
+
+<details>
+<summary> Step iv </summary>
+<p> To active the new PATH variable, type the following command in the <b>terminal</b>
+<pre > source .bash_profile </pre>
+</p>
+</details>
+
+
+</div>
+
+
+<div class ="box" id="step5">	
+<h3> Step 5: Install  the latest version of <b>GNU Fortran</b> </h3>
+<p></p>  
+You will need administrator privileges to complete the installation process. 
+<p></p>
+
+<details>
+<summary> Step i </summary>
+<p> Go to the <a href="https://cran.r-project.org/bin/macosx/tools/">Tools</a> page on CRAN. This page can also be 
+accessed by going to the <a href="https://cran.r-project.org/">CRAN</a> home page, clicking on 
+ <b>Download R for (Mac) OS X</b>, and clicking on the <b>tools</b> link that is buried in the fourth paragraph. 
+ </p>
+</details>
+
+<details>
+<summary> Step ii </summary>
+<p> Click on <b>gfortran-6.1.pgk</b> to begin downloading the package. </p>
+</details>
+
+<details>
+<summary> Step iii </summary>
+<p> Once the file has finished downloading, go into the <b>Downloads</b> folder and click on the file to begin the 
+installation process.  </p>
+</details>
+
+<details>
+<summary> Step iv </summary>
+<p> Once the installation has finished, click on <b>Move to Trash</b> to remove the installation package. </p>
+</details>
+
+</div>
+
+
+
+
+
+<div class ="box" id="step6">	
+<h3> Step 6: Installation of Homebrew  </h3>
+<p></p>
+Homebrew is a package manager for those packages not supported by Apple. We will use Homebrew 
+to install openBLAS. 
+<p></p>
+<details>
+<summary> Step i </summary>
+<p> Go to the <a href="https://brew.sh/">Homebrew</a> website </p>
+</details>
+
+<details>
+<summary> Step ii </summary>
+<p> Copy the <b>ruby</b> command in the dialogue box into a terminal window and follow the instructions </p>
+</details>
+
+</div>
+
+
+
+<div class ="box" id="step7">	
+<h3> Step 7: Installation and linking of OpenBLAS </h3>
+<p></p>
+
+ By installing openBLAS, 
+and replacing Rlib.. with ....., linear algregra operations in R such as matrix inversion and 
+multiplication go from being single-threaded to parallelised. We made heavy use of these 
+linear algebra operations in developing Eagle. 
+
+<p></p>
+
+<details>
+<summary> Step i: install <b>OpenBLAS</b> </summary>
+ To install <b>OpenBLAS</b>, run the following command from a terminal
+ <pre>  brew install openblas  </pre>
+ </details>
+ 
+<details> 
+<summary> Step ii: find the location of <b>libRblas.dylib</b> </summary>
+<p> To find the location of <b>libRblas.dylib</b> on your system, run the following command from a terminal 
+<pre> sudo find / -name 'libRblas.dylib' -print </prep>
+On our system (High Sierra 10.13), it was located in <em>/Library/Frameworks/R.framework/Resources/lib/</em>. 
+</p>
+</details>
+
+<details>
+<summary> Step iii: find the location of <b>libopenblas.dylib</b> </summary>
+<p> To find the location of <b>libopenblas.dylib</b> on your system, run the following command from a terminal 
+<pre> sudo find / -name 'libopenblas.dylib' -print </prep>
+On our system (High Sierra 10.13), it was located in <em>/usr/local/Cellar/openblas/0.3.3/lib/</em>. 
+</p>
+</details>
+
+<details>
+<summary> Step iv: replace <b>libRblas.dylib</b> with <b>libopenblas.dylib</b> for multi-threaded computation  </summary>
+
+<p> To replace <b>libRblas.dylib</b> with <b>libopenblas.dylib</b>, use the following command from a terminal
+<pre>  sudo ln -sf location_of_libopenblas.dylib  location_of_libRblas.dylib  </pre>
+For example, on our system, the command looks like 
+<pre> sudo ln -sf /usr/local/Cellar/openblas/0.3.3/lib/libopenblas.dylib  /Library/Frameworks/R.framework/Resources/lib/libRblas.dylib </pre>
+but it may be different on your system. 
+</p>
+
+
+</details>
+
+</div>
+
 
 
 
@@ -182,7 +368,7 @@
                
                <p>
                Go to the  <a href="http://mran.microsoft.com/open/">Microsoft R Open web site</a>
-               and download the Mac OS X version of R Open. 
+               and download the OS X of R Open. 
 </p>
 		   
 	</div>		      
@@ -196,8 +382,8 @@
 		
 		<p> Once R Open has finished downloading, run the program. 
 		There are various ways of doing this. Our preferred approach 
-		is to go into the Download folder and click on the file 
-		microsoft-r-open-3.4.0.pkg. This will run the installation program.  
+		is to go into the <b>Download</b> folder and click on the file 
+		<b>microsoft-r-open-3.5.1.pkg</b>. This will run the installation program.  
 		You will need administrator privileges to run 
 		this program. 	
 		 </p>
@@ -206,21 +392,41 @@
 </div>		      
 
 
+
+
+
+  <div class="box" id="step4">
+	
+<h3> Step 4: Making the C compilers findable for <b>R Open</b> </h3>
+	
+		<p></p>
+
+For High Sierra, the C and C++ compilers (clang and clang++, respectively), are 
+installed in /usr/local/bin/.  R Open (see below) looks for these 
+compilers in /usr/local/clang4/bin/. To get around this problem, 
+we created symbolic links for clang and clang++ as follows:
+<p></p>
+<pre class="r">sudo mkdir /usr/local/clang4/bin/
+sudo ln -s /usr/bin/clang  /usr/local/clang4/bin/clang
+sudo ln -s /usr/bin/clang++  /usr/local/clang4/bin/clang++
+</pre>     
+
+</div>
        
         
   <div class="box" id="step4">
  
-        <h3> Step 4: Run R Open </h3>
+        <h3> Step 4: Run <b>R Open</b> </h3>
       
 
 
-<p> R Open can be run as an App from the Launchpad  </p>
+<p> <b>R Open</b> can be run as an App from the Launchpad  </p>
 
         <img src="images/macROpen.jpg"  width="500px"  height="400px" > 
         
         <p></p>
         
- <p> By clicking on the R Open App, the following R console window will appear. 
+ <p> By clicking on the <b>Microsoft R Open </b> icon, the following R console window will appear. 
  It tells you how many cores are available for distributed computation.
   </p>
  
@@ -237,9 +443,12 @@
         <h3> Step 5: Installation of the Eagle package </h3>
       
 
-<p> To install the Eagle package, from the R Console window, use the <em>install.packages( )</em> command
+<p> To install the Eagle package, from the R Console window, use the <b>install.packages( )</b> command
 
-<pre class="r"><code>  install.packages("Eagle", dependencies=TRUE)  </code></pre>
+<pre class="r"><code>  install.packages("Eagle")  </code></pre>
+<p></p>
+This will install Eagle and all of its dependencies. 
+
 
 
  </div>		      

@@ -52,8 +52,8 @@
 						<!-- Main -->
 				<section id="main" class="container">
 					<header>
-						<h2>How to Install</h2>
-						<p>A guide for installing Eagle along with multi-threaded R [last revised Dec 2017] </p>
+						<h2>Eagle for Windows</h2>
+						<p>A guide for installing Eagle along with multi-threaded R [last revised Sept 2018] </p>
 					</header>
 		<!--			<div class="box">
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -75,66 +75,43 @@
 	
 
 
-
 	<div class="box">
 
-  <h3> Disclaimer </h3>
-			   
-			   <p> Given the ever changing nature of R and the systems upon with R is built, 
-			   it is highly likely that some of the instructions below may be out-of-date. 
-			   We will try to keep these instructions current but this may be a challenge.  It is our hope that even if 
-			   some of the specific instructions are dated, our motivation behind the installation process is valid and useful. 
-			   
-			   </p>
-
-				<h3> Purpose of this guide </h3>
-			     
-				<p> Eagle is built with the R language. R, by default, is installed for 
-				single-thread computation.  
-				However, it is possible to replace R’s default single-thread math 
-				libraries with multi-threaded libraries.  In doing so, many of R’s 
-				linear algebra operations become implicitly parallelized. 
-				We have purposely built Eagle to take full advantage of this 
-				implicit parallelisation.  
-				</p>
-				
-			
-				<p> In this guide, we will show you how to install R for multi-threaded 
-				 computation. Once R is installed, it is then simple to install Eagle. 
-				 </p>
-		   
-		 				</div>		      
-
-				
-	<div class="box">
-
-					<h3 id="elements">What you need</h3>
+					<h3 id="elements">Before You Start</h3>
 			
 				
 					<p> You will need administrator privileges.  This 
-					gives the installation script write access to write-protected 
+					gives the installation script access to write-protected 
 					parts of the system.  </p>
 					
-					<p>
-				    It would also be advantageous if you have had previous experience 
-				    with installing software to your computer and experience with 
-				    installing R packages. 
 					
-					</p>
 			
 					      				</div>		      
-			      
-	<div class="box">
 	
-				<h3>Systems Tested</h3>
-			
-				
-                 <p> We have tested our installation procedure on Windows 7, 8, and 10. </p>
-                 
-			
-												</div>		      
-	    
+	
+	
+<div class="box" >
+			 
+<h3>Overview</h3>
 
+
+Here, we present the process for installing 
+<a href="https://mran.microsoft.com/">Microsoft R Open</a>
+ (the same as R except it comes with 
+multi-threaded math libraries) and Eagle on Windows. Of all the different operating systems, 
+Windows is the easiest OS in which to install R Open and Eagle. 
+
+					
+					
+</div>
+
+
+
+	
+	
+	
+	
+	
 	<div class="box"  id="step1" >
 	
             <h3> Step 1: Download R Open</h3>
@@ -162,7 +139,7 @@
 		There are various ways of doing this. Our preferred approach 
 		is to  </p>
 		<ul>
-		<li> find the downloaded file, called <em>microsoft-r-open-3.4.0.exe</em>, 
+		<li> find the downloaded file, called <em>microsoft-r-open-3.5.1.exe</em>, 
 		 in the <em>Downloads</em> folder with 
 		 <img src="images/fileexplorer.png"  style="vertical-align:middle;   
 		width: 42px;height: 42px;" >
@@ -215,10 +192,14 @@ Below is an example of how we ran R Open, as an administrator,  in Windows 10.  
 
 <p> To install the Eagle package, from the R Console window, use the <em>install.packages( )</em> command
 
-<pre class="r"><code>  install.packages("Eagle", dependencies=TRUE)  </code></pre>
+<pre class="r"><code>  install.packages("Eagle")  </code></pre>
 
-<p> You will be asked to select a CRAN mirror. Once selected, Eagle and any missing packages upon which Eagle is 
-dependent will begin to be installed. </p> 
+<p> This may take a bit of time as Eagle and all of its dependencies (those packages that Eagle is reliant upon) are installed. 
+Also, <code>install.packages</code>  does not provide much intermediate output to the user. Consequently, 
+it may appear that the installation process has stalled. However, your computer is working 
+on the installation, its just not telling you what it is doing. 
+
+ </p> 
  
   				</div>		      
 

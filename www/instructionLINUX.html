@@ -85,7 +85,7 @@
 					gives the installation script access to write-protected 
 					parts of the system.  
 
-					<a href="https://mran.microsoft.com/download">Microsoft R Open Download page</a>
+					
 					</p>
 			
 			 				</div>		      
@@ -152,61 +152,34 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 <p></p>
  <p></p>
 
-<!-- Getting RHLE ready  -->
+<!-- Getting CentOS ready  -->
 <details>
     
-    		<summary>  <img src="images/rhle.jpg" 
-										    class="img-responsive" width="120px" height="90px"/>  </summary>
-
-                  <p> 
-                  
-                  PROBLEM:  need to come back to this as I cannot work out how to install gcc-c++ etc !!!
-                  
-                  </p>
-                  
-                  <p>
-                  For the following steps to work, your system needs the reference library libpng12,  
-           a c++ compiler, and a Fortran compiler.  
-           If you don't have these on your system already, they are freely available and 
-           easy to install. </p>
-
-
-           <h4> <b> Installation of libpng12 </b> </h4>
-           
-           <p>Libpng is a reference library containing functions to read, create, and 
-         manipulate PNG image files.  You need the libpng12 version on your system. A different 
-         version will not suffice.   </p>
-                
-               
-                
-           <p> To install libpng12, from a terminal, type the following </p>
-            
-               
-	         <pre class="r"><code>sudo yum install libpng12 </code></pre>
-               
-            <p> If you receive an error regarding not being registered to the Red Hat Subscription 
-           Management system, type </p>     
-              
-         <pre class="r"><code>sudo subscription-manager register –-username &ltusername&gt --password &ltpassword&gt  --auto-attach </code></pre>
-      
-         <p> Your &ltusername&gt  and  &ltpassword&gt is the username and password you used to register via the redhat customer portal </p>
-         
-         <p> Once you have registered your system with Red Hat, rerun the command to install libpng12 </p>
-         
-               
-
-         <h4> <b> Installation of a C++ compiler </b> </h4>           
-         To install a C++ compiler, open a terminal and type the following
-             <pre class="r"><code>sudo yum install gcc-c++  </code></pre>
-           
-                 <h4> <b> Installation of a Fortran compiler </b> </h4>           
-         To install a Fortran  compiler, open a terminal and type the following
-             <pre class="r"><code>sudo yum install gcc-gfortran </code></pre>           
-           
-
+    <summary>  <img src="images/centOS.png" 
+		    class="img-responsive" width="120px" height="120px"/>  </summary>
+     <p> </p>
+  <p>  Before R Open and Eagle can be installed,   
+        a C++  and Fortran compiler are needed. Below are instructions
+        for their installation, given that they are not already available on your system. </p>       
+     
+    <details>
+         <summary >   Installation of a C++ compiler    </summary> 
+         <p></p>  
+         To install a C++ compiler, use
+             <pre class="r">sudo yum install gcc-c++  </pre>
+    </details>  
+           <p></p>
+    <details>
+        <summary> Installation of a Fortran compiler  </summary>   
+        <p >  </p>        
+         To install a Fortran  compiler, use
+             <pre class="r">sudo yum install gcc-gfortran </pre>           
     </details>
+
+</details>
 <p></p>
-<p></p>
+ <p></p>
+
 
 <!-- Getting Debian ready  -->
 <details>
@@ -502,12 +475,16 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
                
                <p>
                Go to the  <a href="http://mran.microsoft.com/open/">Microsoft R Open web site</a>
-               and download the version of R Open that corresponds to your system.  
+               and download the version of R Open that corresponds to your system.  When you are asked whether you want to <em>Open with</em> or <em>Save File</em>, you should <em>Save File</em>.
+               </p>
+               
+               <p>
                If your system is not listed, pick the distribution closest to your operating system. For 
                example, select SUSE for openSUSE,   Red Hat Enterprise Linux  for Fedora, and Ubuntu for Debian. 
                Don't worry if your version number doesn't match what is listed on Microsoft's 
                download page. 
                 <a href="#Step1">Step 1</a> above takes care of this. 
+                
 </p>
 
         
