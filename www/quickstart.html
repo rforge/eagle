@@ -393,18 +393,37 @@
                     
 
                        <p>
-                       We will assume that you have loaded your data successfully into Eagle. 
-                       You are now ready to analyse your data. To demonstrate how to do this, below we present two scenarios. </p>
+                       We will assume that you have loaded your data successfully into Eagle and are now ready 
+                       to analyse the data. Eagle finds SNP-trait associations by building the "best" model. 
+                       We measure "best" via the extended BIC statistic. The false positive rate for this statistic 
+                       is controlled by the gamma parameter. Values closer to 1 (0) reduce (increase) the false positive rate 
+                       but also power of finding SNP-trait associations. 
+                       
+                    
+                     
+                       </p>
+                       
+                       
+                       
+                       <p>
+                       Eagle gives you two ways of analysing your data. One 
+                       way is where you set the gamma value manually. This is the "quick" way. The other way is where you 
+                       let Eagle find the gamma value corresponding to a desired false positive rate for the analysis. This 
+                       way is slower as it involves permutation but it is the preferred way. Both scenarios are presented below. 
+                        </p>
                        
                        
                       
                        
                       <img style="float: left; padding: 0px 10px 10px 20px;" width="60%" src="images/Analysis_scenario1.jpg"/>
                       
-                      <p>  <b>Scenario 1:</b>  here the phenotypic data file  contains observations 
-                        from a single quantitative trait.  There are no fixed effects (or features) in 
-                        the file.  Our computer has a quad-core processor so we can distribute our computations 
-                        across four cores. Output from the analysis appears in the right hand window. 
+                      <p>  <b>Scenario 1:</b>  Suppose you are interested in performing a "quick" preliminary analysis 
+                      of your data. You can do this by selecting "Set manually" in Step 4.  
+                      If the gamma value is left at its default value of 1, a  
+                      conservative (low false positive rate) analysis of the data will be performed.  If you want to 
+                      make the analysis less conservative, move the slider bar for the gamma value closer to 0.
+                      This will increase the power of detecting SNP-trait associations but also increase 
+                      the false positive rate. 
                       </p>
                     
                        
@@ -413,11 +432,13 @@
                        
                           <img style="float: left; padding: 0px 10px 10px 20px;" width="60%" src="images/Analysis_scenario2.jpg"/>
                       
-                      <p>  <b>Scenario 2:</b>  here the phenotypic data file contains observations 
-                        from two quantitative traits and two fixed effects. The trait of interest is "trait1". 
-                        The fixed effects that are to be included in the model are "pc1" and "pc2".  Our system
-                        has a quad-core processor so we can distribute our computations across four cores. 
-                        Output from the analysis appears in the right hand window. 
+                      <p>  <b>Scenario 2:</b>  Here, we have selected the "Set automatically" option in Step 4 
+                      to let Eagle set the gamma value via permutation.  In this example, Eagle 
+                      will find the gamma value that gives a false positive rate of 5% for finding SNP-trait associations. 
+                      The analysis takes about five times as long to run.
+                     
+                      
+                     
                       </p>
                       <div style="clear: both"></div>
                                         
@@ -425,14 +446,14 @@
                      <hr />
 
                       <h2> Findings </h2>
-                      <p> Below are the two pages associated with Findings. The first page 
+                      <p> Below are the two pages associated with Findings. The first page (A) 
                       is what appears by default.  It lists those snp, if any, that are 
                       in strongest linkage disequilibrium with the genes that are 
                       controlling the trait.  That is, the snp listed are the snp closest to 
                       the regions of the genome housing genes that influence the trait. 
                        </p>
                       
-                      <p> The second page gives additional information on the (additive) size of the snp effects, 
+                      <p> The second page (B) gives additional information on the (additive) size of the snp effects, 
                       on their p-values, and an estimate of the amount of phenotypic variation explained by the snps. 
                       </p>
                       
