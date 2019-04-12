@@ -200,9 +200,9 @@
 		<details>
 		<summary style="margin-top:0.25cm;font-size: 18px" > Step 2:  Install Eagle        </summary>
 		<p></p>
-		<p> To install the Eagle package, from the R command window, use the <em>install.packages( )</em> command
+		<p> To install the latest version of the Eagle package, from the R command window, use the <em>install.packages( )</em> command
 
-<pre class="r"> install.packages("Eagle")  </pre>
+<pre class="r"> install.packages("Eagle", repos = "https://cloud.r-project.org/", dependencies=TRUE)  </pre>
 <p></p>
 <p> This can take a bit of time as it is not only Eagle that needs installing but 
 several other packages upon which Eagle is dependent.   </p> 
