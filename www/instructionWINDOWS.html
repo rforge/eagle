@@ -192,7 +192,8 @@ Below is an example of how we ran R Open, as an administrator,  in Windows 10.  
 
 <p> To install the Eagle package, from the R Console window, use the <em>install.packages( )</em> command
 
-<pre class="r"><code>  install.packages("Eagle")  </code></pre>
+
+  <pre class="r"><code> install.packages(&quot;Eagle&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
 
 <p> This may take a bit of time as Eagle and all of its dependencies (those packages that Eagle is reliant upon) are installed. 
 Also, <code>install.packages</code>  does not provide much intermediate output to the user. Consequently, 

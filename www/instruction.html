@@ -108,16 +108,16 @@
 		    In your R session, if you have root access, use the following 
 		    command to install Eagle </p>
 		    
-		    <pre class="r"> install.packages("Eagle")  </pre>
+		    
+		    <pre class="r"><code> install.packages(&quot;Eagle&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
     
 			<p></p>
 			<p style="font-size: 16px"> If you don't have root access,  use </p>
-	        <pre class="r"> install.packages("Eagle", lib="/your/Rlibrary/")  </pre>
+	       
+	          <pre class="r"><code> install.packages(&quot;Eagle&quot; , lib=&quot;/your/Rlibrary/&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
+	        
     		<p style="font-size: 16px" > where <code> "/your/RLibrary/" </code> is the name of the directory 
-    		where R packages are to be installed.
-    		</p>
-				
-			<p style="font-size: 16px" > <code class="inlinecode"> install.packages("Eagle") </code> will install Eagle and any missing 
+    		where R packages are to be installed. This will install Eagle and any missing 
 			dependent packages. 
 			</p>	
 		

@@ -77,10 +77,10 @@
 					  <h3>Getting Started</h3>
 					  
 					  <p> To install the Eagle package, from an interactive session in <a href="https://www.r-project.org/about.html">R</a>, type the following command   </p>
-					  <pre class="r"><code>install.packages(&quot;Eagle&quot;)</code></pre>
-					This will install the Eagle package along with any missing packages upon which Eagle is dependent. As 
-							   part of the installation, you will be prompted to choose a mirror site from which to install 
-							   the packages. Choose the site closest to your location. </p>
+				
+					   <pre class="r"><code> install.packages(&quot;Eagle&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
+					  
+					This will install the Eagle package along with any missing packages upon which Eagle is dependent. </p>
 						    <p>Once Eagle has been installed, the package is ready to be loaded into your R session with
                            <pre class="r"><code>library(&quot;Eagle&quot;)</code></pre>   
                            You will see a message saying that Eagle has been loaded. </p>								

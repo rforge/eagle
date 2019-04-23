@@ -445,14 +445,10 @@ but it may be different on your system.
 
 <p> To install the Eagle package, from the R Console window, use the <b>install.packages( )</b> command
 
-<pre class="r"><code>  install.packages("Eagle")  </code></pre>
+
+  <pre class="r"><code> install.packages(&quot;Eagle&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
 <p></p>
-You will be asked:
-<ol>
-<li>
-to select your nearest CRAN mirror.  </li>
-<li> if you want to install from sources the packages that need compilation - answer <b>Yes</b> </li>
-</ol>
+
 This will install Eagle and all of its dependencies. 
 
  </div>		      
