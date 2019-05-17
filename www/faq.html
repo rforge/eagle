@@ -153,6 +153,19 @@ is best to supply a marker map. </p>
 <div class="box">
 <h3>Using OpenGUI</h3>
 
+
+ <details>
+    		<summary style="font-size: 20px" > When I run OpenGUI, I see [uv_write] bad file descriptor errors start to appear in my R console</summary>
+           <p style="font-size: 16px; color: grey" > 
+           The good news is that these errors can be ignored. They have only started to appear in Version 1.5.0, 
+           with the introduction of interactive plots. The error is "random", making it difficult to isolate. 
+            The Shiny team are aware of the issue. 
+           </p>
+     </details>
+
+
+
+
    <details>
     		<summary style="font-size: 20px" > When I click on Choose File, the file browser does not start where I want it to start </summary>
            <p style="font-size: 16px; color: grey" > 
@@ -347,7 +360,7 @@ involved in the analysis will not be removed.
     <p style="font-size: 16px; color: grey" >If Eagle has not been previously installed, then start  
     R and at the R prompt, type
 <pre>
-install.packages("Eagle", dependencies=TRUE)
+install.packages("Eagle" , repos = "https://cloud.r-project.org/", dependencies=TRUE) 
 </pre> </p>
 
 <p style="font-size: 16px; color: grey">
