@@ -53,7 +53,7 @@
 				<section id="main" class="container">
 					<header>
 						<h2>Eagle for Linux</h2>
-						<p>A How To guide for installing R Open and Eagle [last revised Sept 2018] </p>
+						<p>A How To guide for installing R Open and Eagle [last revised Oct 2019] </p>
 					</header>
 		<!--			<div class="box">
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -119,7 +119,7 @@ but we do for CentOS, its close relative.
 <h3> Step 1: Getting Your System Ready</h3>
        
 
-Select your (nearest) distribution for instructions on how to prepare your system 
+Select your (closest) distribution for instructions on how to prepare your system 
 for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eagle. 
 
 
@@ -130,27 +130,44 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
     <summary>  <img src="images/fedora.png" 
 		    class="img-responsive" width="90px" height="90px"/>  </summary>
      <p> </p>
-  <p>  Before R Open and Eagle can be installed,   
-        a C++  and Fortran compiler are needed. Below are instructions
+  <p>  Before R Open and Eagle can be installed, make, C++, and Fortran are needed. 
+  The library libtinfo.so.5 may also be needed. 
+        Below are instructions
         for their installation, given that they are not already available on your system. </p>       
      
     <details>
-         <summary >   Installation of a C++ compiler    </summary> 
+         <summary >  [Fedora 29, 30, & 31]  Installation of C++, Fortran, and make  </summary> 
          <p></p>  
-         To install a C++ compiler, use
-             <pre class="r">sudo yum install gcc-c++  </pre>
+         To install these programs, use the following command
+             <pre class="r">sudo dnf install gcc-c++ gcc-gfortran make </pre>
     </details>  
            <p></p>
-    <details>
-        <summary> Installation of a Fortran compiler  </summary>   
-        <p >  </p>        
-         To install a Fortran  compiler, use
-             <pre class="r">sudo yum install gcc-gfortran </pre>           
-    </details>
-
+           
+           <details>
+         <summary >  [Fedora 31]  Installation of yum  </summary> 
+         <p></p>  
+         The package installer yum has been removed from Fedora 31. This is needed by the 
+         R Open installer. To install yum, just type yum at the command line.  Fedora will ask if you would 
+         like for yum to be installed and do all the hard work of finding which packages need to be installed. 
+            
+    </details>  
+           <p></p>
+           
+     <details>
+     <summary> [All versions] Check for libtinfo.so.5  </summary>
+     <p></p>
+     As of Oct 2019, R Open requires libtinfo.so.5.   To check 
+     which version you have and its location, use
+        <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+     If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
+          <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
+     This creates a symbolic link between the file you have (libtinfo.so.6) and the 
+     one R Open expects (libtinfo.so.5). 
+     </details>
+     
 </details>
 <p></p>
- <p></p>
+ 
 
 <!-- Getting CentOS ready  -->
 <details>
@@ -159,26 +176,35 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 		    class="img-responsive" width="120px" height="120px"/>  </summary>
      <p> </p>
   <p>  Before R Open and Eagle can be installed,   
-        a C++  and Fortran compiler are needed. Below are instructions
+        a C++  and Fortran compiler are needed and the make program. 
+        The library libtinfo.so.5 is also needed but not present in the more recent versions of CentOS. 
+        Below are instructions
         for their installation, given that they are not already available on your system. </p>       
      
     <details>
-         <summary >   Installation of a C++ compiler    </summary> 
+         <summary > [All versions] Installation of a C++ and Fortran compiler and the make program </summary> 
          <p></p>  
-         To install a C++ compiler, use
-             <pre class="r">sudo yum install gcc-c++  </pre>
+         To install a C++ and Fortran compiler and the make program, use
+             <pre class="r">sudo yum install gcc-c++ gcc-gfortran make</pre>
     </details>  
            <p></p>
+   
     <details>
-        <summary> Installation of a Fortran compiler  </summary>   
-        <p >  </p>        
-         To install a Fortran  compiler, use
-             <pre class="r">sudo yum install gcc-gfortran </pre>           
+     <summary> [CentOS 8] Check for libtinfo.so.5  </summary>
+     <p></p>
+     R Open requires libtinfo.so.5 (as of Oct 2019). The latest versions of Fedora uses libtinfo.so.6. To check 
+     which version you have and its location, use
+        <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+     If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
+          <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
+     This creates a symbolic link between the file you have (libtinfo.so.6) and the 
+     one R Open expects (libtinfo.so.5). 
     </details>
+
 
 </details>
 <p></p>
- <p></p>
+<p></p>
 
 
 <!-- Getting Debian ready  -->
@@ -188,67 +214,15 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 				    class="img-responsive" width="120px" height="90px"/>  </summary>
 
            <p></p>
-    <p>  Before R Open and Eagle can be installed,  the libpng12 library is needed along with 
-        a C++  and Fortran compiler. Below are instructions
+    <p>  Before R Open and Eagle can be installed,  
+        a C++  and Fortran compiler are needed. 
+        The library libtinfo.5.so is also needed for installation of R Open. 
+        Below are instructions
         for their installation, given that they are not already available on your system. </p> 
-          
-    <details>
-        <summary> Installation of libpng12 </summary>
-        <p></p>
-        <p>libpng is a reference library containing functions to read, create, and 
-           manipulate PNG image files.  You need libpng12 on your system. A different 
-            version will not suffice.   </p>
-          <p></p>
-         <details>
-            <summary  > Step 1: Check if your system has libpng12 </summary>
-            <p></p>
-            <p> Run the following Unix command. If the library is present, you will 
-                 see files that begin with libpng12 being found and there is no need 
-                 to do steps 2 to 4 below. </p>
-                 
-            <pre>
-                 sudo find / -name 'libpng12*' -print
-            </pre> 
-        </details>
-          <p></p>
-        <details>      
-            <summary> Step 2: Add the repository that contains the libpng12 library. </summary> 
-             <p></p>
-            <p> Add the following lines to the end of the file /etc/apt/sources.list.
-                To do this, you will need administrator (sudo) privileges. </p> 
-          
-            
-            <pre>
-            deb       http://ftp.debian.org/debian/ jessie  main  non-free
-            deb-src   http://ftp.debian.org/debian/ jessie  main  non-free
-            </pre>
-            
-            <p>
-           
-           </p>
-         </details>
-          <p></p>
-         <details>
-            <summary> Step 3: Update the package listings in the repositories </summary>
-         <p></p>
-           
-             <p> Run the following command to update the package listings </p>
-	           <pre class="r">sudo apt-get update  </pre>
-               
-          </details>
-            <p></p>
-          <details>
-             <summary> Step 4: Install libpng12 </summary>
-             <p></p>
-              <p> Run the following command to install libpng12 </p>
-                 <pre class="r"> sudo apt-get install libpng12-0  </pre>           
- 
-          </details>    
-               
-    </details>               
+                   
          <p></p>       
-  <details>
-     <summary> Installation of a C++ compiler </summary> 
+<details>
+     <summary> [All versions] Installation of a C++ compiler </summary> 
        <p></p>
                   
          <p> To install a compiler for C++, run the following command </p>
@@ -259,16 +233,30 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
   </details>
  <p></p>
   <details>
-       <summary> Installation of a Fortran compiler </summary>  
-        <p></p>  
-         
-                    
+       <summary> [All versions] Installation of a Fortran compiler </summary>  
+        <p></p>     
          <p> To install a compiler for Fortran, run the following command </p>
          
              <pre class="r">sudo apt-get install gfortran </pre>
      
    </details>                
  <p></p>
+ 
+  <details>
+     <summary> [Debian 10] Check for libtinfo.so.5  </summary>
+     <p></p>
+     R Open requires libtinfo.so.5 (as of Oct 2019). Debian 10 uses libtinfo.so.6. To check 
+     which version you have and its location, use
+        <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+     If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
+          <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
+     This creates a symbolic link between the file you have (libtinfo.so.6) and the 
+     one R Open expects (libtinfo.so.5). 
+    </details>
+ 
+ 
+ 
+ 
 </details>
 <p></p>
 <p></p>     
@@ -280,13 +268,14 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 										    class="img-responsive" width="120px" height="90px"/>  </summary>
 <p></p>
       <p>  Before R Open and Eagle can be installed,  the file /etc/SuSE-brand needs to be created , and 
-            a C++  and fortran compiler installed (if not already available). 
+            a C++  and fortran compiler installed (if not already available). The library
+            libtinfo.so.5 also needed.
             </p> 
            
 
         
          <details>          
-            <summary> Create SuSE-brand file </summary>         
+            <summary> [All versions] Create SuSE-brand file </summary>         
                   <p></p>   
         
            <p> R Open was designed to run on SUSE Enterprise. As such, 
@@ -300,8 +289,24 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
          </details>
            
         <p></p>
+        
+        
+         <details>
+     <summary> [All versions] Check for libtinfo.so.5  </summary>
+     <p></p>
+     R Open requires libtinfo.so.5 (as of Oct 2019). To check 
+     which version you have and its location, use
+        <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+     If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
+          <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
+     This creates a symbolic link between the file you have (libtinfo.so.6) and the 
+     one R Open expects (libtinfo.so.5). 
+    </details>
+ 
+        
+        
             <details>   
-          <summary >  Installation of a compiler for C++ </summary>  
+          <summary > [All versions]  Installation of a compiler for C++ </summary>  
            <p></p>            
                To install a C++ compiler, use
              <pre class="r">sudo  zypper install gcc-c++ </pre>
@@ -310,7 +315,7 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
             </details>
                <p></p>
             <details>
-                 <summary > Installation of a Fortran compiler </summary> 
+                 <summary > [All versions] Installation of a Fortran compiler </summary> 
                         <p></p>   
          To install a Fortran  compiler, use
              <pre class="r">sudo zypper install gcc-fortran </pre>           
@@ -334,77 +339,27 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 
           <p> </p>
           
-        <p>  Before R Open and Eagle can be installed,  the libpng12 library is needed along with 
+        <p>  Before R Open and Eagle can be installed,  the libtinfo.so.5 library is needed along with 
             a C++  and fortran compiler. Below are instructions
            for their installation. </p> 
 
 
-      <details>
-       <summary >  Installation of libpng12 </summary>
-           <p></p>
-           
-           
-           
-          
-               <p>libpng is a reference library containing functions to read, create, and 
-               manipulate PNG image files.  You need libpng12 on your system. A different 
-               version will not suffice.   </p>
-          
-              <details>
-                 <summary "> Step 1: Check if your system has libpng12 </summary>
-                 <p></p>
-                 
-                 <p> Run the following Unix command. If the library is present, you will 
-                 see files that begin with libpng12 being found and there is no need 
-                 to do steps 2 to 4 below. </p>
-                 
-                 <pre> sudo find / -name 'libpng12*' -print </pre> 
-            </details>
-           <p></p>
-              <details>
-          
-         <summary> Step 2: Add the repository that contains the libpng12 library. </summary> 
-         <p> </p>
-         <p> Add the following line to the end of the file /etc/apt/sources.list.
-          To do this, you will need administrator (sudo) privileges. </p> 
-          
-            
-            <pre> deb  http://mirrors.kernel.org/ubuntu  xenial  main  universe  </pre>
-            
-            
-            <p>
-           
-           </p>
-          </details>
-           <p></p>
-              <details>
-          <summary> Step 3: Update the package listings in the repositories </summary>
-           
-           <p></p>
-           <p> Run the following command to update the package listings </p>
-	         <pre class="r"> sudo apt-get update </pre>
-               
-           </details>
-            <p></p>
-               <details>
-           <summary> Step 4: Install libpng12 </summary>
-           <p></p>
-           <p> Run the following command to install libpng12 </p>
-             <pre class="r"> sudo apt-get install libpng12-0   </pre>           
- 
-           </details>    
-               
-         
-         
-         
-           
-                    
-</details>
+       <details>
+     <summary> [ubuntu 19] Check for libtinfo.so.5  </summary>
+     <p></p>
+     R Open requires libtinfo.so.5 (as of Oct 2019). To check 
+     which version you have and its location, use
+        <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+     If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
+          <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
+     This creates a symbolic link between the file you have (libtinfo.so.6) and the 
+     one R Open expects (libtinfo.so.5). 
+    </details>
            
             <p></p>
                         
 <details>
-<summary> Installation of a C++ compiler </summary> 
+<summary> [ubuntu 18 & 19] Installation of a C++ compiler </summary> 
    
          
          <p></p>         
@@ -417,7 +372,7 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 </details>
  <p></p>
         <details>
-            <summary> Installation of a Fortran compiler </summary>    
+            <summary> [ubuntu 18 & 19] Installation of a Fortran compiler </summary>    
     
          <p> </p>
          <p> To install a compiler for Fortran, run the following command </p>
@@ -440,12 +395,6 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 
     
 </div>		      
-
-
-
-
-
-
 
 
 
