@@ -82,73 +82,52 @@
 				
 			  <div class="box">
 			  <h3></h3>
-					
-<span> <strong>September 2017</strong> 
-			 <p class="myindent"> 
-			  Eagle 1.0.3 hosted on CRAN </p>
-			  		  
-			  </span>
-			 
-<span> <strong>August 2018</strong> 
-			 <p class="myindent"> 
-			  Eagle 1.1.0 hosted on CRAN. <br/>
-			 * fixed memory bug on windows systems. <br/>
-			 * added Z matrix functionality to accommodate data where an individual, for a trait, may have multiple measurements.   <br/>
-			 * replaced problematic <i>tk_choose.files</i> with shinyFiles for improved file browsing. <br/>
-			 * changed <i>Makefiles</i> so that Eigen is now row major, doubling the speed. </br>
-			 * added new function <i>FPR4AM</i> to calculate, empirically, the false positive rate (FPR) for a given gamma value for extBIC.    
-			  		  </p>
-			  </span>			 
-			 
-			 
-<span> <strong>August 2018</strong> 
-			 <p class="myindent"> 
-			  Eagle <a href="demo.html">Demo</a> site went live, giving users an opportunity to trial the Eagle GUI on some test data.   </p>
-			  		  
-			  </span>
-			 
-<span> <strong>November 2018</strong> 
-			 <p class="myindent"> 
-			  Eagle 1.2.0 hosted on CRAN. <br/>
-			  * Modified <i>FPR4AM</i> so that it will give the best gamma value for a user-defined false positive rate, trait, and analysis model.  <br/>
-			  * Further developed online R documentation for <i>AM</i> function. 		  
-              </p>
-			  </span>
-	
-		
-<span> <strong>Febuary 2019</strong> 
-			 <p class="myindent"> 
-			  Eagle 1.3.0 hosted on CRAN. <br/>
-			  * Fixed missing data issue with  <i>FPR4AM</i> where it would crash if the trait contained missing data.   <br/>
-			  * Added capacity to <i>ReadPheno</i>  to accommodate additional <i>read.table</i> arguments such as skip. <br/>
-              </p>
-			  </span>
-	
 				
-
-		
-<span> <strong>April 2019</strong> 
+<span> <strong>Upcoming</strong> 
 			 <p class="myindent"> 
-			  Eagle 1.4.0 hosted on CRAN. <br/>
-			  * Modified SummaryAM function to work with Z matrix. <br/>
-			  * Minor changes made to Findings page of GUI.   <br/>
-		
+			  Developing a multi-GPU version of Eagle <br/>
+			  * looking at distributing GPU-Eagle within singularity. 
               </p>
-			  </span>
-	
+			  </span>	
+		
 
 
-<span> <strong>May 2019</strong> 
+<span> <strong>Nov 2019</strong> 
 			 <p class="myindent"> 
-			  Eagle 1.5.0 hosted on CRAN. <br/>
-			  * Significant change made to GUI - a plotting page has been add. Users can now examine the change in score statistic (used for 
-			  identifying the next "best" SNP to enter the model), across a chromosome or genome. This can be done for each step of the model 
-			  building process. 
-		
-		
+			  Eagle 2.1.1 hosted on CRAN. <br/>
+			   * Fixed bug introduced by last change that would cause ReadMap function to crash. 
               </p>
-			  </span>
+			  </span>				  
+		
+			  
 
+<span> <strong>Nov 2019</strong> 
+			 <p class="myindent"> 
+			  Eagle 2.1.0 hosted on CRAN. <br/>
+			   * Continued improvement of handling of missing data. <br/>
+		       * Better handling of errors in OpenGUI. Previously, app would crash if a file input error was encountered.  
+              </p>
+			  </span>				  
+
+
+<span> <strong>Nov 2019</strong> 
+			 <p class="myindent"> 
+			  Eagle 2.0.0 hosted on CRAN. <br/>
+			  * This is the first of several planned performance improvements. With this version, users should see at least a 50% 
+			  increase in speed. 
+		     
+              </p>
+			  </span>				  
+			  			
+<span> <strong>Aug 2019</strong> 
+			 <p class="myindent"> 
+			  Eagle 1.5.2 hosted on CRAN. <br/>
+			  * Minor change to noalias feature in cpp code.
+		     
+              </p>
+			  </span>	
+			  
+			  		
 <span> <strong>May 2019</strong> 
 			 <p class="myindent"> 
 			  Eagle 1.5.1 hosted on CRAN. <br/>
@@ -158,23 +137,95 @@
 		
 		
               </p>
-			  </span>
-
-	<span> <strong>Aug 2019</strong> 
+			  </span>	
+			  
+			  	
+<span> <strong>May 2019</strong> 
 			 <p class="myindent"> 
-			  Eagle 1.5.2 hosted on CRAN. <br/>
-			  * Minor change to noalias feature in cpp code.
-		     
+			  Eagle 1.5.0 hosted on CRAN. <br/>
+			  * Significant change made to GUI - a plotting page has been add. Users can now examine the change in score statistic (used for 
+			  identifying the next "best" SNP to enter the model), across a chromosome or genome. This can be done for each step of the model 
+			  building process. 
+		
+		
               </p>
+			  </span>	
+			  
+			  	
+<span> <strong>April 2019</strong> 
+			 <p class="myindent"> 
+			  Eagle 1.4.0 hosted on CRAN. <br/>
+			  * Modified SummaryAM function to work with Z matrix. <br/>
+			  * Minor changes made to Findings page of GUI.   <br/>
+		
+              </p>
+			  </span>	
+			  
+			  	
+<span> <strong>Febuary 2019</strong> 
+			 <p class="myindent"> 
+			  Eagle 1.3.0 hosted on CRAN. <br/>
+			  * Fixed missing data issue with  <i>FPR4AM</i> where it would crash if the trait contained missing data.   <br/>
+			  * Added capacity to <i>ReadPheno</i>  to accommodate additional <i>read.table</i> arguments such as skip. <br/>
+              </p>
+			  </span>	
+			  
+<span> <strong>November 2018</strong> 
+			 <p class="myindent"> 
+			  Eagle 1.2.0 hosted on CRAN. <br/>
+			  * Modified <i>FPR4AM</i> so that it will give the best gamma value for a user-defined false positive rate, trait, and analysis model.  <br/>
+			  * Further developed online R documentation for <i>AM</i> function. 		  
+              </p>
+			  </span>	
+			  	
+<span> <strong>August 2018</strong> 
+			 <p class="myindent"> 
+			  Eagle <a href="demo.html">Demo</a> site went live, giving users an opportunity to trial the Eagle GUI on some test data.   </p>
+			  		  
+			  </span>	
+			  
+<span> <strong>August 2018</strong> 
+			 <p class="myindent"> 
+			  Eagle 1.1.0 hosted on CRAN. <br/>
+			 * fixed memory bug on windows systems. <br/>
+			 * added Z matrix functionality to accommodate data where an individual, for a trait, may have multiple measurements.   <br/>
+			 * replaced problematic <i>tk_choose.files</i> with shinyFiles for improved file browsing. <br/>
+			 * changed <i>Makefiles</i> so that Eigen is now row major, doubling the speed. </br>
+			 * added new function <i>FPR4AM</i> to calculate, empirically, the false positive rate (FPR) for a given gamma value for extBIC.    
+			  		  </p>
+			  </span>					  
+			  	
+<span> <strong>September 2017</strong> 
+			 <p class="myindent"> 
+			  Eagle 1.0.3 hosted on CRAN </p>
+			  		  
 			  </span>
+			 
+	 
+			 
+			 
+
+			 
+
 	
 		
-	<span> <strong>Upcoming</strong> 
-			 <p class="myindent"> 
-			  Developing a multi-GPU version of Eagle <br/>
-			  * looking at distributing GPU-Eagle within singularity. 
-              </p>
-			  </span>
+
+	
+				
+
+		
+
+	
+
+
+
+
+
+
+
+	
+		
+	
 			
 		
 		
