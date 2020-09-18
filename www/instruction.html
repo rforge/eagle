@@ -84,15 +84,13 @@
 			Problems can occur, especially with shiny, if the packages upon which Eagle is 
 			dependent, are not current. To update the packages, in your R session, type the following </p>
 			
-			<pre class="r"> update.packages()  </pre>
+			<pre class="r"> update.packages(ask=FALSE)  </pre>
 			
 			<p></p>
 			<p style="font-size: 16px">
 			<code>update.packages</code> will update all the packages in your library, interactively. 
 			</p>
 			
-			<p style="font-size: 16px"> If you would like to automate the update, use the <code> ask=FALSE </code> argument. 
-			</p>
 			
 			</details>
 			
@@ -101,8 +99,6 @@
 			
 			<summary style="margin-top:0.25cm; font-size: 18px ">  Step 2:  Install Eagle  </summary>
 			<p></p>
-		    <p style="margin-top:0.5cm; font-size: 16px"> 
-		    To install Eagle, Fortran and C++ compilers are needed. </p> 
 		    
 		    <p style="font-size: 16px">
 		    In your R session, if you have root access, use the following 
@@ -157,7 +153,7 @@
 	
 	<p style="margin-top:0.5cm; font-size: 16px">
 		Eagle was designed to harness parallel computation.  R, upon which Eagle 
-		is based, is not set up for parallel computation. Fortunately, there is a simple 
+		is based, is not set up for parallel computation. Fortunately, there is a  
 		solution.  Microsoft have developed an open source freely available version of 
 		R, called R Open.  R Open is the same as R except that it comes with multi-threaded 
 		maths libraries for parallel computation.  </p>

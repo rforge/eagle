@@ -53,7 +53,7 @@
 				<section id="main" class="container">
 					<header>
 						<h2>Eagle for Windows</h2>
-						<p>A guide for installing Eagle along with multi-threaded R [last revised Sept 2018] </p>
+						<p>A guide for installing Eagle along with multi-threaded R [last revised Sept 2020] </p>
 					</header>
 		<!--			<div class="box">
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -130,9 +130,33 @@ Windows is the easiest OS in which to install R Open and Eagle.
 		    				</div>		      
 
 
+
+<div class="box"  id="step2">
+	
+		<h3> Step 2: Installation Rtools35</h3>
+
+<p>	
+Rtools is needed to allow Eagle to be built from source. 
+</p>
+
+<p>
+Download the file Rtools35.exe from 
+ <a href="https://cran.r-project.org/bin/windows/Rtools/history.html">link</a>.
+</p>
+
+
+<p>
+Run Rtools35.exe as administrator.
+</p>	   
+<p></p>	   
+	   
+	
+</div>
+
+
 	<div class="box"  id="step2">
 	
-		<h3> Step 2: Run the installation program for R Open </h3>
+		<h3> Step 3: Run the installation program for R Open </h3>
 	
 		
 		<p> Once R Open has finished downloading, run the program. 
@@ -163,7 +187,7 @@ Windows is the easiest OS in which to install R Open and Eagle.
  
  	<div class="box"  id="step3">
  	
-        <h3> Step 3: Run R Open as an administrator </h3>
+        <h3> Step 4: Run R Open as an administrator </h3>
       
 
 
@@ -187,16 +211,17 @@ Below is an example of how we ran R Open, as an administrator,  in Windows 10.  
 
 	<div class="box"  id="step4">
  	
-        <h3> Step 4: Installation of the Eagle package </h3>
+        <h3> Step 5: Installation of the Eagle package </h3>
        
 
-<p> To install the Eagle package, from the R Console window, use the <em>install.packages( )</em> command
+<p> To install the Eagle package, from the R Console window, use the <em>install.packages( )</em> command</p>
 
+<p>
+  <pre class="r"><code> install.packages(&quot;Eagle&quot; , type=&quot;source&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
+</p>
 
-  <pre class="r"><code> install.packages(&quot;Eagle&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
-
-<p> This may take a bit of time as Eagle and all of its dependencies (those packages that Eagle is reliant upon) are installed. 
-Also, <code>install.packages</code>  does not provide much intermediate output to the user. Consequently, 
+<p> This will take some time as Eagle and all of its dependencies (those packages that Eagle is reliant upon) are installed. 
+Also, <code>install.packages</code>  provides little intermediate output to the user. Consequently, 
 it may appear that the installation process has stalled. However, your computer is working 
 on the installation, its just not telling you what it is doing. 
 

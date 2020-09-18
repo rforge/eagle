@@ -53,7 +53,7 @@
 				<section id="main" class="container">
 					<header>
 						<h2>Eagle for Linux</h2>
-						<p>A How To guide for installing R Open and Eagle [last revised Oct 2019] </p>
+						<p>A How To guide for installing R Open and Eagle [last revised Sep 2020] </p>
 					</header>
 		<!--			<div class="box">
 						<span class="image featured"><img src="images/pic01.jpg" alt="" /></span>
@@ -103,6 +103,13 @@ Here, we present the process for installing
 <a href="https://mran.microsoft.com/">Microsoft R Open</a>
  (the same as R except it comes with 
 multi-threaded math libraries) and Eagle on different linux systems. 
+When we first created this page, we provided installation instructions for several 
+versions of each linux distribution. However, over time, with the addition of new 
+versions, the page become unwieldy. 
+Instead, we have opted to only provide installation 
+instructions for the most recent stable version of each distribution. Even if the exact 
+specifics change across versions, it is our hope that the overall process will remain the same. 
+
 If your linux system is not referenced below, select the instructions for its 
 nearest neighbour. For example, we do not provide instructions for Red Hat Enterprise Linux 
 but we do for CentOS, its close relative. 
@@ -130,40 +137,43 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
     <summary>  <img src="images/fedora.png" 
 		    class="img-responsive" width="90px" height="90px"/>  </summary>
      <p> </p>
-  <p>  Before R Open and Eagle can be installed, make, C++, and Fortran are needed. 
-  The library libtinfo.so.5 may also be needed. 
+  <p>  Before R Open and Eagle can be installed, make, C++, and Fortran are needed along with zlib-devel, 
+  openssl-devel and 
+  libtinfo.so.5. If you already have R installed, this will need to be removed. 
         Below are instructions
         for their installation, given that they are not already available on your system. </p>       
      
     <details>
-         <summary >  [Fedora 29, 30, & 31]  Installation of C++, Fortran, and make  </summary> 
+         <summary >  [Fedora 32]  Installation of C++, Fortran, make,  zlib-devel, and  openssl-devel </summary> 
          <p></p>  
-         To install these programs, use the following command
-             <pre class="r">sudo dnf install gcc-c++ gcc-gfortran make </pre>
+         Use the following command
+             <pre class="r">sudo dnf install gcc-c++ gcc-gfortran make zlib-devel openssl-devel</pre>
     </details>  
            <p></p>
-           
-           <details>
-         <summary >  [Fedora 31]  Installation of yum  </summary> 
-         <p></p>  
-         The package installer yum has been removed from Fedora 31. This is needed by the 
-         R Open installer. To install yum, just type yum at the command line.  Fedora will ask if you would 
-         like for yum to be installed and do all the hard work of finding which packages need to be installed. 
-            
-    </details>  
-           <p></p>
-           
+              
      <details>
-     <summary> [All versions] Check for libtinfo.so.5  </summary>
+     <summary> [Fedora 32] Check for libtinfo.so.5  </summary>
      <p></p>
-     As of Oct 2019, R Open requires libtinfo.so.5.   To check 
+     R Open requires libtinfo.so.5.   To check 
      which version you have and its location, use
         <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+     On our system, we had  libtinfo.so.6 and it was in /usr/lib64/
      If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
           <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
      This creates a symbolic link between the file you have (libtinfo.so.6) and the 
      one R Open expects (libtinfo.so.5). 
      </details>
+     
+     <details>
+     <summary> [Fedora 32] Remove current version of R </summary>
+     <p><p>
+     To remove R from your system, use
+      <pre class="r">sudo dnf remove R </pre> 
+     
+     </details>
+     
+     
+     
      
 </details>
 <p></p>
@@ -175,33 +185,44 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
     <summary>  <img src="images/centOS.png" 
 		    class="img-responsive" width="120px" height="120px"/>  </summary>
      <p> </p>
-  <p>  Before R Open and Eagle can be installed,   
-        a C++  and Fortran compiler are needed and the make program. 
-        The library libtinfo.so.5 is also needed but not present in the more recent versions of CentOS. 
+  <p>  
+   Before R Open and Eagle can be installed, C++, and Fortran are needed along with
+   openssl-devel and libtinfo.so.5. If you already have R installed, this will need to be removed. 
         Below are instructions
-        for their installation, given that they are not already available on your system. </p>       
+        for their installation.
+ </p>       
      
     <details>
-         <summary > [All versions] Installation of a C++ and Fortran compiler and the make program </summary> 
+         <summary > [CentOS 8] Installation of a C++ and Fortran compiler, the make program, 
+         and  openssl-devel </summary> 
          <p></p>  
-         To install a C++ and Fortran compiler and the make program, use
-             <pre class="r">sudo yum install gcc-c++ gcc-gfortran make</pre>
+         Use the following command
+             <pre class="r">sudo yum install gcc-c++ gcc-gfortran make openssl-devel </pre>
     </details>  
            <p></p>
+   
    
     <details>
      <summary> [CentOS 8] Check for libtinfo.so.5  </summary>
      <p></p>
-     R Open requires libtinfo.so.5 (as of Oct 2019). The latest versions of Fedora uses libtinfo.so.6. To check 
-     which version you have and its location, use
+     R Open requires libtinfo.so.5. CenOS 8 uses libtinfo.so.6. To find its 
+    location, use
         <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
-     If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
+     On our system, it was in /usr/lib64/. 
+     Then <b>cd into the directory containing the file</b> and use
           <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
      This creates a symbolic link between the file you have (libtinfo.so.6) and the 
      one R Open expects (libtinfo.so.5). 
     </details>
 
-
+      <details>
+     <summary> [CentOS 8] Remove current version of R </summary>
+     <p><p>
+     If you have an existing version of R on your system, this will need to be removed. 
+     To remove R from your system, use
+      <pre class="r">sudo yum remove R </pre> 
+     </details>
+     
 </details>
 <p></p>
 <p></p>
@@ -214,33 +235,27 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 				    class="img-responsive" width="120px" height="90px"/>  </summary>
 
            <p></p>
-    <p>  Before R Open and Eagle can be installed,  
-        a C++  and Fortran compiler are needed. 
-        The library libtinfo.5.so is also needed for installation of R Open. 
+    <p>   Before R Open and Eagle can be installed, C++, and Fortran are needed along with
+   libssl-dev, zlib1g-dev, and libtinfo.so.5. If you already have R installed, this will need to be removed. 
         Below are instructions
-        for their installation, given that they are not already available on your system. </p> 
+        for their installation.
+         </p> 
                    
          <p></p>       
 <details>
-     <summary> [All versions] Installation of a C++ compiler </summary> 
+     <summary> [Debian 10] Installation of the C++ compiler, Fortran compiler, 
+     libssl-dev, and zliblg-dev
+      </summary> 
        <p></p>
                   
-         <p> To install a compiler for C++, run the following command </p>
+         <p> Use the following command </p>
       
-             <pre class="r"> sudo apt-get install build-essential   </pre>
+             <pre class="r"> sudo apt-get install build-essential gfortran  libssl-dev  zlib1g-dev</pre>
            
-               
-  </details>
- <p></p>
-  <details>
-       <summary> [All versions] Installation of a Fortran compiler </summary>  
-        <p></p>     
-         <p> To install a compiler for Fortran, run the following command </p>
-         
-             <pre class="r">sudo apt-get install gfortran </pre>
-     
-   </details>                
- <p></p>
+     </details>          
+  
+ 
+ 
  
   <details>
      <summary> [Debian 10] Check for libtinfo.so.5  </summary>
@@ -248,11 +263,25 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
      R Open requires libtinfo.so.5 (as of Oct 2019). Debian 10 uses libtinfo.so.6. To check 
      which version you have and its location, use
         <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+        On our system, libtinfo.so.6 was in /usr/lib/x86_64-linux-gnu/.
      If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
           <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
      This creates a symbolic link between the file you have (libtinfo.so.6) and the 
      one R Open expects (libtinfo.so.5). 
     </details>
+ <p></p>
+ 
+ 
+ 
+    <details>
+     <summary> [Debian 10] Remove current version of R </summary>
+     <p><p>
+     To remove R from your system, use
+      <pre class="r">sudo apt-get remove r-base-core </pre> 
+     
+     </details>
+     
+
  
  
  
@@ -267,36 +296,27 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
     		<summary>  <img src="images/opensuse.png" 
 										    class="img-responsive" width="120px" height="90px"/>  </summary>
 <p></p>
-      <p>  Before R Open and Eagle can be installed,  the file /etc/SuSE-brand needs to be created , and 
-            a C++  and fortran compiler installed (if not already available). The library
-            libtinfo.so.5 also needed.
-            </p> 
-           
+    
+     <p>      
+  Before R Open and Eagle can be installed, C++, and Fortran are needed along with several openSUSE packages and libraries. 
+   If you already have R installed, this will need to be removed. 
+        Below are instructions
+        for their installation. </p>
+
 
         
-         <details>          
-            <summary> [All versions] Create SuSE-brand file </summary>         
-                  <p></p>   
-        
-           <p> R Open was designed to run on SUSE Enterprise. As such, 
-           it looks for a file called SuSE-brand which does not exist in openSUSE.  The 
-           work around though is easy. Just type the following (making sure you type SuSE and not SUSE)
-           </p>
-           
-    	         <pre class="r"> sudo cp /etc/SUSE-brand /etc/SuSE-brand  </pre>
-               
-       
-         </details>
            
         <p></p>
         
         
          <details>
-     <summary> [All versions] Check for libtinfo.so.5  </summary>
+     <summary> [openSUSE 15.2] Check for libtinfo.so.5  </summary>
      <p></p>
      R Open requires libtinfo.so.5 (as of Oct 2019). To check 
      which version you have and its location, use
         <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+        On our system, it had libtinfo.so.6 and it was in /lib64.
+        
      If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
           <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
      This creates a symbolic link between the file you have (libtinfo.so.6) and the 
@@ -306,25 +326,25 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
         
         
             <details>   
-          <summary > [All versions]  Installation of a compiler for C++ </summary>  
+          <summary > [openSUSE 15.2]  Installation of the compiler for C++, openssl-devel, zlib-devel, and libcurl-devel </summary>  
            <p></p>            
-               To install a C++ compiler, use
-             <pre class="r">sudo  zypper install gcc-c++ </pre>
+               Use the following command
+             <pre class="r">sudo  zypper install gcc-c++ gcc-fortran  openssl-devel zlib-devel  libcurl-devel </pre>
            
-                
-            </details>
-               <p></p>
-            <details>
-                 <summary > [All versions] Installation of a Fortran compiler </summary> 
-                        <p></p>   
-         To install a Fortran  compiler, use
-             <pre class="r">sudo zypper install gcc-fortran </pre>           
-                
-                    
-     </details>               
-                     
-          
-           
+             </details>   
+                        
+
+
+    <details>
+     <summary> [openSUSE 15.2] Remove current version of R </summary>
+     <p><p>
+     To remove R from your system, use
+      <pre class="r">sudo zypper remove  R-base R-base-devel </pre> 
+     
+     </details>
+     
+
+
 
     </details>
 <p></p>
@@ -337,60 +357,49 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 										    class="img-responsive" width="120px" height="90px"/>  </summary>
 
 
-          <p> </p>
-          
-        <p>  Before R Open and Eagle can be installed,  the libtinfo.so.5 library is needed along with 
-            a C++  and fortran compiler. Below are instructions
-           for their installation. </p> 
-
-
-       <details>
-     <summary> [ubuntu 19] Check for libtinfo.so.5  </summary>
+          <p></p>
+    <p>   Before R Open and Eagle can be installed, C++, and Fortran are needed along with
+   libssl-dev, zlib1g-dev, and libtinfo.so.5. If you already have R installed, this will need to be removed. 
+        Below are instructions
+        for their installation.
+         </p> 
+                   
+         <p></p>       
+<details>
+     <summary> [ubuntu 20] Installation of the C++ compiler, Fortran compiler, 
+     libssl-dev, and zliblg-dev
+      </summary> 
+       <p></p>
+                  
+         <p> Use the following command </p>
+      
+             <pre class="r"> sudo apt-get install build-essential gfortran  libssl-dev  zlib1g-dev</pre>
+   </details>        
+               
+  <details>
+     <summary> [ubuntu 20] Check for libtinfo.so.5  </summary>
      <p></p>
-     R Open requires libtinfo.so.5 (as of Oct 2019). To check 
+     R Open requires libtinfo.so.5 (as of Oct 2019). Debian 10 uses libtinfo.so.6. To check 
      which version you have and its location, use
         <pre class="r">sudo find / -name "libtinfo*" -print </pre> 
+        On our system, libtinfo.so.6 was in /usr/lib/x86_64-linux-gnu/.
      If you have libtinfo.so.6 say, then <b>cd into the directory containing the file</b> and use
           <pre class="r">sudo ln -s libtinfo.so.6  libtinfo.so.5</pre> 
      This creates a symbolic link between the file you have (libtinfo.so.6) and the 
      one R Open expects (libtinfo.so.5). 
     </details>
-           
-            <p></p>
-                        
-<details>
-<summary> [ubuntu 18 & 19] Installation of a C++ compiler </summary> 
-   
-         
-         <p></p>         
-         <p> To install a compiler for C++, run the following command </p>
-      
-             <pre class="r">sudo apt-get install build-essential </pre>
-           
-     
-          
-</details>
  <p></p>
-        <details>
-            <summary> [ubuntu 18 & 19] Installation of a Fortran compiler </summary>    
-    
-         <p> </p>
-         <p> To install a compiler for Fortran, run the following command </p>
-         
-             <pre class="r"> sudo apt-get install gfortran  </pre>
+ 
+ 
+ 
+    <details>
+     <summary> [ubuntu 20] Remove current version of R </summary>
+     <p><p>
+     To remove R from your system, use
+      <pre class="r">sudo apt-get remove r-base-core </pre> 
      
-         </details>       
-       
-           
-           
-           
-           
-           
-           
-           
-           
+     </details>  
     
-
    </details>
 
     
@@ -404,8 +413,7 @@ for the installation of <a href="https://mran.microsoft.com/">R Open</a> and Eag
 
 
 
-
-
+	
 
 
 
@@ -512,20 +520,28 @@ instructions from the installation script. </p>
 
 
 
-			  <div class="box"  id="step7">
+			  <div class="box"  id="step6">
 
 <h3> Step 6: Installation of the Eagle package </h3>
 
-<p> To install the Eagle package, from the R command window, use the <em>install.packages( )</em> command
+<p> This (unfortunately) has turned into a two step process. The first step is to install the data.table R package
+in the usual way. The second step is to install Eagle from the CRAN repository, otherwise an old version of Eagle is 
+installed </p>
 
+<p>
+To install the data.table package, from the R command window, use the <em>install.packages( )</em> command
+<pre class="r"><code> install.packages(&quot;data.table&quot;) </code></pre>
+making sure you do not include a repos parameter. 
+
+To install the Eagle package, use the following command, remembering to include the repos parameter, 
   <pre class="r"><code> install.packages(&quot;Eagle&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
 
 
-<p> This takes a bit of time since it is not only Eagle but all its dependencies that need installing.  </p> 
+<p> This takes a bit of time since it is not only Eagle but, possibly, all its dependencies that need installing.  </p> 
 				</div>		      
 
 
-  <div class="box"  id="step7">
+             <div class="box"  id="step7">
 
 <h3> Step 7: Start using Eagle </h3>
 <p> To start using Eagle, from the R command window, use </p>
@@ -539,6 +555,9 @@ on how to use Eagle.
 </p>
 
 </div>
+
+
+
 
 
 </section>

@@ -77,12 +77,26 @@
 					  <h3>Getting Started</h3>
 					  
 					  <p> To install the Eagle package, from an interactive session in <a href="https://www.r-project.org/about.html">R</a>, type the following command   </p>
-				
+					    <pre class="r"><code> install.packages(&quot;data.table&quot;) </code></pre>
+					    </p>
+					    <p>
+					 then type the command 
 					   <pre class="r"><code> install.packages(&quot;Eagle&quot; , repos = &quot;https://cloud.r-project.org/&quot;, dependencies=TRUE) </code></pre>
-					  
-					This will install the Eagle package along with any missing packages upon which Eagle is dependent. </p>
-						    <p>Once Eagle has been installed, the package is ready to be loaded into your R session with
+ 
+ </p>
+ <p>
+ It may seem strange to first install data.table then Eagle. However, for R Open, under some linux distributions, 
+ we found data.table failed to install when the package was obtained from https://cloud.r-project.org. The solution was to install data.table 
+ from its default MRAN repository, and then install Eagle and its other dependencies from https://cloud.r-project.org. By using 
+ this repository, we are downloading the most current version of Eagle (the version of MRAN is several versions and bugs old)
+</p>
+
+<p></p>
+<p>
+						    Once Eagle has been installed, the package is ready to be loaded into your R session with
                            <pre class="r"><code>library(&quot;Eagle&quot;)</code></pre>   
+                           </p>
+                           <p>
                            You will see a message saying that Eagle has been loaded. </p>								
 						
 				</div>	
@@ -108,7 +122,7 @@
 				         At the top of the page is a navigation bar. To perform an analysis, 
 				         work your way 
 				         through each navigation item, from left to right, with the Read Z matrix item being only if you have 
-				         multiple trait measurements per individual and 
+				         repeated trait measurements for an individual and 
 				        Read Map item being optional. </p>
 				         
 				
@@ -151,7 +165,7 @@
 								
 				<p> <font size="4" color="red">Note: From version 2.2, Eagle will also accept marker data in vcf format. 
 				<a href="https://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/VCF%20%28Variant%20Call%20Format%29%20version%204.0/encoding-structural-variants">Variant Call Format version 4.0</a>
-				is assumed. Marker data are recorded in this file as genotype information. See our video on Input Data for more information.  </font>
+				is assumed. See our video on Input Data for more information.  </font>
 				</p>
 				
 				
@@ -252,15 +266,19 @@
   		
 				
 				    	<details>
-         	   <summary style="font-size: 20px" > When an individual has multiple trait values  </summary>
+         	   <summary style="font-size: 20px" > When an individual has repeated trait values  </summary>
                <p style="font-size: 16px; color: grey" > 
                
                
                Suppose there are <em> m </em> individuals and for the trait of interest, there are 
-               <em> n </em> trait values where  <em> n   > m </em>. Here, some individuals have multiple 
+               <em> n </em> trait values where  <em> n   > m </em>. Here, some individuals have repeated 
                observations for the trait. For example, we may have a plant study where the trait of interest is yield. 
                The study may contain <em> m </em> different plant varieties. For each variety, we may plant them in 
-               multiple plots and record the yield per plot. Here, were split the data into four separate datasets:
+               multiple plots and record the yield per plot. 
+               </p>
+               
+               <p>
+               The data are split into four separate datasets:
                
 											<ul>
 											<li>a  <a href="#div2_markerdata">marker dataset</a>  </li>
@@ -275,7 +293,11 @@
                <div class="box" id="div2_markerdata">	
 								
 			   <h3>Reading in the Marker Data</h3>
-								
+						
+						<p> <font size="4" color="red">Note: From version 2.2, Eagle will also accept marker data in vcf format. 
+				<a href="https://www.internationalgenome.org/wiki/Analysis/Variant%20Call%20Format/VCF%20%28Variant%20Call%20Format%29%20version%204.0/encoding-structural-variants">Variant Call Format version 4.0</a>
+				is assumed. See our video on Input Data for more information.  </font>
+				</p>		
 				
 					    <p> There are two types of marker data file that Eagle can handle; 
 					    a PLINK ped file and a plain text file. Below, is an example of each of these file types. </p>
@@ -402,7 +424,7 @@
                        We will assume that you have loaded your data successfully into Eagle and are now ready 
                        to analyse the data. Eagle finds SNP-trait associations by building the "best" model. 
                        We measure "best" via the extended BIC statistic. The false positive rate for this statistic 
-                       is controlled by the gamma parameter. Values closer to 1 (0) reduce (increase) the false positive rate 
+                       is controlled by the lambda parameter. Values closer to 1 (0) reduce (increase) the false positive rate 
                        but also power of finding SNP-trait associations. 
                        
                     
@@ -413,8 +435,8 @@
                        
                        <p>
                        Eagle gives you two ways of analysing your data. One 
-                       way is where you set the gamma value manually. This is the "quick" way. The other way is where you 
-                       let Eagle find the gamma value corresponding to a desired false positive rate for the analysis. This 
+                       way is where you set the lambda value manually. This is the "quick" way. The other way is where you 
+                       let Eagle find the lambda value corresponding to a desired false positive rate for the analysis. This 
                        way is slower as it involves permutation but it is the preferred way. Both scenarios are presented below. 
                         </p>
                        
@@ -425,9 +447,9 @@
                       
                       <p>  <b>Scenario 1:</b>  Suppose you are interested in performing a "quick" preliminary analysis 
                       of your data. You can do this by selecting "Set manually" in Step 4.  
-                      If the gamma value is left at its default value of 1, a  
+                      If the lambda value is left at its default value of 1, a  
                       conservative (low false positive rate) analysis of the data will be performed.  If you want to 
-                      make the analysis less conservative, move the slider bar for the gamma value closer to 0.
+                      make the analysis less conservative, move the slider bar for the lambda value closer to 0.
                       This will increase the power of detecting SNP-trait associations but also increase 
                       the false positive rate. 
                       </p>
@@ -439,8 +461,8 @@
                           <img style="float: left; padding: 0px 10px 10px 20px;" width="60%" src="images/Analysis_scenario2.jpg"/>
                       
                       <p>  <b>Scenario 2:</b>  Here, we have selected the "Set automatically" option in Step 4 
-                      to let Eagle set the gamma value via permutation.  In this example, Eagle 
-                      will find the gamma value that gives a false positive rate of 5% for finding SNP-trait associations. 
+                      to let Eagle set the lambda value via permutation.  In this example, Eagle 
+                      will find the lambda value that gives a false positive rate of 5% for finding SNP-trait associations. 
                       The analysis takes about five times as long to run.
                      
                       
